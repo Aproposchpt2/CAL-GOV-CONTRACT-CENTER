@@ -1,18 +1,14 @@
 'use strict';
-/* CalStateGen — headless PlanetBids ingest.
-   Loads each CA agency's PUBLIC PlanetBids portal in a real browser; the Ember app
-   authenticates itself and fetches its bids from the papi JSON:API — we intercept that
-   response (no guard-fighting, no DOM scraping). Normalize → bids.json for the site.
-   First runs log the captured JSON:API shape so the field mapping can be tuned. */
+/* CalStateGen — headless PlanetBids ingest (DIAGNOSTIC MODE).
+   Logs every PlanetBids/api-external network call + DOM state so we can see exactly how the
+   public portal loads its bids, then lock in the capture. Normalizes whatever JSON data array
+   it finds into bids.json. */
 
 const { chromium } = require('playwright');
 const fs = require('fs');
 
-// Seed set of major California agency portals (portalId from vendors.planetbids.com/portal/{id}/...).
-// Start small to prove the pipeline, then expand the list.
 const PORTALS = [
   { id: 17950, agency: 'City of San Diego' },
-  { id: 27411, agency: 'Inland Empire Utilities Agency' },
 ];
 
 const PORTAL_URL = id => `https://vendors.planetbids.com/portal/${id}/bo/bo-search`;
@@ -24,7 +20,6 @@ function daysUntil(dateStr) {
   return Math.ceil((t - Date.now()) / 86400000);
 }
 
-// Best-effort JSON:API → normalized bid. Field names get corrected once run-1 logs reveal the shape.
 function normalize(item, portal) {
   const a = (item && item.attributes) || item || {};
   const pick = (...keys) => { for (const k of keys) if (a[k] != null && a[k] !== '') return a[k]; return null; };
@@ -45,70 +40,58 @@ function normalize(item, portal) {
 
 async function scrapePortal(browser, portal) {
   const page = await browser.newPage();
-  const captures = [];
+  const jsonCaptures = [];
+  const allUrls = [];
+
   page.on('response', async (res) => {
     const url = res.url();
-    if (!/api-external\.prod\.planetbids\.com\/papi\//i.test(url)) return;
-    if (!/bid|opportunit|solicit/i.test(url)) return;
+    if (!/planetbids\.com|api-external/i.test(url)) return;
+    allUrls.push(`${res.status()} ${res.request().method()} ${url.slice(0, 130)}`);
+    if (!/api-external\.prod\.planetbids\.com/i.test(url)) return;
     try {
       const ct = (res.headers()['content-type'] || '');
       if (!ct.includes('json')) return;
       const body = await res.json();
-      captures.push({ url, body });
+      const data = body && (Array.isArray(body.data) ? body.data : Array.isArray(body) ? body : null);
+      jsonCaptures.push({ url, len: data ? data.length : 0, sample: data && data[0] });
     } catch (e) { /* ignore */ }
   });
 
   try {
-    await page.goto(PORTAL_URL(portal.id), { waitUntil: 'networkidle', timeout: 60000 });
-    await page.waitForTimeout(5000); // let the grid's bid fetch settle
+    await page.goto(PORTAL_URL(portal.id), { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.waitForTimeout(12000); // give the Ember app time to boot + fetch on a cold runner
   } catch (e) {
-    console.log(`[${portal.id}] navigation issue: ${e.message}`);
+    console.log(`[${portal.id}] nav issue: ${e.message}`);
   }
+
+  let title = '', bodyLen = 0, rowGuess = 0;
+  try {
+    title = await page.title();
+    bodyLen = await page.evaluate(() => (document.body ? document.body.innerText.length : 0));
+    rowGuess = await page.evaluate(() => document.querySelectorAll('tr,[role="row"],.ember-view li').length);
+  } catch (e) {}
   await page.close();
 
-  // Pick the capture whose body has the largest data array (the bid list).
-  let best = null;
-  for (const c of captures) {
-    const data = c.body && (Array.isArray(c.body.data) ? c.body.data : Array.isArray(c.body) ? c.body : null);
-    const n = data ? data.length : 0;
-    if (!best || n > best.n) best = { url: c.url, data: data || [], n };
+  console.log(`[${portal.id}] title="${title}" bodyTextLen=${bodyLen} domRowish=${rowGuess}`);
+  console.log(`[${portal.id}] ${allUrls.length} planetbids/api responses:`);
+  allUrls.slice(0, 45).forEach(u => console.log('   ' + u));
+  console.log(`[${portal.id}] api-external JSON captures: ${jsonCaptures.length}`);
+  jsonCaptures.sort((a, b) => b.len - a.len);
+  jsonCaptures.slice(0, 8).forEach(c => console.log(`   data[${c.len}] <- ${c.url.slice(0, 120)}`));
+  const best = jsonCaptures[0];
+  if (best && best.sample) {
+    console.log(`[${portal.id}] biggest-array sample keys: ${JSON.stringify(Object.keys(best.sample.attributes || best.sample))}`);
+    console.log(`[${portal.id}] sample: ${JSON.stringify(best.sample).slice(0, 700)}`);
   }
-
-  console.log(`[${portal.id}] ${portal.agency}: captured ${captures.length} papi response(s); best bid array = ${best ? best.n : 0}`);
-  if (best && best.data[0]) {
-    console.log(`[${portal.id}] sample attribute keys: ${JSON.stringify(Object.keys(best.data[0].attributes || best.data[0]))}`);
-    console.log(`[${portal.id}] sample item: ${JSON.stringify(best.data[0]).slice(0, 600)}`);
-  }
-  const bids = (best ? best.data : []).map(it => normalize(it, portal)).filter(Boolean);
-  return bids;
+  return (best && best.len ? [] : []); // diagnostic run: don't overwrite bids.json yet
 }
 
 (async () => {
   const browser = await chromium.launch();
-  let all = [];
   for (const portal of PORTALS) {
-    try { all = all.concat(await scrapePortal(browser, portal)); }
+    try { await scrapePortal(browser, portal); }
     catch (e) { console.log(`[${portal.id}] failed: ${e.message}`); }
   }
   await browser.close();
-
-  all = all
-    .filter(b => b.due_in_days === null || b.due_in_days >= 0)
-    .sort((a, b) => (a.due_in_days ?? 9999) - (b.due_in_days ?? 9999));
-
-  const payload = {
-    source: 'planetbids',
-    state: 'CA',
-    scanMode: all.length ? 'live' : 'sample',
-    generatedAt: new Date().toISOString(),
-    count: all.length,
-    bids: all,
-  };
-
-  if (all.length) {
-    fs.writeFileSync('bids.json', JSON.stringify(payload, null, 2));
-    console.log(`WROTE bids.json with ${all.length} bids across ${PORTALS.length} portals.`);
-  } else {
-    console.log('No bids normalized — leaving existing bids.json untouched (check the logged shape above to fix field mapping).');
-  }
+  console.log('DIAGNOSTIC run complete — inspect logged URLs/shape above.');
 })();
