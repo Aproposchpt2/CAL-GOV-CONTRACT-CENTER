@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CalStateGen — Win California Government Contracts</title>
-<meta name="description" content="CalStateGen surfaces open California state, county, city, and education contracts — matched to what your business does. No SAM.gov registration required. Launching soon."/>
+<title>CalStateGen — Find Your Next California Government Contract</title>
+<meta name="description" content="CalStateGen surfaces open California state, county, city, school district, and university bids — matched to what your business delivers. No SAM.gov registration required."/>
 <meta name="author" content="Apropos Group LLC"/>
 <meta name="theme-color" content="#0F2A6A"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,48 +17,115 @@
   --line:rgba(255,255,255,.12);--line-2:rgba(255,255,255,.22);
   --gold-bright:#EEF3FF;
   --disp:'Bodoni Moda',Georgia,serif;--subdisp:'Cormorant',Georgia,serif;--body:'Jost',sans-serif;
-  --max:1080px;
+  --max:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--body);color:rgba(255,255,255,.72);font-weight:300;line-height:1.7;min-height:100vh;background:var(--ink);overflow-x:hidden;display:flex;flex-direction:column}
+body{font-family:var(--body);color:rgba(255,255,255,.72);font-weight:300;line-height:1.7;min-height:100vh;background:var(--ink);overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.025;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px}
 a{color:inherit;text-decoration:none}
-.shell{position:relative;z-index:1;width:min(var(--max),calc(100% - 36px));margin:0 auto;flex:1;display:flex;flex-direction:column}
+.shell{position:relative;z-index:1;width:min(var(--max),calc(100% - 36px));margin:0 auto;padding-bottom:5rem}
 
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:1.4rem 0;flex-wrap:wrap;border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:12px}
 .brand .mark{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;font-family:var(--body);font-weight:600;font-size:.9rem;background:var(--white);color:var(--ink)}
 .brand .bname{font-family:var(--disp);font-size:1.36rem;font-weight:400;color:var(--white);line-height:1;letter-spacing:-.01em}
 .brand .bsub{font-family:var(--body);font-size:.58rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.pill{display:inline-flex;align-items:center;gap:9px;font-family:var(--body);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem}
-.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 0 0 5px rgba(255,255,255,.08)}
+.nav-pill{display:inline-flex;align-items:center;gap:9px;font-family:var(--body);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem}
+.nav-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 0 0 5px rgba(255,255,255,.08)}
 
-.hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0;max-width:840px}
-.eyebrow{font-family:var(--body);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:8px;margin-bottom:1.4rem}
+.hero{padding:clamp(3rem,7vh,5rem) 0 2.6rem;max-width:880px}
+.eyebrow{font-family:var(--body);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:8px;margin-bottom:1.3rem}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);box-shadow:0 0 0 5px rgba(255,255,255,.08)}
-.hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.7rem,6vw,5rem);line-height:1.02;letter-spacing:-.02em;color:var(--white);margin-bottom:1.4rem}
+.hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.6rem,5.5vw,4.6rem);line-height:1.02;letter-spacing:-.02em;color:var(--white);margin-bottom:1.3rem}
 .hero h1 em{font-style:italic;font-family:var(--subdisp);color:rgba(255,255,255,.5)}
-.hero-copy{font-size:clamp(1.05rem,1.6vw,1.22rem);color:rgba(255,255,255,.55);max-width:60ch;margin-bottom:1.9rem;line-height:1.75}
+.hero-copy{font-size:clamp(1rem,1.5vw,1.16rem);color:rgba(255,255,255,.55);max-width:60ch;line-height:1.75}
 .hero-copy strong{color:var(--white);font-weight:400}
-.chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:2rem}
-.chip{padding:7px 14px;border:1px solid var(--line);background:rgba(255,255,255,.05);font-family:var(--body);font-size:.75rem;font-weight:400;color:rgba(255,255,255,.45)}
-.note{font-family:var(--body);font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:8px}
-.note b{color:var(--white);font-weight:600}
+.hero-actions{display:flex;gap:18px;flex-wrap:wrap;margin-top:1.8rem;align-items:center}
+.btn{cursor:pointer;display:inline-flex;align-items:center;transition:background .25s,transform .2s,color .25s,border-color .25s}
+.btn.primary{background:var(--white);color:var(--ink);font-family:var(--body);font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.8rem;border:none;border-radius:4px}
+.btn.primary:hover{background:var(--gold-bright);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:rgba(255,255,255,.5);font-family:var(--body);font-weight:500;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;border:none;border-bottom:1px solid rgba(255,255,255,.2);border-radius:0;padding:0 0 2px}
+.btn.ghost:hover{color:var(--white);border-color:var(--white)}
 
-.cross{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:1rem 0 2rem;padding:clamp(1.3rem,3vw,1.9rem);border:1px solid var(--line-2);background:rgba(255,255,255,.05)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:1rem 0 2.4rem}
+.stat{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:1.1rem 1.2rem}
+.stat .num{font-family:var(--disp);font-weight:400;font-size:1.9rem;color:var(--white);line-height:1}
+.stat .lbl{font-family:var(--body);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:.5rem}
+
+.board,.profile{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:clamp(1.4rem,2.4vw,2rem);position:relative}
+.profile{margin-bottom:18px}
+.board-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:1.3rem}
+.board-eyebrow{font-family:var(--body);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem}
+.board-title{font-family:var(--disp);font-weight:400;font-size:1.6rem;color:var(--white);letter-spacing:-.01em}
+.mode-tag{font-family:var(--body);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:999px;padding:.4rem .85rem}
+
+.filters{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:11px;margin-bottom:1.4rem}
+.filters label{display:flex;flex-direction:column;gap:.5rem;font-family:var(--body);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+input,select{font-family:var(--body);font-size:.92rem;font-weight:300;color:var(--white);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:4px;padding:.7rem .85rem;transition:border-color .2s;width:100%}
+input::placeholder{color:rgba(255,255,255,.3)}
+input:focus,select:focus{outline:none;border-color:rgba(255,255,255,.5)}
+select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239DB0D4' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
+option{background:var(--ink-2);color:var(--white)}
+
+.table-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:780px}
+thead th{font-family:var(--body);font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:left;padding:.9rem 1rem;background:rgba(255,255,255,.04);border-bottom:1px solid var(--line-2);white-space:nowrap}
+tbody td{padding:.85rem 1rem;border-bottom:1px solid var(--line);color:rgba(255,255,255,.6);vertical-align:top;font-weight:300}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.04)}
+.t-title{color:var(--white);font-weight:500}
+a.t-link{color:var(--white)}
+a.t-link:hover .t-title{color:var(--gold-bright)}
+a.t-link .ext{color:rgba(255,255,255,.4);font-size:.78em}
+.t-sol{font-family:var(--body);font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.25rem;letter-spacing:.04em}
+.view-btn{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--body);font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);border:1px solid var(--line-2);background:rgba(255,255,255,.05);border-radius:4px;padding:.45rem .8rem;white-space:nowrap;transition:.2s}
+.view-btn:hover{background:var(--white);color:var(--ink);border-color:var(--white)}
+.t-cat{font-family:var(--body);font-size:.82rem;color:rgba(255,255,255,.6)}
+.chip{display:inline-block;font-family:var(--body);font-size:.64rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .6rem;border-radius:4px;border:1px solid var(--line);white-space:nowrap;color:rgba(255,255,255,.55)}
+.chip.hot{color:var(--white);border-color:var(--line-2);background:rgba(255,255,255,.1)}
+.chip.warm{color:rgba(255,255,255,.8);border-color:var(--line-2)}
+.chip.ok{color:rgba(255,255,255,.5)}
+.empty{text-align:center;color:rgba(255,255,255,.4);padding:2.4rem;font-size:.95rem}
+
+.profile-sub{font-size:.92rem;color:rgba(255,255,255,.5);max-width:60ch;margin-top:.4rem;line-height:1.7}
+.profile-form{display:flex;gap:11px;margin-top:1.2rem;flex-wrap:wrap}
+.profile-form input{flex:1;min-width:240px}
+.profile-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
+.kw{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--body);font-size:.7rem;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.6);border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:999px;padding:.3rem .8rem}
+.kw b{color:var(--white);font-weight:600}
+.view-toggle{display:inline-flex;gap:4px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:6px;padding:4px}
+.vt{font-family:var(--body);font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5);background:transparent;border:0;border-radius:3px;padding:.5rem .9rem;cursor:pointer;transition:.15s}
+.vt.active{background:var(--white);color:var(--ink)}
+.vt:hover:not(.active){color:var(--white)}
+.match-badge{display:inline-block;font-family:var(--body);font-size:.58rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);border:1px solid var(--line-2);background:rgba(255,255,255,.05);border-radius:4px;padding:.14rem .45rem;margin-left:.5rem;vertical-align:middle}
+.match-badge.strong{color:var(--ink);background:var(--white);border-color:var(--white)}
+
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:2.6rem 0 0}
+.how .step{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:1.6rem 1.7rem;position:relative;overflow:hidden}
+.how .step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--white);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.how .step:hover::before{transform:scaleX(1)}
+.how .n{font-family:var(--subdisp);font-style:italic;font-size:1.4rem;color:rgba(255,255,255,.3);margin-bottom:.7rem}
+.how h3{font-family:var(--disp);font-weight:400;font-size:1.2rem;color:var(--white);margin-bottom:.5rem}
+.how p{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+
+.cross{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:2.4rem;padding:clamp(1.3rem,3vw,1.9rem);border:1px solid var(--line-2);background:rgba(255,255,255,.05)}
 .cross .ct-eyebrow{font-family:var(--body);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-bottom:.5rem}
 .cross h3{font-family:var(--disp);font-weight:400;font-size:clamp(1.2rem,2.2vw,1.6rem);color:var(--white);line-height:1.2}
 .cross h3 em{font-style:italic;font-family:var(--subdisp);color:rgba(255,255,255,.5)}
 .cross p{font-size:.9rem;color:rgba(255,255,255,.5);margin-top:.45rem;max-width:54ch;line-height:1.6}
 .cross-btn{background:var(--white);color:var(--ink);font-family:var(--body);font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.8rem;border-radius:4px;white-space:nowrap;transition:background .25s,transform .2s;display:inline-flex;align-items:center}
 .cross-btn:hover{background:var(--gold-bright);transform:translateY(-2px)}
-.foot{border-top:1px solid var(--line);padding:1.4rem 0 .4rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+
+.foot{border-top:1px solid var(--line);margin-top:2.6rem;padding-top:1.6rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   font-family:var(--body);font-size:.72rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .foot a{color:rgba(255,255,255,.4)}.foot a:hover{color:var(--white)}
-.copyright-notice{padding:0 0 1.6rem;font-size:.7rem;color:rgba(255,255,255,.3);text-align:center;line-height:1.7;font-weight:300}
-.copyright-notice strong{color:rgba(255,255,255,.5)}
+.copyright-notice{border-top:1px solid var(--line);padding-top:16px;margin-top:18px;font-size:.7rem;color:rgba(255,255,255,.32);text-align:center;line-height:1.7;font-weight:300}
+.copyright-notice strong{color:rgba(255,255,255,.55)}
+
+@media(max-width:860px){.stats{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.how{grid-template-columns:1fr}}
+@media(max-width:520px){.stats{grid-template-columns:1fr 1fr}.shell{width:calc(100% - 24px)}}
 </style>
 </head>
 <body>
@@ -72,7 +139,7 @@ a{color:inherit;text-decoration:none}
         <span class="bsub">California Procurement · Apropos Group LLC</span>
       </span>
     </div>
-    <span class="pill">Launching soon</span>
+    <span class="nav-pill">Live California bid board</span>
   </header>
 
   <section class="hero">
@@ -83,13 +150,79 @@ a{color:inherit;text-decoration:none}
       <strong>State of California, county, city, school district, and university</strong> bids — matched to what your
       business delivers.
     </p>
-    <div class="chips">
-      <span class="chip">Every open CA bid</span>
-      <span class="chip">Matched to your work</span>
-      <span class="chip">Straight to the solicitation</span>
-      <span class="chip">No SAM.gov needed</span>
+    <div class="hero-actions">
+      <a class="btn primary" href="#board">Browse Open Bids ↓</a>
+      <a class="btn ghost" href="#how">How it works</a>
     </div>
-    <p class="note">Building now &nbsp;·&nbsp; <b>Live bid board coming soon</b></p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="num" id="statOpen">—</div><div class="lbl">Open solicitations</div></div>
+    <div class="stat"><div class="num" id="statAgencies">—</div><div class="lbl">Agencies</div></div>
+    <div class="stat"><div class="num" id="statSoon">—</div><div class="lbl">Closing within 7 days</div></div>
+    <div class="stat"><div class="num">CA</div><div class="lbl">Coverage · more agencies soon</div></div>
+  </div>
+
+  <section class="profile" id="profile">
+    <p class="board-eyebrow">Match bids to your business</p>
+    <h2 class="board-title">What does your business do?</h2>
+    <p class="profile-sub">Enter a few keywords — services, trades, or product types. CalStateGen flags and ranks the open bids that fit, so you see your work first.</p>
+    <div class="profile-form">
+      <input id="pfKeywords" type="text" placeholder="e.g. paving, electrical, IT services, landscaping, security" />
+      <button class="btn primary" id="pfSave">Save &amp; Match</button>
+    </div>
+    <div class="profile-tags" id="pfTags"></div>
+  </section>
+
+  <section class="board" id="board">
+    <div class="board-head">
+      <div>
+        <p class="board-eyebrow">California public agency portals</p>
+        <h2 class="board-title">Open solicitations</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="view-toggle" id="viewToggle" style="display:none">
+          <button class="vt active" data-view="all">All open bids</button>
+          <button class="vt" data-view="matches">My matches <span id="matchCount"></span></button>
+        </div>
+        <span class="mode-tag" id="modeTag">Loading…</span>
+      </div>
+    </div>
+
+    <div class="filters">
+      <label>Search
+        <input id="fSearch" type="text" placeholder="Title, agency, solicitation #…" />
+      </label>
+      <label>Agency
+        <select id="fAgency"><option value="">All agencies</option></select>
+      </label>
+      <label>Type
+        <select id="fType"><option value="">All types</option></select>
+      </label>
+      <label>Closing within
+        <select id="fDue">
+          <option value="0">Any time</option>
+          <option value="7">7 days</option>
+          <option value="14">14 days</option>
+          <option value="30">30 days</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Solicitation</th><th>Agency</th><th>Type</th><th>Closes</th><th>Details</th></tr>
+        </thead>
+        <tbody id="rows"><tr><td colspan="5" class="empty">Loading open California bids…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="step"><div class="n">01</div><h3>One board, many agencies</h3><p>CalStateGen pulls open solicitations from California agencies' public procurement portals into one place — city, county, district, and education buyers. No SAM.gov, no UEI, no federal registration needed.</p></div>
+    <div class="step"><div class="n">02</div><h3>Filter to what fits</h3><p>Search by agency, bid type, and closing window to zero in on the work you can actually win.</p></div>
+    <div class="step"><div class="n">03</div><h3>Bid with lead time</h3><p>Open any solicitation on the agency's portal and respond before it closes — never miss a local opportunity again.</p></div>
   </section>
 
   <section class="cross">
@@ -103,13 +236,135 @@ a{color:inherit;text-decoration:none}
 
   <footer class="foot">
     <span>© <span id="yr"></span> Apropos Group LLC · CalStateGen</span>
-    <span>Sister site to <a href="https://nevadastategen.aproposgroupllc.com">NevadaStateGen</a> · Sourced from public California procurement records</span>
+    <span>Sourced from public California procurement records · Not affiliated with the State of California</span>
   </footer>
   <div class="copyright-notice">
     <p>© 2026 Apropos Group LLC. All rights reserved. CalStateGen is a proprietary government-procurement intelligence service developed and owned by Apropos Group LLC. Unauthorized reproduction, distribution, reverse engineering, or imitation of any content, code, design, methodology, or process is strictly prohibited and may result in civil and criminal liability under applicable United States copyright and intellectual property laws. CalStateGen&trade; is a trademark of Apropos Group LLC.</p>
   </div>
 
 </div>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<script>
+'use strict';
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const FALLBACK = { scanMode:'sample', bids:[
+  {id:'ca-s1',solicitation_no:'K-26-1042',title:'Citywide Street Resurfacing Program',bid_type:'Bid',agency:'City of San Diego',close_date:'2026-07-02 14:00 PT',due_in_days:14,url:'https://vendors.planetbids.com/portal/17950/bo/bo-search'},
+  {id:'ca-s2',solicitation_no:'IEUA-26-008',title:'Water Treatment Plant Electrical Upgrades',bid_type:'RFP',agency:'Inland Empire Utilities Agency',close_date:'2026-07-09 11:00 PT',due_in_days:21,url:'https://vendors.planetbids.com/portal/27411/bo/bo-search'},
+  {id:'ca-s3',solicitation_no:'K-26-1067',title:'On-Call Landscape & Grounds Maintenance',bid_type:'Bid',agency:'City of San Diego',close_date:'2026-06-29 14:00 PT',due_in_days:11,url:'https://vendors.planetbids.com/portal/17950/bo/bo-search'}
+]};
+
+let ALL = [];
+let KEYWORDS = [];
+let viewMode = 'all';
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const q = id => document.getElementById(id);
+
+function loadProfile(){ try{ KEYWORDS = JSON.parse(localStorage.getItem('calstategen_keywords')||'[]'); }catch(e){ KEYWORDS=[]; } }
+function saveProfile(){
+  const raw = q('pfKeywords').value || '';
+  KEYWORDS = raw.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean).slice(0,12);
+  localStorage.setItem('calstategen_keywords', JSON.stringify(KEYWORDS));
+  renderTags(); reflectProfile();
+  if(KEYWORDS.length){ viewMode='matches'; setView('matches'); } else { setView('all'); }
+}
+function renderTags(){
+  q('pfTags').innerHTML = KEYWORDS.map(k=>'<span class="kw">★ <b>'+esc(k)+'</b></span>').join('');
+  if(KEYWORDS.length) q('pfKeywords').value = KEYWORDS.join(', ');
+}
+function scoreBid(b){
+  if(!KEYWORDS.length) return 0;
+  const hay = (b.title+' '+b.bid_type+' '+b.agency).toLowerCase();
+  let s=0; for(const k of KEYWORDS){ if(hay.includes(k)) s++; }
+  return s;
+}
+function reflectProfile(){
+  const has = KEYWORDS.length>0;
+  q('viewToggle').style.display = has ? 'inline-flex' : 'none';
+  if(has){ q('matchCount').textContent = '('+ALL.filter(b=>scoreBid(b)>0).length+')'; }
+}
+function setView(v){
+  viewMode = v;
+  document.querySelectorAll('.vt').forEach(btn=>btn.classList.toggle('active', btn.dataset.view===v));
+  render();
+}
+
+function dueChip(d){
+  if(d==null) return '<span class="chip">Open</span>';
+  const cls = d<=7?'hot':d<=14?'warm':'ok';
+  const lbl = d<=0?'Closing today':d===1?'1 day left':d+' days left';
+  return '<span class="chip '+cls+'">'+lbl+'</span>';
+}
+function hydrateFilters(){
+  const agencies = [...new Set(ALL.map(b=>b.agency))].sort();
+  const types = [...new Set(ALL.map(b=>b.bid_type))].sort();
+  q('fAgency').insertAdjacentHTML('beforeend', agencies.map(a=>'<option>'+esc(a)+'</option>').join(''));
+  q('fType').insertAdjacentHTML('beforeend', types.map(t=>'<option>'+esc(t)+'</option>').join(''));
+}
+function matchBadge(score){
+  if(score<=0) return '';
+  return score>=2 ? '<span class="match-badge strong">★ Strong match</span>' : '<span class="match-badge">★ Match</span>';
+}
+function fmtClose(s){ if(!s) return ''; const m=String(s).match(/(\d{4})-(\d{2})-(\d{2})[ T](\d{2}:\d{2})/); return m?`${m[2]}/${m[3]}/${m[1]} ${m[4]}`:String(s); }
+
+function render(){
+  const term = q('fSearch').value.trim().toLowerCase();
+  const agency = q('fAgency').value;
+  const type = q('fType').value;
+  const due = Number(q('fDue').value);
+  let rows = ALL.map(b=>({b, score:scoreBid(b)})).filter(({b})=>{
+    if(agency && b.agency!==agency) return false;
+    if(type && b.bid_type!==type) return false;
+    if(due && b.due_in_days!=null && b.due_in_days>due) return false;
+    if(term){ const hay=(b.title+' '+b.agency+' '+b.solicitation_no+' '+b.bid_type).toLowerCase(); if(!hay.includes(term)) return false; }
+    return true;
+  });
+  if(viewMode==='matches'){
+    rows = rows.filter(r=>r.score>0).sort((a,b)=> b.score-a.score || (a.b.due_in_days??9999)-(b.b.due_in_days??9999));
+  }
+  const empty = viewMode==='matches'
+    ? 'No open bids match your keywords right now. New bids post daily — check back, or widen your keywords.'
+    : 'No open bids match these filters.';
+  q('rows').innerHTML = rows.length ? rows.map(({b,score})=>{
+    const url = b.url || '#';
+    return '<tr>'+
+      '<td><a class="t-link" href="'+esc(url)+'" target="_blank" rel="noopener"><span class="t-title">'+esc(b.title)+'</span> <span class="ext">↗</span></a>'+matchBadge(score)+(b.solicitation_no?'<div class="t-sol">'+esc(b.solicitation_no)+'</div>':'')+'</td>'+
+      '<td>'+esc(b.agency)+'</td>'+
+      '<td class="t-cat">'+esc(b.bid_type)+'</td>'+
+      '<td>'+dueChip(b.due_in_days)+(b.close_date?'<div class="t-sol">'+esc(fmtClose(b.close_date))+'</div>':'')+'</td>'+
+      '<td><a class="view-btn" href="'+esc(url)+'" target="_blank" rel="noopener">View bid details ↗</a></td>'+
+    '</tr>';
+  }).join('') : '<tr><td colspan="5" class="empty">'+empty+'</td></tr>';
+}
+
+function setStats(){
+  q('statOpen').textContent = ALL.length;
+  q('statAgencies').textContent = new Set(ALL.map(b=>b.agency)).size;
+  q('statSoon').textContent = ALL.filter(b=>b.due_in_days!=null && b.due_in_days<=7).length;
+}
+
+async function init(){
+  let data;
+  try{
+    const res = await fetch('/bids.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('fetch');
+    data = await res.json();
+    if(!data.bids || !data.bids.length) throw new Error('empty');
+  }catch(e){ data = FALLBACK; }
+  ALL = (data.bids||[]).slice().sort((a,b)=>(a.due_in_days??9999)-(b.due_in_days??9999));
+  q('modeTag').textContent = (data.scanMode==='live'?'Live data':'Sample data') + ' · updated daily';
+  hydrateFilters(); setStats(); renderTags(); reflectProfile(); render();
+  if(KEYWORDS.length) setView('matches');
+  ['fSearch','fAgency','fType','fDue'].forEach(id=>{
+    const el=q(id); el.addEventListener(id==='fSearch'?'input':'change', render);
+  });
+}
+
+loadProfile();
+q('pfSave').addEventListener('click', saveProfile);
+q('pfKeywords').addEventListener('keydown', e=>{ if(e.key==='Enter') saveProfile(); });
+document.querySelectorAll('.vt').forEach(btn=> btn.addEventListener('click', ()=>setView(btn.dataset.view)) );
+init();
+</script>
 </body>
 </html>
