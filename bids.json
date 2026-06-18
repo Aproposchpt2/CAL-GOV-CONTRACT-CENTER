@@ -1,0 +1,13 @@
+{
+  "source": "planetbids",
+  "state": "CA",
+  "scanMode": "sample",
+  "generatedAt": "2026-06-18T00:00:00.000Z",
+  "count": 4,
+  "bids": [
+    { "id": "ca-s1", "title": "Citywide Street Resurfacing Program", "solicitation_no": "K-26-1042", "agency": "City of San Diego", "bid_type": "BID", "close_date": "2026-07-02 14:00 PT", "due_in_days": 14, "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search" },
+    { "id": "ca-s2", "title": "Water Treatment Plant Electrical Upgrades", "solicitation_no": "IEUA-26-008", "agency": "Inland Empire Utilities Agency", "bid_type": "RFP", "close_date": "2026-07-09 11:00 PT", "due_in_days": 21, "url": "https://vendors.planetbids.com/portal/27411/bo/bo-search" },
+    { "id": "ca-s3", "title": "On-Call Landscape & Grounds Maintenance", "solicitation_no": "K-26-1067", "agency": "City of San Diego", "bid_type": "BID", "close_date": "2026-06-29 14:00 PT", "due_in_days": 11, "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search" },
+    { "id": "ca-s4", "title": "Enterprise IT Managed Services", "solicitation_no": "IEUA-26-012", "agency": "Inland Empire Utilities Agency", "bid_type": "RFP", "close_date": "2026-07-16 11:00 PT", "due_in_days": 28, "url": "https://vendors.planetbids.com/portal/27411/bo/bo-search" }
+  ]
+}

@@ -1,0 +1,28 @@
+name: Scrape CA bids
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # ~6am Pacific daily
+  workflow_dispatch:        # manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/scrape.js
+      - name: Commit refreshed bids.json
+        run: |
+          git config user.name "calstategen-bot"
+          git config user.email "bot@aproposgroupllc.com"
+          git add bids.json
+          git commit -m "data: refresh CA bids [skip ci]" || echo "no changes to commit"
+          git push
