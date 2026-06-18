@@ -5,52 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>CalStateGen — Win California Government Contracts</title>
 <meta name="description" content="CalStateGen surfaces open California state, county, city, and education contracts — matched to what your business does. No SAM.gov registration required. Launching soon."/>
+<meta name="author" content="Apropos Group LLC"/>
+<meta name="theme-color" content="#0F2A6A"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Cormorant:ital,wght@0,500;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a1422;--bg2:#0f2138;--deep:#060d18;
-  --panel:rgba(255,255,255,.045);--panel2:rgba(255,255,255,.02);
-  --line:rgba(180,200,225,.13);--line2:rgba(180,200,225,.26);
-  --white:#eef4fb;--silver:#bccadd;--muted:#8497ad;
-  --gold:#f5b526;--gold2:#e09a18;--sky:#33c5d6;
-  --disp:'Fraunces',Georgia,serif;--body:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+  --ink:#0F2A6A;--ink-2:#163472;--ink-3:#1C3878;
+  --white:#FFFFFF;--silver:#C3D0E8;--mist:#9DB0D4;
+  --line:rgba(255,255,255,.12);--line-2:rgba(255,255,255,.22);
+  --gold-bright:#EEF3FF;
+  --disp:'Bodoni Moda',Georgia,serif;--subdisp:'Cormorant',Georgia,serif;--body:'Jost',sans-serif;
+  --max:1080px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--body);color:var(--silver);font-weight:400;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;
-  background:
-    radial-gradient(circle at 15% -8%,rgba(245,181,38,.14),transparent 36%),
-    radial-gradient(circle at 88% 4%,rgba(51,197,214,.10),transparent 34%),
-    linear-gradient(180deg,var(--bg),var(--deep));
-  background-attachment:fixed}
-.shell{position:relative;z-index:1;width:min(1080px,92%);margin:0 auto;flex:1;display:flex;flex-direction:column}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:rgba(255,255,255,.72);font-weight:300;line-height:1.7;min-height:100vh;background:var(--ink);overflow-x:hidden;display:flex;flex-direction:column}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px}
+a{color:inherit;text-decoration:none}
+.shell{position:relative;z-index:1;width:min(var(--max),calc(100% - 36px));margin:0 auto;flex:1;display:flex;flex-direction:column}
 
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:1.5rem 0;flex-wrap:wrap}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:1.4rem 0;flex-wrap:wrap;border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:12px}
-.brand .mark{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:.82rem;
-  background:linear-gradient(135deg,#fff,var(--gold) 58%,var(--gold2));color:#231703;box-shadow:0 0 28px rgba(245,181,38,.25)}
-.brand .bname{font-family:var(--disp);font-size:1.42rem;font-weight:600;color:var(--white);line-height:1}
-.brand .bsub{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.pill{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--gold);background:rgba(245,181,38,.08);border:1px solid rgba(245,181,38,.26);border-radius:999px;padding:.5rem 1rem}
-.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(245,181,38,.16)}
+.brand .mark{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;font-family:var(--body);font-weight:600;font-size:.9rem;background:var(--white);color:var(--ink)}
+.brand .bname{font-family:var(--disp);font-size:1.36rem;font-weight:400;color:var(--white);line-height:1;letter-spacing:-.01em}
+.brand .bsub{font-family:var(--body);font-size:.58rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.pill{display:inline-flex;align-items:center;gap:9px;font-family:var(--body);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 0 0 5px rgba(255,255,255,.08)}
 
-.hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0;max-width:820px}
-.eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
-.eyebrow::before{content:"";width:26px;height:1px;background:var(--sky)}
-.hero h1{font-family:var(--disp);font-weight:600;font-size:clamp(2.7rem,6.5vw,4.8rem);line-height:1.02;letter-spacing:-.015em;color:var(--white);margin-bottom:1.2rem}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero-copy{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--muted);max-width:60ch;margin-bottom:1.8rem}
-.hero-copy strong{color:var(--silver);font-weight:500}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:2rem}
-.chip{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--silver);border:1px solid var(--line2);background:var(--panel);border-radius:999px;padding:.5rem .9rem}
-.note{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.note b{color:var(--gold)}
+.hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 0;max-width:840px}
+.eyebrow{font-family:var(--body);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:8px;margin-bottom:1.4rem}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);box-shadow:0 0 0 5px rgba(255,255,255,.08)}
+.hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.7rem,6vw,5rem);line-height:1.02;letter-spacing:-.02em;color:var(--white);margin-bottom:1.4rem}
+.hero h1 em{font-style:italic;font-family:var(--subdisp);color:rgba(255,255,255,.5)}
+.hero-copy{font-size:clamp(1.05rem,1.6vw,1.22rem);color:rgba(255,255,255,.55);max-width:60ch;margin-bottom:1.9rem;line-height:1.75}
+.hero-copy strong{color:var(--white);font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:2rem}
+.chip{padding:7px 14px;border:1px solid var(--line);background:rgba(255,255,255,.05);font-family:var(--body);font-size:.75rem;font-weight:400;color:rgba(255,255,255,.45)}
+.note{font-family:var(--body);font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:8px}
+.note b{color:var(--white);font-weight:600}
 
-.foot{border-top:1px solid var(--line);padding:1.4rem 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.foot a{color:var(--silver);text-decoration:none}
-.foot a:hover{color:var(--gold)}
+.foot{border-top:1px solid var(--line);padding:1.4rem 0 .4rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:var(--body);font-size:.72rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.foot a{color:rgba(255,255,255,.4)}.foot a:hover{color:var(--white)}
+.copyright-notice{padding:0 0 1.6rem;font-size:.7rem;color:rgba(255,255,255,.3);text-align:center;line-height:1.7;font-weight:300}
+.copyright-notice strong{color:rgba(255,255,255,.5)}
 </style>
 </head>
 <body>
@@ -81,13 +82,16 @@ body{font-family:var(--body);color:var(--silver);font-weight:400;line-height:1.6
       <span class="chip">Straight to the solicitation</span>
       <span class="chip">No SAM.gov needed</span>
     </div>
-    <p class="note">🛠️ Building now · <b>Live bid board coming soon</b></p>
+    <p class="note">Building now &nbsp;·&nbsp; <b>Live bid board coming soon</b></p>
   </section>
 
   <footer class="foot">
     <span>© <span id="yr"></span> Apropos Group LLC · CalStateGen</span>
     <span>Sister site to <a href="https://stategen.aproposgroupllc.com">StateGen (Nevada)</a> · Sourced from public California procurement records</span>
   </footer>
+  <div class="copyright-notice">
+    <p>© 2026 Apropos Group LLC. All rights reserved. CalStateGen is a proprietary government-procurement intelligence service developed and owned by Apropos Group LLC. Unauthorized reproduction, distribution, reverse engineering, or imitation of any content, code, design, methodology, or process is strictly prohibited and may result in civil and criminal liability under applicable United States copyright and intellectual property laws. CalStateGen&trade; is a trademark of Apropos Group LLC.</p>
+  </div>
 
 </div>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
