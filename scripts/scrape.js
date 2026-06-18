@@ -22,18 +22,22 @@ function daysUntil(v) {
   return Math.ceil((t - Date.now()) / 86400000);
 }
 
+const BID_TYPES = {}; // bidTypeId -> name (e.g. "Bid", "RFP"), filled from /papi/bid-types
+
 function normalize(item, portal) {
   const a = (item && item.attributes) ? { ...item.attributes, id: item.id } : (item || {});
   const pick = (...keys) => { for (const k of keys) if (a[k] != null && a[k] !== '') return a[k]; return null; };
-  const close = pick('bidCloseDateTime', 'bidCloseDate', 'closeDateTime', 'closeDate', 'dueDate', 'bidDueDate', 'endDate');
+  const close = pick('bidDueDate', 'bidCloseDateTime', 'bidCloseDate', 'closeDate', 'dueDate', 'endDate');
   const title = pick('title', 'bidName', 'projectTitle', 'name', 'description');
   if (!title) return null;
+  const typeName = (a.bidTypeId != null && BID_TYPES[a.bidTypeId]) ? BID_TYPES[a.bidTypeId]
+    : pick('bidTypeStr', 'bidType', 'stageStr') || '—';
   return {
-    id: String(a.id || pick('bidId', 'id') || Math.random().toString(36).slice(2)),
+    id: String(a.bidId || a.id || Math.random().toString(36).slice(2)),
     title: String(title),
-    solicitation_no: pick('bidNumber', 'referenceNumber', 'number', 'bidNo') || '',
+    solicitation_no: pick('invitationNum', 'bidNumber', 'referenceNumber', 'number') || '',
     agency: pick('agencyName', 'organization') || portal.agency,
-    bid_type: pick('bidType', 'bidTypeName', 'type', 'category') || '—',
+    bid_type: typeName,
     close_date: close ? String(close) : '',
     due_in_days: daysUntil(close),
     url: PORTAL_URL(portal.id),
@@ -57,7 +61,21 @@ async function scrapePortal(browser, portal) {
 
   let bidsBody = null;
   page.on('response', async (r) => {
-    if (!/\/papi\/bids\?/i.test(r.url())) return;
+    const u = r.url();
+    if (/\/papi\/bid-types/i.test(u)) {
+      try {
+        const b = await r.json();
+        const arr = Array.isArray(b.data) ? b.data : Array.isArray(b.bidTypes) ? b.bidTypes : Array.isArray(b) ? b : [];
+        arr.forEach(it => {
+          const at = it.attributes || it;
+          const id = it.id != null ? it.id : (at.bidTypeId != null ? at.bidTypeId : at.id);
+          const nm = at.name || at.bidType || at.title || at.bidTypeName;
+          if (id != null && nm) BID_TYPES[id] = nm;
+        });
+      } catch (e) {}
+      return;
+    }
+    if (!/\/papi\/bids\?/i.test(u)) return;
     try { bidsBody = await r.json(); } catch (e) {}
   });
 
