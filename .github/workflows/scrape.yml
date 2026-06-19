@@ -24,5 +24,5 @@ jobs:
           git config user.name "calstategen-bot"
           git config user.email "bot@aproposgroupllc.com"
           git add bids.json
-          git commit -m "data: refresh CA bids [skip ci]" || echo "no changes to commit"
+          git commit -m "data: refresh CA bids" || echo "no changes to commit"
           git push
