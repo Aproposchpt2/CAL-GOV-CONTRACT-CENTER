@@ -1,10 +1,8 @@
 'use strict';
 // Verifies a Business Center member by email + capgen_access_code.
-// Reads from biz_center_members in the APROPOS-BIZPLAN Supabase project.
+// Reads from biz_center_members in the ai4websitedesign Supabase project.
 // Set BC_SUPA_URL and BC_SUPA_KEY in Netlify env vars for this site
-// pointing to the APROPOS-BIZPLAN Supabase project.
-
-const DEFAULT_BC_SUPABASE_URL = 'https://judislfknmhofcgzyozc.supabase.co';
+// pointing to the ai4websitedesign Supabase project.
 
 exports.handler = async (event) => {
   const headers = {
@@ -25,7 +23,7 @@ exports.handler = async (event) => {
     body: JSON.stringify({ error: 'Email and access code required' }),
   };
 
-  const SUPA = process.env.BC_SUPA_URL || process.env.SUPABASE_URL || DEFAULT_BC_SUPABASE_URL;
+  const SUPA = process.env.BC_SUPA_URL || process.env.SUPABASE_URL;
   const SKEY = process.env.BC_SUPA_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY;
 
   if (!SUPA || !SKEY) return {
