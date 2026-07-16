@@ -24,9 +24,11 @@ exports.handler = async (event) => {
   if (!bid.title) return j(400, { error: 'Bid title required.' });
 
   const businessName = profile.business_name || 'Apropos Group LLC';
-  const services = (profile.commodity_codes || []).length > 0
-    ? profile.commodity_codes.join(', ')
-    : (profile.keywords || []).join(', ') || 'Technology, Software Development, IT Services, Computer Networking';
+  // Prefer human-readable keywords over commodity_codes — the codes are internal
+  // PlanetBids categoryIds (opaque numeric identifiers), meaningless to the model.
+  const services = (profile.keywords || []).length > 0
+    ? profile.keywords.join(', ')
+    : 'Technology, Software Development, IT Services, Computer Networking';
 
   const prompt = `You are a California government contract specialist helping ${businessName} evaluate a bid opportunity.
 
