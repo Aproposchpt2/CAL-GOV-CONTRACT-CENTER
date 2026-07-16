@@ -23,6 +23,16 @@ const PORTALS = [
 ];
 const PORTAL_URL = id => `https://vendors.planetbids.com/portal/${id}/bo/bo-search`;
 
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+// PlanetBids' API sits behind an AWS WAF-style rate limiter — confirmed by direct testing:
+// roughly a dozen requests in a few minutes from one IP triggered a block. Each portal visit
+// fires ~9+ papi/* requests, so back-to-back portals with no pause risks the same block
+// (very plausibly why this script has historically only captured 7 of 9 configured agencies).
+const PORTAL_DELAY_MIN_MS = 8000;
+const PORTAL_DELAY_JITTER_MS = 7000;
+
+const ALL_CATEGORIES = new Map(); // categoryId -> {categoryId, categoryName, catType}, deduped across portals
+
 function daysUntil(v) {
   if (!v) return null;
   const t = typeof v === 'number' ? v : Date.parse(v);
@@ -68,6 +78,7 @@ async function scrapePortal(browser, portal) {
   const page = await ctx.newPage();
 
   let bidsBody = null;
+  let bidsStatus = null;
   page.on('response', async (r) => {
     const u = r.url();
     if (/\/papi\/bid-types/i.test(u)) {
@@ -83,7 +94,24 @@ async function scrapePortal(browser, portal) {
       } catch (e) {}
       return;
     }
+    if (/\/papi\/categories/i.test(u)) {
+      // Piggybacks on the portal page load already happening — zero extra requests.
+      try {
+        const b = await r.json();
+        const arr = Array.isArray(b.data) ? b.data : Array.isArray(b) ? b : [];
+        arr.forEach(it => {
+          const at = it.attributes || it;
+          const catId = at.categoryId != null ? String(at.categoryId) : null;
+          const name = at.categoryName || at.name;
+          if (catId && name && !ALL_CATEGORIES.has(catId)) {
+            ALL_CATEGORIES.set(catId, { categoryId: catId, categoryName: String(name), catType: at.catType || null });
+          }
+        });
+      } catch (e) {}
+      return;
+    }
     if (!/\/papi\/bids\?/i.test(u)) return;
+    bidsStatus = r.status();
     try { bidsBody = await r.json(); } catch (e) {}
   });
 
@@ -96,7 +124,10 @@ async function scrapePortal(browser, portal) {
   const data = bidsBody && (Array.isArray(bidsBody.data) ? bidsBody.data
     : Array.isArray(bidsBody.bids) ? bidsBody.bids
     : Array.isArray(bidsBody) ? bidsBody : []);
-  console.log(`[${portal.id}] ${portal.agency}: bids array = ${data.length}`);
+  const statusNote = bidsStatus == null ? 'no papi/bids response captured'
+    : bidsStatus !== 200 ? `papi/bids status ${bidsStatus} — likely rate-limited/blocked, not genuinely empty`
+    : `papi/bids status 200`;
+  console.log(`[${portal.id}] ${portal.agency}: bids array = ${data.length} (${statusNote})`);
   if (data[0] && !loggedShape) {
     loggedShape = true;
     const it = data[0];
@@ -109,9 +140,15 @@ async function scrapePortal(browser, portal) {
 (async () => {
   const browser = await chromium.launch({ args: ['--disable-blink-features=AutomationControlled', '--no-sandbox'] });
   let all = [];
-  for (const portal of PORTALS) {
+  for (let i = 0; i < PORTALS.length; i++) {
+    const portal = PORTALS[i];
     try { all = all.concat(await scrapePortal(browser, portal)); }
     catch (e) { console.log(`[${portal.id}] failed: ${e.message}`); }
+    if (i < PORTALS.length - 1) {
+      const delay = PORTAL_DELAY_MIN_MS + Math.random() * PORTAL_DELAY_JITTER_MS;
+      console.log(`  waiting ${Math.round(delay / 1000)}s before next portal...`);
+      await sleep(delay);
+    }
   }
   await browser.close();
 
@@ -126,5 +163,15 @@ async function scrapePortal(browser, portal) {
     console.log(`WROTE bids.json — ${all.length} live CA bids across ${PORTALS.length} portals.`);
   } else {
     console.log('No bids captured — bids.json left untouched (check shape log).');
+  }
+
+  const categories = Array.from(ALL_CATEGORIES.values()).sort((a, b) => a.categoryName.localeCompare(b.categoryName));
+  if (categories.length) {
+    const categoriesPayload = { source: 'planetbids', generatedAt: new Date().toISOString(),
+      count: categories.length, portalsCaptured: PORTALS.length, categories };
+    fs.writeFileSync('categories.json', JSON.stringify(categoriesPayload, null, 2));
+    console.log(`WROTE categories.json — ${categories.length} deduped categories across ${PORTALS.length} portals.`);
+  } else {
+    console.log('No categories captured — categories.json left untouched.');
   }
 })();

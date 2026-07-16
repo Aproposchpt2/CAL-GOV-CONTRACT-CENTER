@@ -1,7 +1,12 @@
 'use strict';
 // CalGCC — California Government Contracts Center
-// Scrapes Cal eProcure public solicitation listing (caleprocure.ca.gov)
-// Falls back to DGS active solicitations page if needed.
+// Blends two independent sources into one feed:
+//   1. Live scrape of Cal eProcure public solicitation listing (caleprocure.ca.gov),
+//      falling back to the DGS active solicitations page if needed.
+//   2. bids.json — the pre-scraped PlanetBids feed for CA city/county/district agency
+//      portals, written daily by scripts/scrape.js (see .github/workflows/scrape.yml).
+// Each source is independently resilient (a failure in one does not affect the other);
+// results are deduped and merged before being cached and returned.
 
 const LIST_URL  = 'https://caleprocure.ca.gov/events/';
 const ALT_URL   = 'https://www.dgs.ca.gov/PD/Resources/Page-Content/Procurement-Division-Resources-List-Folder/Active-Solicitations';
@@ -113,6 +118,55 @@ async function fetchPage(url) {
   return res.text();
 }
 
+// ── PlanetBids (pre-scraped) ─────────────────────────────────────────────────
+// bids.json is written daily by scripts/scrape.js — a scheduled, rate-limit-aware
+// Playwright scraper (PlanetBids' API sits behind a WAF-style limiter, so it is
+// never queried live from this function). If the file is missing or unreachable
+// (e.g. before the first scheduled run on a fresh deploy), this degrades to an
+// empty array rather than failing the whole response.
+async function fetchPlanetBidsBids(siteUrl) {
+  try {
+    const res = await fetch(`${siteUrl}/bids.json`, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const arr = Array.isArray(data.bids) ? data.bids : [];
+    return arr.map(b => ({
+      id:              b.id || '',
+      bid_id:          b.id || '',
+      solicitation_no: b.solicitation_no || '',
+      title:           b.title || '',
+      bid_type:        b.bid_type || 'SOLICITATION',
+      agency:          b.agency || 'California Local Agency',
+      issue_date:      null,
+      close_date:      b.close_date || null,
+      due_in_days:     b.due_in_days != null ? b.due_in_days : daysUntil(b.close_date),
+      status:          'Open',
+      url:             b.url || '',
+      _source:         'planetbids',
+    })).filter(b => b.title.length > 3);
+  } catch (e) {
+    console.log('[cal-pipeline] PlanetBids bids.json fetch failed (non-fatal):', e.message);
+    return [];
+  }
+}
+
+// Dedupe on solicitation_no when present (most reliable key), else title+agency.
+// Cal eProcure covers state agencies and PlanetBids' configured portals are all
+// cities/counties/districts, so overlap should be rare — this is cheap insurance.
+function dedupe(bids) {
+  const seen = new Set();
+  const out = [];
+  for (const b of bids) {
+    const key = (b.solicitation_no && b.solicitation_no.trim())
+      ? `sol:${b.solicitation_no.trim().toLowerCase()}`
+      : `ta:${(b.title || '').trim().toLowerCase()}|${(b.agency || '').trim().toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(b);
+  }
+  return out;
+}
+
 async function fetchCalBids() {
   // Primary: Cal eProcure
   try {
@@ -144,10 +198,18 @@ exports.handler = async (event) => {
   }
 
   try {
-    const raw = await fetchCalBids();
+    const siteUrl = process.env.URL || process.env.DEPLOY_URL || `https://${event.headers.host}`;
 
-    // Normalize each bid
-    const bids = raw.map(b => ({
+    // Run both sources concurrently; each is independently resilient (fetchCalBids
+    // and fetchPlanetBidsBids both catch their own errors and resolve to [] rather
+    // than throwing), so one source failing never blocks the other.
+    const [raw, planetBidsBids] = await Promise.all([
+      fetchCalBids(),
+      fetchPlanetBidsBids(siteUrl),
+    ]);
+
+    // Normalize each Cal eProcure/DGS bid
+    const calBids = raw.map(b => ({
       id:             b.id || b.bid_id || '',
       bid_id:         b.bid_id || b.id || '',
       solicitation_no: b.solicitation_no || '',
@@ -159,12 +221,22 @@ exports.handler = async (event) => {
       due_in_days:    daysUntil(b.close_date),
       status:         'Issued',
       url:            b.url || `https://caleprocure.ca.gov/events/`,
+      _source:        'caleprocure',
     })).filter(b => b.title.length > 3);
+
+    const bids = dedupe([...calBids, ...planetBidsBids])
+      .sort((a, b) => (a.due_in_days ?? 9999) - (b.due_in_days ?? 9999));
 
     _cache = bids;
     _cacheAt = Date.now();
 
-    return { statusCode: 200, headers: CORS, body: JSON.stringify({ ok: true, bids, count: bids.length, source: 'live' }) };
+    return {
+      statusCode: 200, headers: CORS,
+      body: JSON.stringify({
+        ok: true, bids, count: bids.length,
+        source: { caleprocure: calBids.length, planetbids: planetBidsBids.length },
+      }),
+    };
   } catch (e) {
     const fallback = _cache || [];
     return { statusCode: 200, headers: CORS, body: JSON.stringify({ ok: false, bids: fallback, count: fallback.length, error: e.message }) };
