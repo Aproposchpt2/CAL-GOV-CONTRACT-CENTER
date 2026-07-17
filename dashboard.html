@@ -383,38 +383,15 @@ function closeCaDrawer() {
 
 function analyzeCaFit() {
   if (!_caBid) return;
-  var btn = $('ca-analyze-btn');
-  btn.textContent = 'Analyzing bid…';
-  btn.disabled = true;
-  var prev = document.getElementById('ca-analysis-result');
-  if (prev) prev.remove();
-  fetch(API+'/analyze-fit-ca', {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ bid: Object.assign({}, _caBid, {description: _caDetail && _caDetail.description || null}), profile: PROFILE })
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(data){
-    if (!data.ok) throw new Error(data.error||'Analysis failed.');
-    var a = data.analysis;
-    var rc = a.recommendation==='GO'?'var(--green)':a.recommendation==='NO-GO'?'var(--red)':'var(--amber)';
-    var rb = a.recommendation==='GO'?'rgba(62,227,145,.1)':a.recommendation==='NO-GO'?'rgba(255,105,105,.1)':'rgba(245,195,107,.1)';
-    $('ca-drawer-body').insertAdjacentHTML('beforeend',
-      '<div id="ca-analysis-result" style="margin-top:1rem;border:1px solid '+rc+';border-radius:12px;background:'+rb+';padding:1.1rem 1.2rem">'
-      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem">'
-      +'<span style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:'+rc+';font-weight:800">AI Fit Analysis</span>'
-      +'<span style="font-family:var(--disp);font-size:1.6rem;color:'+rc+';font-weight:700">'+a.score+'%</span></div>'
-      +'<div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">'+esc(a.recommendation)+' &mdash; '+esc(a.summary)+'</div>'
-      +(a.strengths&&a.strengths.length?'<div style="font-size:.78rem;color:rgba(255,255,255,.6);margin-bottom:.4rem"><b style="color:var(--green)">&#10003; Strengths:</b> '+a.strengths.map(function(s){return esc(s);}).join(' &middot; ')+'</div>':'')
-      +(a.risks&&a.risks.length?'<div style="font-size:.78rem;color:rgba(255,255,255,.6);margin-bottom:.4rem"><b style="color:var(--amber)">&#9888; Risks:</b> '+a.risks.map(function(r){return esc(r);}).join(' &middot; ')+'</div>':'')
-      +(a.next_steps?'<div style="font-size:.8rem;color:rgba(255,255,255,.7);margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.1)"><b>Next step:</b> '+esc(a.next_steps)+'</div>':'')
-      +'</div>');
-    btn.textContent = '&#10003; Analysis Complete — Refresh';
-  })
-  .catch(function(e){
-    btn.textContent = '&#9733; Analyze Fit for '+(PROFILE.business_name||'Apropos Group LLC');
-    alert('Analysis error: '+e.message);
-  })
-  .finally(function(){ btn.disabled = false; });
+  var selectedBid = Object.assign({}, _caBid, {
+    description: _caDetail && _caDetail.description || _caBid.description || null
+  });
+  sessionStorage.setItem('ca_analyze_payload', JSON.stringify({
+    bid: selectedBid,
+    profile: PROFILE || {}
+  }));
+  closeCaDrawer();
+  window.open('/analyze-fit.html', '_blank', 'noopener');
 }
 
 function openCaProposal() {
