@@ -2,89 +2,9 @@
   "source": "planetbids",
   "state": "CA",
   "scanMode": "live",
-  "generatedAt": "2026-07-16T15:10:26.173Z",
-  "count": 64,
+  "generatedAt": "2026-07-17T14:51:04.428Z",
+  "count": 65,
   "bids": [
-    {
-      "id": "143304",
-      "title": "As-Needed Safety Footwear",
-      "solicitation_no": "10090525-26-B",
-      "agency": "City of San Diego",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-16 15:00:00.000",
-      "due_in_days": 0,
-      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
-    },
-    {
-      "id": "143310",
-      "title": "Varonis Software-as-a-Service (SaaS)",
-      "solicitation_no": "10090498-26-S",
-      "agency": "City of San Diego",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-16 15:00:00.000",
-      "due_in_days": 0,
-      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
-    },
-    {
-      "id": "143217",
-      "title": "Hydrated Lime 96.8% - Rebid",
-      "solicitation_no": "10090520-26-J",
-      "agency": "City of San Diego",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-16 15:00:00.000",
-      "due_in_days": 0,
-      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
-    },
-    {
-      "id": "143010",
-      "title": "On-Call Project Control Support Services",
-      "solicitation_no": "PC-26-01",
-      "agency": "Port of Long Beach",
-      "bid_type": "Closed",
-      "close_date": "2026-07-15 16:00:00.000",
-      "due_in_days": 0,
-      "url": "https://vendors.planetbids.com/portal/19236/bo/bo-search"
-    },
-    {
-      "id": "143387",
-      "title": "Concrete Pavement Services",
-      "solicitation_no": "RFQ F-26-4073",
-      "agency": "City of San Bernardino",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-16 15:00:00.000",
-      "due_in_days": 0,
-      "url": "https://vendors.planetbids.com/portal/39495/bo/bo-search"
-    },
-    {
-      "id": "143041",
-      "title": "San Bernardino Library Norman Feldheym Branch Improvements Project No. 13686 Contract No. GB26-015",
-      "solicitation_no": "RFQ F-26-5077",
-      "agency": "City of San Bernardino",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-16 15:00:00.000",
-      "due_in_days": 0,
-      "url": "https://vendors.planetbids.com/portal/39495/bo/bo-search"
-    },
-    {
-      "id": "142100",
-      "title": "F Street Commercial Development Opportunity",
-      "solicitation_no": "RFP F-26-1057",
-      "agency": "City of San Bernardino",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-16 15:00:00.000",
-      "due_in_days": 0,
-      "url": "https://vendors.planetbids.com/portal/39495/bo/bo-search"
-    },
-    {
-      "id": "143412",
-      "title": "Antiscalant for Public Utilities Department, Pure Water Division",
-      "solicitation_no": "10090492-26-J",
-      "agency": "City of San Diego",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-17 14:00:00.000",
-      "due_in_days": 1,
-      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
-    },
     {
       "id": "142857",
       "title": "Drone as First Responder Program",
@@ -92,7 +12,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-17 14:00:00.000",
-      "due_in_days": 1,
+      "due_in_days": 0,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -102,7 +22,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-17 14:00:00.000",
-      "due_in_days": 1,
+      "due_in_days": 0,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -112,7 +32,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-17 14:00:00.000",
-      "due_in_days": 1,
+      "due_in_days": 0,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -122,8 +42,38 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-17 14:00:00.000",
-      "due_in_days": 1,
+      "due_in_days": 0,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "143387",
+      "title": "Concrete Pavement Services",
+      "solicitation_no": "RFQ F-26-4073",
+      "agency": "City of San Bernardino",
+      "bid_type": "Closed",
+      "close_date": "2026-07-16 15:00:00.000",
+      "due_in_days": 0,
+      "url": "https://vendors.planetbids.com/portal/39495/bo/bo-search"
+    },
+    {
+      "id": "143041",
+      "title": "San Bernardino Library Norman Feldheym Branch Improvements Project No. 13686 Contract No. GB26-015",
+      "solicitation_no": "RFQ F-26-5077",
+      "agency": "City of San Bernardino",
+      "bid_type": "Closed",
+      "close_date": "2026-07-16 15:00:00.000",
+      "due_in_days": 0,
+      "url": "https://vendors.planetbids.com/portal/39495/bo/bo-search"
+    },
+    {
+      "id": "142100",
+      "title": "F Street Commercial Development Opportunity",
+      "solicitation_no": "RFP F-26-1057",
+      "agency": "City of San Bernardino",
+      "bid_type": "Closed",
+      "close_date": "2026-07-16 15:00:00.000",
+      "due_in_days": 0,
+      "url": "https://vendors.planetbids.com/portal/39495/bo/bo-search"
     },
     {
       "id": "141276",
@@ -132,8 +82,38 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-20 16:00:00.000",
-      "due_in_days": 5,
+      "due_in_days": 4,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "143556",
+      "title": "Traffic Signal and Street Light Maintenance, Repair, and Modification",
+      "solicitation_no": "Q26151111028",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-07-20 16:00:00.000",
+      "due_in_days": 4,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
+    },
+    {
+      "id": "143708",
+      "title": "2” Aluminum scheduled 40 pipe",
+      "solicitation_no": "B27151931002",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-07-21 14:00:00.000",
+      "due_in_days": 4,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
+    },
+    {
+      "id": "143298",
+      "title": "Furnish and Install New Pumping Equipment at Pump Station 002B",
+      "solicitation_no": "12601765",
+      "agency": "City of Fresno",
+      "bid_type": "Bidding",
+      "close_date": "2026-07-21 14:00:00.000",
+      "due_in_days": 4,
+      "url": "https://vendors.planetbids.com/portal/14769/bo/bo-search"
     },
     {
       "id": "141914",
@@ -146,34 +126,14 @@
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
-      "id": "143556",
-      "title": "Traffic Signal and Street Light Maintenance, Repair, and Modification",
-      "solicitation_no": "Q26151111028",
-      "agency": "City of Sacramento",
+      "id": "142393",
+      "title": "SBWRP Reverse Osmosis System - Advertisement Notice Only (NO BIDS)",
+      "solicitation_no": "K-26-2469-DBB-3",
+      "agency": "City of San Diego",
       "bid_type": "Bidding",
-      "close_date": "2026-07-20 16:00:00.000",
+      "close_date": "2026-07-22 14:00:00.000",
       "due_in_days": 5,
-      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
-    },
-    {
-      "id": "143708",
-      "title": "2” Aluminum scheduled 40 pipe",
-      "solicitation_no": "B27151931002",
-      "agency": "City of Sacramento",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-21 14:00:00.000",
-      "due_in_days": 5,
-      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
-    },
-    {
-      "id": "143298",
-      "title": "Furnish and Install New Pumping Equipment at Pump Station 002B",
-      "solicitation_no": "12601765",
-      "agency": "City of Fresno",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-21 14:00:00.000",
-      "due_in_days": 5,
-      "url": "https://vendors.planetbids.com/portal/14769/bo/bo-search"
+      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
       "id": "143257",
@@ -196,16 +156,6 @@
       "url": "https://vendors.planetbids.com/portal/14769/bo/bo-search"
     },
     {
-      "id": "142393",
-      "title": "SBWRP Reverse Osmosis System - Advertisement Notice Only (NO BIDS)",
-      "solicitation_no": "K-26-2469-DBB-3",
-      "agency": "City of San Diego",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-22 14:00:00.000",
-      "due_in_days": 6,
-      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
-    },
-    {
       "id": "142029",
       "title": "Electric Motor Overhaul Services",
       "solicitation_no": "10090429-26-A",
@@ -222,7 +172,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-23 14:00:00.000",
-      "due_in_days": 7,
+      "due_in_days": 6,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -232,7 +182,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-23 14:00:00.000",
-      "due_in_days": 7,
+      "due_in_days": 6,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -242,8 +192,18 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-23 14:00:00.000",
-      "due_in_days": 7,
+      "due_in_days": 6,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "143079",
+      "title": "Pedestrian Crossing at R Street and 29th/30th Streets",
+      "solicitation_no": "P26151111027",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-07-23 14:00:00.000",
+      "due_in_days": 6,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
     },
     {
       "id": "143278",
@@ -256,14 +216,14 @@
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
-      "id": "143079",
-      "title": "Pedestrian Crossing at R Street and 29th/30th Streets",
-      "solicitation_no": "P26151111027",
-      "agency": "City of Sacramento",
+      "id": "143412",
+      "title": "Antiscalant for Public Utilities Department, Pure Water Division",
+      "solicitation_no": "10090492-26-J",
+      "agency": "City of San Diego",
       "bid_type": "Bidding",
-      "close_date": "2026-07-23 14:00:00.000",
+      "close_date": "2026-07-24 14:00:00.000",
       "due_in_days": 7,
-      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
+      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
       "id": "143391",
@@ -282,8 +242,18 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-27 14:00:00.000",
-      "due_in_days": 11,
+      "due_in_days": 10,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "143463",
+      "title": "RP5 Spare Part Storage Building Improvements",
+      "solicitation_no": "IFB-VC-26-003",
+      "agency": "Inland Empire Utilities Agency",
+      "bid_type": "Bidding",
+      "close_date": "2026-07-27 14:00:00.000",
+      "due_in_days": 10,
+      "url": "https://vendors.planetbids.com/portal/27411/bo/bo-search"
     },
     {
       "id": "143376",
@@ -296,24 +266,24 @@
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
-      "id": "143463",
-      "title": "RP5 Spare Part Storage Building Improvements",
-      "solicitation_no": "IFB-VC-26-003",
-      "agency": "Inland Empire Utilities Agency",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-27 14:00:00.000",
-      "due_in_days": 11,
-      "url": "https://vendors.planetbids.com/portal/27411/bo/bo-search"
-    },
-    {
       "id": "140862",
       "title": "Black Mountain Reservoir Basin No. 2 Repair",
       "solicitation_no": "K-26-2471-DBB-3",
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-28 14:00:00.000",
-      "due_in_days": 12,
+      "due_in_days": 11,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "142816",
+      "title": "Colorado River Aqueduct Pumping Plants Sump Rehabilitation",
+      "solicitation_no": "2008",
+      "agency": "Metropolitan Water District of Southern California",
+      "bid_type": "Bidding",
+      "close_date": "2026-07-28 14:00:00.000",
+      "due_in_days": 11,
+      "url": "https://vendors.planetbids.com/portal/16151/bo/bo-search"
     },
     {
       "id": "143282",
@@ -336,24 +306,24 @@
       "url": "https://vendors.planetbids.com/portal/19236/bo/bo-search"
     },
     {
-      "id": "142816",
-      "title": "Colorado River Aqueduct Pumping Plants Sump Rehabilitation",
-      "solicitation_no": "2008",
-      "agency": "Metropolitan Water District of Southern California",
-      "bid_type": "Bidding",
-      "close_date": "2026-07-28 14:00:00.000",
-      "due_in_days": 12,
-      "url": "https://vendors.planetbids.com/portal/16151/bo/bo-search"
-    },
-    {
       "id": "143121",
       "title": "Chollas View Improv 1",
       "solicitation_no": "K-26-2442-DBB-3",
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-07-30 14:00:00.000",
-      "due_in_days": 14,
+      "due_in_days": 13,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "144087",
+      "title": "Style 1 Decorative Poles w/o Anchor Bolts",
+      "solicitation_no": "B27151951002",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-07-30 14:00:00.000",
+      "due_in_days": 13,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
     },
     {
       "id": "143189",
@@ -362,7 +332,7 @@
       "agency": "Port of Long Beach",
       "bid_type": "Bidding",
       "close_date": "2026-07-29 16:00:00.000",
-      "due_in_days": 14,
+      "due_in_days": 13,
       "url": "https://vendors.planetbids.com/portal/19236/bo/bo-search"
     },
     {
@@ -376,6 +346,36 @@
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
+      "id": "144014",
+      "title": "Pavement Asset Management Software System",
+      "solicitation_no": "30000069-27-O",
+      "agency": "City of San Diego",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-04 16:08:00.000",
+      "due_in_days": 19,
+      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "143974",
+      "title": "Mangan Park Walkway Improvements",
+      "solicitation_no": "B26191121026",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-05 14:00:00.000",
+      "due_in_days": 19,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
+    },
+    {
+      "id": "143706",
+      "title": "Lampasas Ave & Rio Linda Blvd Project",
+      "solicitation_no": "B2715111101",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-05 14:00:00.000",
+      "due_in_days": 19,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
+    },
+    {
       "id": "143792",
       "title": "RFP for One Fresno Youth Jobs Corps Program Worksites",
       "solicitation_no": "12700024",
@@ -386,44 +386,24 @@
       "url": "https://vendors.planetbids.com/portal/14769/bo/bo-search"
     },
     {
-      "id": "144014",
-      "title": "Pavement Asset Management Software System",
-      "solicitation_no": "30000069-27-O",
-      "agency": "City of San Diego",
-      "bid_type": "Bidding",
-      "close_date": "2026-08-04 16:08:00.000",
-      "due_in_days": 20,
-      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
-    },
-    {
-      "id": "143974",
-      "title": "Mangan Park Walkway Improvements",
-      "solicitation_no": "B26191121026",
-      "agency": "City of Sacramento",
-      "bid_type": "Bidding",
-      "close_date": "2026-08-05 14:00:00.000",
-      "due_in_days": 20,
-      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
-    },
-    {
-      "id": "143706",
-      "title": "Lampasas Ave & Rio Linda Blvd Project",
-      "solicitation_no": "B2715111101",
-      "agency": "City of Sacramento",
-      "bid_type": "Bidding",
-      "close_date": "2026-08-05 14:00:00.000",
-      "due_in_days": 20,
-      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
-    },
-    {
       "id": "143754",
       "title": "JOC Street Lighting/Traffic Signal",
       "solicitation_no": "K-27-2477-JOC-3",
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-08-06 14:00:00.000",
-      "due_in_days": 21,
+      "due_in_days": 20,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "144024",
+      "title": "Contact Center Replacement",
+      "solicitation_no": "P27071011001",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-07 14:00:00.000",
+      "due_in_days": 21,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
     },
     {
       "id": "143863",
@@ -436,23 +416,13 @@
       "url": "https://vendors.planetbids.com/portal/39495/bo/bo-search"
     },
     {
-      "id": "144024",
-      "title": "Contact Center Replacement",
-      "solicitation_no": "P27071011001",
-      "agency": "City of Sacramento",
-      "bid_type": "Bidding",
-      "close_date": "2026-08-07 14:00:00.000",
-      "due_in_days": 22,
-      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
-    },
-    {
       "id": "143961",
       "title": "Mailbox Only - RFQ for On-Call Parks Design Services for the Capital Projects Department",
       "solicitation_no": "12700028",
       "agency": "City of Fresno",
       "bid_type": "Bidding",
       "close_date": "2026-08-07 17:00:00.000",
-      "due_in_days": 23,
+      "due_in_days": 22,
       "url": "https://vendors.planetbids.com/portal/14769/bo/bo-search"
     },
     {
@@ -462,6 +432,16 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-08-11 14:00:00.000",
+      "due_in_days": 25,
+      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "143533",
+      "title": "Pressure Reducing Station Upgrades PH 1 - Advertisement ONLY",
+      "solicitation_no": "K-26-2467-DBB-3",
+      "agency": "City of San Diego",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-12 14:00:00.000",
       "due_in_days": 26,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
@@ -476,14 +456,34 @@
       "url": "https://vendors.planetbids.com/portal/14769/bo/bo-search"
     },
     {
-      "id": "143533",
-      "title": "Pressure Reducing Station Upgrades PH 1 - Advertisement ONLY",
-      "solicitation_no": "K-26-2467-DBB-3",
-      "agency": "City of San Diego",
+      "id": "143577",
+      "title": "On-Call Professional Engineering Services for Stormwater Toxic Total Maximum Daily Load Compliance Projects",
+      "solicitation_no": "DE-26-01",
+      "agency": "Port of Long Beach",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-11 16:00:00.000",
+      "due_in_days": 26,
+      "url": "https://vendors.planetbids.com/portal/19236/bo/bo-search"
+    },
+    {
+      "id": "143522",
+      "title": "ULTRASONIC FLOW MEASURING SYSTEMS",
+      "solicitation_no": "RFB-PR-476283",
+      "agency": "Metropolitan Water District of Southern California",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-12 11:00:00.000",
+      "due_in_days": 26,
+      "url": "https://vendors.planetbids.com/portal/16151/bo/bo-search"
+    },
+    {
+      "id": "143399",
+      "title": "Julian Hinds Pumping  Plant Fuel Dispenser System Improvement",
+      "solicitation_no": "2116A",
+      "agency": "Metropolitan Water District of Southern California",
       "bid_type": "Bidding",
       "close_date": "2026-08-12 14:00:00.000",
-      "due_in_days": 27,
-      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+      "due_in_days": 26,
+      "url": "https://vendors.planetbids.com/portal/16151/bo/bo-search"
     },
     {
       "id": "144000",
@@ -494,36 +494,6 @@
       "close_date": "2026-08-12 15:00:00.000",
       "due_in_days": 27,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
-    },
-    {
-      "id": "143577",
-      "title": "On-Call Professional Engineering Services for Stormwater Toxic Total Maximum Daily Load Compliance Projects",
-      "solicitation_no": "DE-26-01",
-      "agency": "Port of Long Beach",
-      "bid_type": "Bidding",
-      "close_date": "2026-08-11 16:00:00.000",
-      "due_in_days": 27,
-      "url": "https://vendors.planetbids.com/portal/19236/bo/bo-search"
-    },
-    {
-      "id": "143522",
-      "title": "ULTRASONIC FLOW MEASURING SYSTEMS",
-      "solicitation_no": "RFB-PR-476283",
-      "agency": "Metropolitan Water District of Southern California",
-      "bid_type": "Bidding",
-      "close_date": "2026-08-12 11:00:00.000",
-      "due_in_days": 27,
-      "url": "https://vendors.planetbids.com/portal/16151/bo/bo-search"
-    },
-    {
-      "id": "143399",
-      "title": "Julian Hinds Pumping  Plant Fuel Dispenser System Improvement",
-      "solicitation_no": "2116A",
-      "agency": "Metropolitan Water District of Southern California",
-      "bid_type": "Bidding",
-      "close_date": "2026-08-12 14:00:00.000",
-      "due_in_days": 27,
-      "url": "https://vendors.planetbids.com/portal/16151/bo/bo-search"
     },
     {
       "id": "144018",
@@ -542,7 +512,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-08-17 14:00:00.000",
-      "due_in_days": 32,
+      "due_in_days": 31,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -552,7 +522,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-08-18 17:55:00.000",
-      "due_in_days": 34,
+      "due_in_days": 33,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -562,7 +532,7 @@
       "agency": "Inland Empire Utilities Agency",
       "bid_type": "Bidding",
       "close_date": "2026-08-19 14:00:00.000",
-      "due_in_days": 34,
+      "due_in_days": 33,
       "url": "https://vendors.planetbids.com/portal/27411/bo/bo-search"
     },
     {
@@ -572,8 +542,18 @@
       "agency": "Inland Empire Utilities Agency",
       "bid_type": "Bidding",
       "close_date": "2026-08-19 14:00:00.000",
-      "due_in_days": 34,
+      "due_in_days": 33,
       "url": "https://vendors.planetbids.com/portal/27411/bo/bo-search"
+    },
+    {
+      "id": "143798",
+      "title": "On-Call Coating Specialists 2026-31",
+      "solicitation_no": "Q26141311015",
+      "agency": "City of Sacramento",
+      "bid_type": "Bidding",
+      "close_date": "2026-08-20 15:00:00.000",
+      "due_in_days": 35,
+      "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
     },
     {
       "id": "143824",
@@ -582,7 +562,7 @@
       "agency": "Inland Empire Utilities Agency",
       "bid_type": "Bidding",
       "close_date": "2026-08-25 14:00:00.000",
-      "due_in_days": 40,
+      "due_in_days": 39,
       "url": "https://vendors.planetbids.com/portal/27411/bo/bo-search"
     },
     {
@@ -592,7 +572,7 @@
       "agency": "Metropolitan Water District of Southern California",
       "bid_type": "Bidding",
       "close_date": "2026-08-28 11:00:00.000",
-      "due_in_days": 43,
+      "due_in_days": 42,
       "url": "https://vendors.planetbids.com/portal/16151/bo/bo-search"
     },
     {
@@ -602,7 +582,7 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-08-31 14:00:00.000",
-      "due_in_days": 46,
+      "due_in_days": 45,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -612,7 +592,7 @@
       "agency": "City of Fresno",
       "bid_type": "Bidding",
       "close_date": "2026-08-31 13:00:00.000",
-      "due_in_days": 46,
+      "due_in_days": 45,
       "url": "https://vendors.planetbids.com/portal/14769/bo/bo-search"
     },
     {
@@ -622,7 +602,37 @@
       "agency": "City of San Diego",
       "bid_type": "Bidding",
       "close_date": "2026-09-02 14:00:00.000",
-      "due_in_days": 48,
+      "due_in_days": 47,
+      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "117551",
+      "title": "Parking Citation Administrative Hearing Officers",
+      "solicitation_no": "10089904-22-G",
+      "agency": "City of San Diego",
+      "bid_type": "Bidding",
+      "close_date": "2027-06-09 14:00:00.000",
+      "due_in_days": 327,
+      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "79912",
+      "title": "\"Continuous\" Special Financing District Consultant and/or Financial and Economic Consultant",
+      "solicitation_no": "10089743-21-W",
+      "agency": "City of San Diego",
+      "bid_type": "Bidding",
+      "close_date": "2028-02-28 14:00:00.000",
+      "due_in_days": 591,
+      "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
+    },
+    {
+      "id": "80690",
+      "title": "(\"Continuous\") Establish a Qualified Pool of Underwriters and Commercial Paper Dealers",
+      "solicitation_no": "10089751-21-W",
+      "agency": "City of San Diego",
+      "bid_type": "Bidding",
+      "close_date": "2028-03-31 14:00:00.000",
+      "due_in_days": 623,
       "url": "https://vendors.planetbids.com/portal/17950/bo/bo-search"
     },
     {
@@ -632,7 +642,7 @@
       "agency": "City of Sacramento",
       "bid_type": "Bidding",
       "close_date": "2028-06-30 17:00:00.000",
-      "due_in_days": 716,
+      "due_in_days": 715,
       "url": "https://vendors.planetbids.com/portal/15300/bo/bo-search"
     },
     {
