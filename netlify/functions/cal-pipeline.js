@@ -142,6 +142,7 @@ async function fetchPlanetBidsBids(siteUrl) {
       due_in_days:     b.due_in_days != null ? b.due_in_days : daysUntil(b.close_date),
       status:          'Open',
       url:             b.url || '',
+      category_ids:    Array.isArray(b.category_ids) ? b.category_ids : [],
       _source:         'planetbids',
     })).filter(b => b.title.length > 3);
   } catch (e) {
@@ -221,6 +222,7 @@ exports.handler = async (event) => {
       due_in_days:    daysUntil(b.close_date),
       status:         'Issued',
       url:            b.url || `https://caleprocure.ca.gov/events/`,
+      category_ids:   [],
       _source:        'caleprocure',
     })).filter(b => b.title.length > 3);
 

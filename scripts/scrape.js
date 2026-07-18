@@ -50,6 +50,7 @@ function normalize(item, portal) {
   if (!title) return null;
   const typeName = (a.bidTypeId != null && BID_TYPES[a.bidTypeId]) ? BID_TYPES[a.bidTypeId]
     : pick('bidTypeStr', 'bidType', 'stageStr') || '—';
+  const categoryIds = String(a.categoryIds || '').split(',').map(s => s.trim()).filter(Boolean);
   return {
     id: String(a.bidId || a.id || Math.random().toString(36).slice(2)),
     title: String(title),
@@ -58,6 +59,7 @@ function normalize(item, portal) {
     bid_type: typeName,
     close_date: close ? String(close) : '',
     due_in_days: daysUntil(close),
+    category_ids: categoryIds,
     url: PORTAL_URL(portal.id),
   };
 }

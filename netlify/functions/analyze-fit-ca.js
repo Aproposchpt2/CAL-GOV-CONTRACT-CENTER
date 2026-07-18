@@ -3,6 +3,16 @@
 // POST { bid, profile } → { ok, provider, analysis }
 // Uses OpenAI first and Anthropic only as an automatic fallback.
 
+const CATEGORIES = require('../../categories.json');
+const CATEGORY_NAME_BY_ID = new Map(
+  (CATEGORIES.categories || []).map(c => [String(c.categoryId), c.categoryName])
+);
+function categoryNames(ids) {
+  return (Array.isArray(ids) ? ids : [])
+    .map(id => CATEGORY_NAME_BY_ID.get(String(id).trim()))
+    .filter(Boolean);
+}
+
 const HEADERS = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
@@ -19,34 +29,51 @@ const json = (statusCode, payload) => ({
 function buildPrompt(bid, profile) {
   const businessName = profile.business_name || profile.entity_name || 'the business';
   const keywords = Array.isArray(profile.keywords) ? profile.keywords.filter(Boolean) : [];
-  const naics = Array.isArray(profile.naics_codes) ? profile.naics_codes.filter(Boolean) : [];
-  const services = keywords.length
-    ? keywords.join(', ')
-    : 'Technology, software development, IT services, and computer networking';
 
-  return `You are a California public-procurement bid/no-bid analyst.
+  const selectedCategories = categoryNames(profile.commodity_codes);
+  const businessServices = selectedCategories.length
+    ? selectedCategories.join(', ')
+    : keywords.length
+      ? keywords.join(', ')
+      : 'Technology, software development, IT services, and computer networking';
+
+  const bidCategories = categoryNames(bid.category_ids);
+  const bidCategoryLine = bidCategories.length
+    ? bidCategories.join(', ')
+    : 'Not classified by the procurement portal — infer the required services from the description below.';
+
+  return `You are a California state and local public-procurement bid/no-bid analyst.
+
+This is a CALIFORNIA STATE/LOCAL agency solicitation, evaluated on California's own procurement categories — not a federal contract. Do not apply federal eligibility frameworks (NAICS set-asides, SAM.gov registration, federal socioeconomic categories). California state and local agencies classify and award work by service/commodity category, not NAICS code.
 
 BUSINESS PROFILE
 Business: ${businessName}
-Services and capabilities: ${services}
-NAICS codes: ${naics.join(', ') || 'Not provided'}
+Service categories this business selected: ${businessServices}
 Certifications: ${profile.certifications || profile.business_certifications || 'Not provided'}
 Location: ${profile.city || ''} ${profile.state || 'California'}
 
 BID OPPORTUNITY
 Title: ${bid.title}
 Agency: ${bid.agency || 'California public agency'}
+Required service categories (per the procurement portal's own classification): ${bidCategoryLine}
 Type: ${bid.bid_type || 'Solicitation'}
 Solicitation number: ${bid.solicitation_no || bid.id || 'Not provided'}
 Deadline: ${bid.close_date || bid.deadline || 'Not provided'}
 Days remaining: ${bid.due_in_days != null ? bid.due_in_days : bid.daysToClose != null ? bid.daysToClose : 'Unknown'}
 Description: ${(bid.description || 'Not provided').slice(0, 2400)}
 
-Evaluate actual fit. Do not invent credentials, certifications, licenses, bonding, past performance, staffing, or experience. Treat undocumented items as requiring verification.
+PRIMARY SCORING SIGNAL: Compare the business's selected service categories against the bid's required service categories. This category-to-category match is the dominant factor in your score. When the procurement portal's own required-category list is provided above, treat genuine overlap with the business's selected categories as strong evidence of GO, and a clear absence of overlap (business categories are in an unrelated line of work) as strong evidence of NO-GO. When the bid's categories are not classified, fall back to comparing the business's selected services against the bid description's actual scope of work.
 
-Apply California-specific checks where relevant: SB/MB, DVBE, prevailing wage, CSLB licensing, bonding, insurance, CARB, CalRecycle, local geography, mandatory pre-bid meetings, and deadline feasibility.
+Certifications, licensing, bonding, insurance, and prevailing-wage status are SECONDARY factors, not the primary signal. Do not invent credentials the business hasn't claimed, but do not treat an unlisted, addable item — bonding, insurance, a specific license, prevailing-wage registration — as a confirmed disqualifier either. Profiles built from capability statements routinely omit these even when the business could obtain or already holds them; that omission is not evidence of ineligibility.
 
-A confirmed mandatory eligibility failure must result in NO-GO regardless of capability alignment.
+Reserve NO-GO for a genuinely confirmed mismatch: the business's selected service categories have nothing to do with the bid's required categories/scope, a certification or set-aside status the bid EXPLICITLY requires is absent from the profile, or a stated size/geographic standard is clearly violated. If the bid text doesn't mention a requirement (e.g. bonding) at all, do not penalize its absence from the profile.
+
+If the bid's own description states a specific requirement (bonding, a license, a certification) and the profile doesn't show it, that's a REVIEW-level caveat to confirm before bidding, not an automatic NO-GO. List it in "requirements" phrased as something to confirm (e.g. "Confirm bonding capacity — required per solicitation, not found in profile"), not as a stated failure.
+
+Scoring:
+GO (70-100): The business's selected service categories genuinely align with the bid's required categories/scope.
+REVIEW (40-69): Partial category alignment, or a bid-specific requirement needs confirmation before bidding.
+NO-GO (0-39): Confirmed category/scope mismatch as defined above — not merely undocumented paperwork.
 
 Return only the requested structured result.`;
 }
@@ -103,7 +130,7 @@ async function analyzeWithOpenAI(prompt, apiKey) {
       messages: [
         {
           role: 'system',
-          content: 'You produce conservative, evidence-aware California government contract fit analyses. Mandatory eligibility failures override technical fit.',
+          content: 'You produce evidence-aware California state/local government contract fit analyses. This is not a federal contract — do not apply NAICS-based or federal eligibility frameworks. Score primarily on genuine alignment between the business\'s selected service categories and the bid\'s required service categories. Only a bid-specific requirement that is explicitly stated in the solicitation and confirmed absent from the profile should lower a score to NO-GO — an item simply not mentioned in a capability statement (e.g. bonding, insurance) is not a confirmed failure.',
         },
         { role: 'user', content: prompt },
       ],

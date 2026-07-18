@@ -228,6 +228,7 @@ function renderProfile(p) {
 var _CKW = {"20800":["software","saas","application","app","platform","erp","crm","system","database","analytics","scheduling","management system"],"20810":["computer","laptop","server","hardware","workstation","tablet","monitor","device"],"20900":["information technology","it services","managed services","helpdesk","tech support","cloud","hosting","cybersecurity","network","infrastructure","data center","systems integration"],"58000":["maintenance","repair","facility maintenance","building maintenance","preventive maintenance","service contract","janitorial","custodial","cleaning"],"80000":["professional services","consulting","advisory","management consulting","business analysis","project management","strategic planning"],"91000":["construction","general contractor","contractor","building","renovation","remodel","infrastructure","civil","grading","earthwork"],"91400":["electrical","wiring","electrician","power systems","solar","photovoltaic","lighting","low voltage"],"91500":["plumbing","pipe","mechanical","hvac","heating","cooling","air conditioning","ventilation","boiler","mep"],"92500":["architectural","architecture","architect","design services","interior design","space planning","master plan"],"92600":["engineering","civil engineering","structural","mechanical engineering","environmental engineering","land survey","gis","mapping","commissioning"],"92700":["environmental","sustainability","environmental consulting","air quality","carb","calrecycle","waste management","remediation","stormwater","energy management","energy conservation","demand response"]};
 
 function classifyBid(b) {
+  if (b.category_ids && b.category_ids.length) return b.category_ids;
   var text = (b.title + ' ' + (b.agency || '')).toLowerCase();
   var scores = {};
   for (var code in _CKW) {
@@ -307,6 +308,7 @@ function renderResults(results) {
     +'<div class="hero-agency">'+esc(b.agency||'California State Agency')+(b.solicitation_no?' &middot; '+esc(b.solicitation_no):'')+'</div>'
     +'<div class="hero-score-row"><span class="hero-score" style="color:'+recColor(a.recommendation)+'">'+a.score+'%</span><span class="hero-rec" style="color:'+recColor(a.recommendation)+'">'+esc(a.recommendation)+'</span></div>'
     +'<div class="hero-summary">'+esc(a.summary)+'</div>'
+    +(a.requirements&&a.requirements.length?'<div class="hero-summary"><b style="color:#fff">To confirm:</b> '+a.requirements.map(function(r){return esc(r);}).join(' &middot; ')+'</div>':'')
     +(a.next_steps?'<div class="hero-summary"><b style="color:#fff">Next step:</b> '+esc(a.next_steps)+'</div>':'')
     +'<div class="hero-actions"><a class="btn-ghost" href="/dashboard.html">View on dashboard →</a></div>';
 
