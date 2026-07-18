@@ -18,7 +18,8 @@
 <script>
 'use strict';
 const API='/.netlify/functions';
-const payload=JSON.parse(sessionStorage.getItem('ca_analyze_payload')||'null');
+const payload=JSON.parse(localStorage.getItem('ca_analyze_payload')||'null');
+if(payload)localStorage.removeItem('ca_analyze_payload');
 const loading=document.getElementById('loading');
 const report=document.getElementById('report');
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');

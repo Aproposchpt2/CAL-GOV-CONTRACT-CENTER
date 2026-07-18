@@ -387,7 +387,14 @@ function analyzeCaFit() {
   var selectedBid = Object.assign({}, _caBid, {
     description: _caDetail && _caDetail.description || _caBid.description || null
   });
-  sessionStorage.setItem('ca_analyze_payload', JSON.stringify({
+  // localStorage, not sessionStorage: analyze-fit.html opens via
+  // window.open(..., 'noopener'), which severs the new tab from the
+  // opener's browsing-context group -- sessionStorage isn't inherited
+  // across that boundary (confirmed: it's simply empty in the new tab),
+  // which is what actually caused "No California opportunity was
+  // supplied" for every source, not an opportunity-ID mismatch.
+  // localStorage is origin-scoped instead, so it's unaffected.
+  localStorage.setItem('ca_analyze_payload', JSON.stringify({
     bid: selectedBid,
     profile: PROFILE || {}
   }));
