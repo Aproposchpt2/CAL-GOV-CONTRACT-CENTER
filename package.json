@@ -4,7 +4,8 @@
   "type": "commonjs",
   "scripts": {
     "scrape": "node scripts/scrape.js",
-    "ingest-obas": "node scripts/ingest-obas.js"
+    "ingest-obas": "node scripts/ingest-obas.js",
+    "scrape-caleprocure": "node scripts/scrape-caleprocure.js"
   },
   "dependencies": {
     "pdf-parse": "^2.4.5",

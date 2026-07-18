@@ -1,16 +1,20 @@
 'use strict';
 // CalGCC — California Government Contracts Center
-// Blends two independent sources into one feed:
-//   1. Live scrape of Cal eProcure public solicitation listing (caleprocure.ca.gov),
-//      falling back to the DGS active solicitations page if needed.
-//   2. bids.json — the pre-scraped PlanetBids feed for CA city/county/district agency
-//      portals, written daily by scripts/scrape.js (see .github/workflows/scrape.yml).
-// Each source is independently resilient (a failure in one does not affect the other);
-// results are deduped and merged before being cached and returned.
-
-const LIST_URL  = 'https://caleprocure.ca.gov/events/';
-const ALT_URL   = 'https://www.dgs.ca.gov/PD/Resources/Page-Content/Procurement-Division-Resources-List-Folder/Active-Solicitations';
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+// Blends three independently-resilient, pre-scraped sources into one feed
+// (a failure in any one does not affect the others):
+//   1. caleprocure.json — California State Contracts Register, scraped via a
+//      headless Playwright session by scripts/scrape-caleprocure.js (see
+//      .github/workflows/scrape-caleprocure.yml). caleprocure.ca.gov sits
+//      behind a WAF that 403s plain server-side fetch() — including its own
+//      robots.txt — so this can only ever be pre-scraped, never live-fetched
+//      from this function. (This replaces an earlier regex-based live-fetch
+//      attempt against a URL that had gone stale/404, which was silently
+//      returning a single false-positive match instead of real data.)
+//   2. bids.json — the pre-scraped PlanetBids feed for CA city/county/district
+//      agency portals, written by scripts/scrape.js (see .github/workflows/scrape.yml).
+//   3. obas.json — DGS's monthly "Upcoming Solicitations" bulletin (not yet
+//      open for bid — status 'Upcoming'), written by scripts/ingest-obas.js.
+// Results are deduped and merged before being cached and returned.
 
 const CORS = {
   'Content-Type': 'application/json',
@@ -23,90 +27,48 @@ const CORS = {
 let _cache = null, _cacheAt = 0;
 const TTL_MS = 5 * 60 * 1000;
 
-function clean(s) {
-  return (s || '').replace(/\s+/g, ' ').trim();
-}
-
-function parseDate(s) {
-  if (!s) return null;
-  const d = new Date(s.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2'));
-  return isNaN(d) ? null : d.toISOString().slice(0, 10);
-}
-
 function daysUntil(isoDate) {
   if (!isoDate) return null;
   const diff = Date.parse(isoDate) - Date.now();
   return Math.ceil(diff / 86400000);
 }
 
-// ── Cal eProcure parser ───────────────────────────────────────────────────────
-// Cal eProcure uses SAP Ariba. The public events page may render a table or
-// redirect to an Ariba SourcingPublic page. We attempt to extract bid rows.
-function parseCalEprocure(html) {
-  const bids = [];
-  // Try standard table rows with bid data
-  const rowMatches = [...html.matchAll(/<tr[^>]*class="[^"]*(?:row|event)[^"]*"[^>]*>([\s\S]*?)<\/tr>/gi)];
-  for (const rm of rowMatches) {
-    const cells = [...rm[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map(m => clean(m[1].replace(/<[^>]+>/g, ' ')));
-    if (cells.length < 2 || !cells[0]) continue;
-    const title = cells[0] || cells[1] || '';
-    if (title.length < 5) continue;
-    // Try to extract a bid/event ID
-    const idMatch = rm[1].match(/(?:eventId|bidId|Id)=([A-Z0-9\-_]{4,40})/i) || rm[1].match(/value="([A-Z0-9\-_]{6,40})"/i);
-    const bid_id = idMatch ? idMatch[1] : ('CA-' + bids.length);
-    bids.push({
-      id: bid_id,
-      bid_id,
-      solicitation_no: cells[1] || bid_id,
-      title: clean(title),
-      bid_type: 'SOLICITATION',
-      agency: cells[2] || 'California State Agency',
-      issue_date: parseDate(cells[3] || ''),
-      close_date: parseDate(cells[4] || cells[3] || ''),
-    });
+// Cal eProcure (California State Contracts Register) — pre-scraped by
+// scripts/scrape-caleprocure.js. Detail fields (description, contact,
+// unspsc_codes) are populated incrementally across scheduled runs — new
+// postings start with list-level fields only (detail_fetched: false) until
+// a later run fetches their detail page, so callers should treat description/
+// contact/unspsc_codes as "may be empty" rather than always-present.
+async function fetchCaleprocureBids(siteUrl) {
+  try {
+    const res = await fetch(`${siteUrl}/caleprocure.json`, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const arr = Array.isArray(data.opportunities) ? data.opportunities : [];
+    return arr.map(o => ({
+      id:              o.id || '',
+      bid_id:          o.id || '',
+      solicitation_no: o.id || '',
+      title:           o.title || '',
+      bid_type:        o.bid_type || 'SOLICITATION',
+      agency:          o.department || 'California State Agency',
+      issue_date:      o.published_date || null,
+      close_date:      o.close_date || null,
+      due_in_days:     o.due_in_days != null ? o.due_in_days : daysUntil(o.close_date),
+      status:          o.status || 'Posted',
+      url:             o.url || 'https://caleprocure.ca.gov/pages/Events-BS3/event-search.aspx',
+      category_ids:    [],
+      description:         o.description || null,
+      unspsc_codes:        Array.isArray(o.unspsc_codes) ? o.unspsc_codes : [],
+      contact_name:        o.contact_name || null,
+      contact_email:       o.contact_email || null,
+      contact_phone:       o.contact_phone || null,
+      _source:         'caleprocure',
+    })).filter(b => b.title.length > 3);
+  } catch (e) {
+    console.log('[cal-pipeline] Cal eProcure caleprocure.json fetch failed (non-fatal):', e.message);
+    return [];
   }
-
-  // Fallback: look for any structured bid-like content blocks
-  if (!bids.length) {
-    const titleMatches = [...html.matchAll(/data-title="([^"]{10,200})"/gi)];
-    for (const tm of titleMatches) {
-      bids.push({
-        id: 'CA-' + bids.length,
-        bid_id: 'CA-' + bids.length,
-        solicitation_no: '',
-        title: clean(tm[1]),
-        bid_type: 'SOLICITATION',
-        agency: 'California State Agency',
-        issue_date: null,
-        close_date: null,
-      });
-    }
-  }
-
-  return bids;
-}
-
-// ── DGS Active Solicitations parser ──────────────────────────────────────────
-function parseDgsSolicitations(html) {
-  const bids = [];
-  // DGS page is SharePoint-based with a simple list of solicitations
-  const linkMatches = [...html.matchAll(/<a[^>]*href="([^"]*(?:solicitation|bid|rfp|rfq|itb|contract)[^"]*)"[^>]*>([^<]{8,200})<\/a>/gi)];
-  for (const lm of linkMatches) {
-    const title = clean(lm[2]);
-    if (!title || title.length < 8) continue;
-    bids.push({
-      id: 'DGS-' + bids.length,
-      bid_id: 'DGS-' + bids.length,
-      solicitation_no: '',
-      title,
-      bid_type: 'SOLICITATION',
-      agency: 'California Dept of General Services',
-      issue_date: null,
-      close_date: null,
-      url: lm[1],
-    });
-  }
-  return bids;
 }
 
 async function fetchPage(url) {
@@ -207,28 +169,6 @@ function dedupe(bids) {
   return out;
 }
 
-async function fetchCalBids() {
-  // Primary: Cal eProcure
-  try {
-    const html = await fetchPage(LIST_URL);
-    const bids = parseCalEprocure(html);
-    if (bids.length > 0) return bids;
-  } catch (e) {
-    console.log('[cal-pipeline] Cal eProcure failed:', e.message);
-  }
-
-  // Fallback: DGS Active Solicitations
-  try {
-    const html = await fetchPage(ALT_URL);
-    const bids = parseDgsSolicitations(html);
-    if (bids.length > 0) return bids;
-  } catch (e) {
-    console.log('[cal-pipeline] DGS fallback failed:', e.message);
-  }
-
-  return [];
-}
-
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 204, headers: CORS, body: '' };
 
@@ -243,28 +183,11 @@ exports.handler = async (event) => {
     // Run all sources concurrently; each is independently resilient (all three
     // catch their own errors and resolve to [] rather than throwing), so one
     // source failing never blocks the others.
-    const [raw, planetBidsBids, obasBids] = await Promise.all([
-      fetchCalBids(),
+    const [calBids, planetBidsBids, obasBids] = await Promise.all([
+      fetchCaleprocureBids(siteUrl),
       fetchPlanetBidsBids(siteUrl),
       fetchObasBids(siteUrl),
     ]);
-
-    // Normalize each Cal eProcure/DGS bid
-    const calBids = raw.map(b => ({
-      id:             b.id || b.bid_id || '',
-      bid_id:         b.bid_id || b.id || '',
-      solicitation_no: b.solicitation_no || '',
-      title:          b.title || '',
-      bid_type:       (b.bid_type || 'SOLICITATION').toUpperCase(),
-      agency:         b.agency || 'California State Agency',
-      issue_date:     b.issue_date || null,
-      close_date:     b.close_date || null,
-      due_in_days:    daysUntil(b.close_date),
-      status:         'Issued',
-      url:            b.url || `https://caleprocure.ca.gov/events/`,
-      category_ids:   [],
-      _source:        'caleprocure',
-    })).filter(b => b.title.length > 3);
 
     const bids = dedupe([...calBids, ...planetBidsBids, ...obasBids])
       .sort((a, b) => (a.due_in_days ?? 9999) - (b.due_in_days ?? 9999));

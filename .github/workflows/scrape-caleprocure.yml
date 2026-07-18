@@ -1,0 +1,28 @@
+name: Scrape Cal eProcure
+
+on:
+  schedule:
+    - cron: '0 1,13 * * *'   # ~6am and ~6pm Pacific — 12hr cadence, conservative end of directive's 6-12hr range
+  workflow_dispatch:          # manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/scrape-caleprocure.js
+      - name: Commit refreshed caleprocure.json
+        run: |
+          git config user.name "calstategen-bot"
+          git config user.email "bot@aproposgroupllc.com"
+          git add caleprocure.json
+          git commit -m "data: refresh Cal eProcure listings" || echo "no changes to commit"
+          git push
