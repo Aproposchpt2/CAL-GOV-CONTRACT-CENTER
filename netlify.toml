@@ -15,6 +15,21 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+[[redirects]]
+  from = "/stage"
+  to = "/stage.html"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
 [[edge_functions]]
   path = "/"
   function = "calstategen-nav-login-cta"
@@ -41,4 +56,8 @@
 
 [[edge_functions]]
   path = "/welcome.html"
+  function = "natcorp-conversion"
+
+[[edge_functions]]
+  path = "/stage.html"
   function = "natcorp-conversion"
