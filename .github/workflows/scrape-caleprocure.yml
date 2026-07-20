@@ -2,7 +2,7 @@ name: Scrape Cal eProcure
 
 on:
   schedule:
-    - cron: '0 1,13 * * *'   # ~6am and ~6pm Pacific — 12hr cadence, conservative end of directive's 6-12hr range
+    - cron: '0 1,13 * * *'   # ~6am and ~6pm Pacific — 12hr cadence
   workflow_dispatch:          # manual trigger
 
 permissions:
@@ -26,9 +26,10 @@ jobs:
           git add caleprocure.json
           git commit -m "data: refresh Cal eProcure listings" || echo "no changes to commit"
           git push
-      - name: Sync into Supabase raw table (state_contract_opportunities)
+      - name: Sync into Supabase and record PDAS acquisition health
         continue-on-error: true
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          PDAS_SOURCE_JOB_ID: CA-CALEPROCURE
         run: node scripts/sync-supabase.js
