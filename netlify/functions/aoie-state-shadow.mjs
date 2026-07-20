@@ -21,24 +21,48 @@ const json = (status, body) => new Response(JSON.stringify(body), { status, head
 const env = (name) => globalThis.Netlify?.env?.get(name) || process.env[name] || '';
 const dbHeaders = (key, extra = {}) => ({ apikey: key, Authorization: `Bearer ${key}`, Accept: 'application/json', ...extra });
 
+function isSameOriginRequest(req) {
+  const target = new URL(req.url);
+  const origin = req.headers.get('origin');
+  const referer = req.headers.get('referer');
+  const fetchSite = req.headers.get('sec-fetch-site');
+
+  if (origin && origin !== target.origin) return false;
+  if (referer) {
+    try {
+      if (new URL(referer).origin !== target.origin) return false;
+    } catch {
+      return false;
+    }
+  }
+  if (fetchSite && !['same-origin', 'none'].includes(fetchSite)) return false;
+
+  return origin === target.origin || Boolean(referer) || fetchSite === 'same-origin';
+}
+
 async function authenticate(req, url, key) {
   const internal = env('AOIE_INTERNAL_TOKEN');
   const supplied = req.headers.get('x-aoie-token') || '';
   if (internal && supplied === internal) return { mode: 'internal', subscriber: null };
+
   const header = req.headers.get('authorization') || '';
   const match = header.match(/^Bearer\s+(.+)$/i);
-  if (!match) return null;
-  const query = new URLSearchParams({
-    select: 'email,state,business_name,keywords,commodity_codes,status,session_expires_at',
-    session_token: `eq.${match[1].trim()}`,
-    status: 'eq.active',
-    session_expires_at: `gt.${new Date().toISOString()}`,
-    limit: '1',
-  });
-  const response = await fetch(`${url}/rest/v1/state_alert_subscribers?${query}`, { headers: dbHeaders(key), signal: AbortSignal.timeout(15000) });
-  if (!response.ok) throw new Error(`Session verification failed: ${response.status}`);
-  const rows = await response.json();
-  return Array.isArray(rows) && rows.length ? { mode: 'member-session', subscriber: rows[0] } : null;
+  if (match) {
+    const query = new URLSearchParams({
+      select: 'email,state,business_name,keywords,commodity_codes,status,session_expires_at',
+      session_token: `eq.${match[1].trim()}`,
+      status: 'eq.active',
+      session_expires_at: `gt.${new Date().toISOString()}`,
+      limit: '1',
+    });
+    const response = await fetch(`${url}/rest/v1/state_alert_subscribers?${query}`, { headers: dbHeaders(key), signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error(`Session verification failed: ${response.status}`);
+    const rows = await response.json();
+    if (Array.isArray(rows) && rows.length) return { mode: 'member-session', subscriber: rows[0] };
+  }
+
+  if (isSameOriginRequest(req)) return { mode: 'anonymous-same-origin', subscriber: null };
+  return null;
 }
 
 function normalizeStates(value, fallback) {
@@ -122,7 +146,7 @@ export default async function handler(req) {
   if (!url || !key) return json(500, { error: 'AOIE database configuration missing.' });
   try {
     const auth = await authenticate(req, url, key);
-    if (!auth) return json(401, { error: 'Unauthorized.' });
+    if (!auth) return json(401, { error: 'Same-origin NAT-CORP access or an authorized internal session is required.' });
     let payload;
     try { payload = await req.json(); } catch { return json(400, { error: 'Invalid JSON.' }); }
     const input = { ...(payload.profile || {}) };
