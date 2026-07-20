@@ -67,6 +67,29 @@ test('unrelated landscaping work is not recommended', () => {
   assert.equal(result.match_status, 'Not Recommended');
 });
 
+test('Technology General code does not match window construction repair', () => {
+  const technologyProfile = expandBusinessProfile({
+    business_name: 'NAT-CORP IT Visitor',
+    keywords: ['information technology', 'technology general'],
+    services: ['Information Technology Services'],
+    commodity_codes: ['519190', '91861'],
+    service_states: ['CA'],
+  });
+  const result = scoreStateLocalMatch(technologyProfile, {
+    title: 'Window Systems Repair - School for the Blind',
+    issuing_organization: 'California Department of General Services (OBAS)',
+    issuing_department: 'Construction - Goods & Services',
+    notice_type: 'Upcoming Solicitation (not yet open)',
+    state_code: 'CA',
+    unspsc_codes: ['72152400'],
+    commodity_codes: [],
+    response_deadline: null,
+  });
+  assert.equal(result.match_status, 'Not Recommended', JSON.stringify(result));
+  assert.equal(result.signal_scores.concept_alignment, 0, JSON.stringify(result));
+  assert.ok(result.fit_score < 35, JSON.stringify(result));
+});
+
 test('expired opportunities are hard-disqualified', () => {
   const result = scoreStateLocalMatch(profile, {
     title: 'Cybersecurity Services',
