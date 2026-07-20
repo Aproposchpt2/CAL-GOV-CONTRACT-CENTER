@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>National Corporation Contract Exchange — Opening Dashboard</title>
+<style>
+:root{--navy:#07142f;--blue:#0f2a6a;--gold:#d5ae55;--white:#fff;--muted:#a8b7d2;--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(155deg,var(--blue),var(--navy));font-family:Arial,sans-serif;color:var(--white)}
+.card{width:min(520px,100%);padding:38px;border:1px solid var(--line);background:rgba(255,255,255,.05);text-align:center}.eyebrow{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}h1{font-family:Georgia,serif;font-weight:400;font-size:2rem;margin:0 0 12px}.sub{color:var(--muted);line-height:1.7}.spin{width:46px;height:46px;margin:22px auto;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.err{color:#fca5a5;margin-top:14px}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="eyebrow">National Corporation Contract Exchange</div>
+  <h1>Opening your dashboard</h1>
+  <svg class="spin" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(213,174,85,.2)" stroke-width="4"/><circle cx="26" cy="26" r="22" fill="none" stroke="#D5AE55" stroke-width="4" stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="100" transform="rotate(-90 26 26)"/></svg>
+  <p class="sub" id="status">Loading your licensed-corporation service profile and state and local opportunities.</p>
+  <div class="err" id="error"></div>
+</main>
+<script>
+(function(){
+  'use strict';
+  var q=new URLSearchParams(location.search);
+  var name=(q.get('name')||'').trim();
+  var business=(q.get('business')||q.get('business_name')||'').trim();
+  var email=(q.get('email')||'').trim().toLowerCase();
+  var raw=(q.get('services')||q.get('keywords')||'').trim();
+  var services=raw.split(/[|,;\n]+/).map(function(v){return v.trim().toLowerCase();}).filter(Boolean);
+  try{
+    var profile=JSON.parse(localStorage.getItem('calgcc_profile')||localStorage.getItem('natcorp_profile')||'{}');
+    var session=JSON.parse(localStorage.getItem('calgcc_session')||localStorage.getItem('natcorp_session')||'{}');
+    if(name) profile.name=name;
+    if(business) profile.business_name=business;
+    if(email) profile.email=email;
+    if(services.length) profile.keywords=services;
+    profile.services=profile.keywords||services;
+    profile.state=profile.state||'US';
+    profile.source=profile.source||'natcorp-stage';
+    profile.updated_at=new Date().toISOString();
+    if(!session.token) session.token='natcorp-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+    session.name=profile.name||session.name||'';
+    session.business_name=profile.business_name||session.business_name||'';
+    session.email=profile.email||session.email||'';
+    session.keywords=profile.keywords||session.keywords||[];
+    session.state=profile.state;
+    session.source='natcorp-stage';
+    session.signed_in_at=new Date().toISOString();
+    localStorage.setItem('calgcc_profile',JSON.stringify(profile));
+    localStorage.setItem('calgcc_session',JSON.stringify(session));
+    localStorage.setItem('natcorp_profile',JSON.stringify(profile));
+    localStorage.setItem('natcorp_session',JSON.stringify(session));
+    var target=(profile.keywords&&profile.keywords.length)?'/dashboard.html':'/services.html';
+    setTimeout(function(){location.replace(target);},450);
+  }catch(e){document.getElementById('error').textContent='The dashboard profile could not be prepared. Clear this site’s stored data and try again.';}
+})();
+</script>
+</body>
+</html>
