@@ -25,3 +25,9 @@ jobs:
           git add obas.json
           git commit -m "data: refresh OBAS bulletin" || echo "no changes to commit"
           git push
+      - name: Sync into Supabase raw table (state_contract_opportunities)
+        continue-on-error: true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/sync-supabase.js
