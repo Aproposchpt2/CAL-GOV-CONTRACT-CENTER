@@ -148,6 +148,28 @@ function fromObas(o, bulletinUrl) {
   };
 }
 
+// PostgREST's bulk POST requires every object in the array to have identical
+// keys (it derives one column list from the batch) -- fails with PGRST102
+// "All object keys must match" otherwise. The three source mappers each
+// return only their own relevant fields, so every row must be padded to the
+// same full key set (nulls for whatever that source doesn't produce) before
+// batching, even when a single batch mixes rows from different sources.
+const ROW_KEYS = [
+  'state_code', 'issuing_organization', 'issuing_department', 'source_platform',
+  'source_record_id', 'source_url', 'solicitation_number', 'title', 'description',
+  'notice_type', 'status', 'response_deadline', 'posted_at',
+  'place_of_performance_state', 'place_of_performance_county',
+  'estimated_value_min', 'estimated_value_max', 'contact_name', 'contact_email',
+  'contact_phone', 'unspsc_codes', 'keywords', 'classifications',
+  'extraction_confidence', 'data_quality_score', 'qa_status', 'qa_notes',
+  'raw_source_payload',
+];
+function normalizeRow(row) {
+  const out = {};
+  ROW_KEYS.forEach(k => { out[k] = row[k] !== undefined ? row[k] : null; });
+  return out;
+}
+
 async function upsertBatch(rows) {
   if (!rows.length) return { ok: 0, failed: 0 };
   let ok = 0, failed = 0;
@@ -234,7 +256,7 @@ async function main() {
     return;
   }
 
-  const { ok, failed } = await upsertBatch(rows);
+  const { ok, failed } = await upsertBatch(rows.map(normalizeRow));
   console.log('[sync-supabase] upserted ' + ok + ' row(s), ' + failed + ' failed, into ' + TABLE + '.');
 
   const closed = await closeExpired('CA');
