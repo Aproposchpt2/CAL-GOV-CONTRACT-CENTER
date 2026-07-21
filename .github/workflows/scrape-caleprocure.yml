@@ -27,7 +27,7 @@ concurrency:
 jobs:
   acquire:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -48,7 +48,7 @@ jobs:
         run: node scripts/sync-supabase-grouped.js
       - run: npx playwright install --with-deps chromium
       - name: Acquire statewide Posted events and event packages
-        run: node scripts/scrape-caleprocure.js --detail-limit=80 --package-limit=25 --refresh-hours=24
+        run: node scripts/scrape-caleprocure.js --detail-limit=160 --package-limit=40 --refresh-hours=24
       - name: Resolve agency Business Units in refreshed snapshot
         run: node scripts/resolve-caleprocure-business-units.js
       - name: Commit refreshed Cal eProcure source snapshot
@@ -65,4 +65,4 @@ jobs:
           PDAS_SOURCE_JOB_ID: CA-CALEPROCURE
         run: node scripts/sync-supabase-grouped.js
 
-# Manual execution trigger: 2026-07-20T18:42:26-07:00
+# Retry execution trigger: 2026-07-20T18:50:00-07:00
