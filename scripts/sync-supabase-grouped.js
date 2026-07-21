@@ -48,8 +48,9 @@ function groupRowsByKeySet(rows) {
 }
 
 function triggerType() {
-  if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') return 'manual';
-  if (process.env.GITHUB_EVENT_NAME === 'push') return 'push';
+  const attempt = Number(process.env.GITHUB_RUN_ATTEMPT || 1);
+  if (attempt > 1) return 'retry';
+  if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch' || process.env.GITHUB_EVENT_NAME === 'push') return 'manual';
   return 'scheduled';
 }
 
@@ -207,4 +208,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { groupRowsByKeySet };
+module.exports = { groupRowsByKeySet, triggerType };
