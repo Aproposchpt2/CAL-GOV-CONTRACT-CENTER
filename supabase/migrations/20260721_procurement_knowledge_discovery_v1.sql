@@ -75,8 +75,7 @@ create table if not exists public.piee_procurement_terms (
   supporting_opportunity_ids uuid[] not null default '{}'::uuid[],
   taxonomy_version text not null,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now(),
-  unique (lower(original_term), lower(normalized_term), term_type, taxonomy_version)
+  updated_at timestamptz not null default now()
 );
 
 create table if not exists public.piee_capability_relationships (
@@ -134,6 +133,14 @@ create index if not exists piee_extractions_review_idx
 
 create index if not exists piee_terms_normalized_idx
   on public.piee_procurement_terms (lower(normalized_term), term_type);
+
+create unique index if not exists piee_terms_identity_uidx
+  on public.piee_procurement_terms (
+    lower(original_term),
+    lower(normalized_term),
+    term_type,
+    taxonomy_version
+  );
 
 create index if not exists piee_terms_supporting_opportunities_gin
   on public.piee_procurement_terms using gin (supporting_opportunity_ids);
