@@ -15,7 +15,6 @@ on:
       - 'tests/**'
   schedule:
     - cron: '17 */4 * * *' # every four hours, offset from the top of the hour
-    - cron: '50 1 21 7 *' # operational execution window; remove after completion
   workflow_dispatch:
 
 permissions:
@@ -65,5 +64,3 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           PDAS_SOURCE_JOB_ID: CA-CALEPROCURE
         run: node scripts/sync-supabase-grouped.js
-
-# Retry execution trigger: 2026-07-20T18:50:00-07:00
