@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "status": "PROPOSED_FOR_REVIEW",
+  "taxonomy_version": "aoie-taxonomy-proposal-1.1.0",
+  "governance": {
+    "production_activation_authorized": false,
+    "fabricated_codes_permitted": false,
+    "source_assigned_codes_preserved": true,
+    "inferred_mappings_require_review": true
+  },
+  "corpus_coverage": {
+    "canonical_latest_opportunities": 345,
+    "opportunities_with_unspsc": 307,
+    "opportunities_without_unspsc": 39,
+    "opportunities_with_naics": 0,
+    "opportunities_with_nigp": 0
+  },
+  "recommendations": [
+    {
+      "recommendation_type": "preserve_source_assignment",
+      "scheme": "UNSPSC",
+      "recommendation": "Retain each source-assigned UNSPSC code with opportunity-level provenance and do not treat frequency as proof of semantic equivalence.",
+      "confidence": 95,
+      "review_status": "review_required"
+    },
+    {
+      "recommendation_type": "defer_mapping",
+      "scheme": "NAICS",
+      "recommendation": "Do not generate corpus-derived NAICS mappings in Version 1 because the current canonical corpus contains no source-assigned NAICS codes.",
+      "confidence": 100,
+      "review_status": "review_required"
+    },
+    {
+      "recommendation_type": "defer_mapping",
+      "scheme": "NIGP",
+      "recommendation": "Do not generate corpus-derived NIGP mappings in Version 1 because the current canonical corpus contains no source-assigned NIGP codes.",
+      "confidence": 100,
+      "review_status": "review_required"
+    },
+    {
+      "recommendation_type": "collision_review",
+      "scheme": "UNSPSC",
+      "capability": "Window Systems Repair and Replacement",
+      "observed_codes": [
+        "72154032",
+        "72152400"
+      ],
+      "recommendation": "Preserve both observed codes as source evidence and submit their semantic relationship to taxonomy governance. Do not automatically merge them or use either code as information-technology evidence.",
+      "supporting_opportunity_count": 2,
+      "confidence": 90,
+      "review_status": "review_required"
+    },
+    {
+      "recommendation_type": "assignment_status_standard",
+      "scheme": "ALL",
+      "recommendation": "Every code relationship must be labeled as official_source_record, approved_mapping, inferred_review_required, related, or conflicting.",
+      "confidence": 95,
+      "review_status": "review_required"
+    }
+  ]
+}
