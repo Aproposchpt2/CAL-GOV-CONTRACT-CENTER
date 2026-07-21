@@ -64,3 +64,5 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           PDAS_SOURCE_JOB_ID: CA-CALEPROCURE
         run: node scripts/sync-supabase-grouped.js
+
+# Manual execution trigger: 2026-07-20T18:42:26-07:00
