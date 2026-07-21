@@ -9,6 +9,7 @@ on:
       - 'scripts/scrape-caleprocure.js'
       - 'scripts/sync-supabase.js'
       - 'scripts/lib/caleprocure-normalize.js'
+      - 'scripts/prepare-caleprocure-snapshot.js'
   schedule:
     - cron: '17 */4 * * *' # every four hours, offset from the top of the hour
   workflow_dispatch:
@@ -18,7 +19,7 @@ permissions:
 
 concurrency:
   group: acquire-caleprocure
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   acquire:
@@ -32,6 +33,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Prepare checked-in verified snapshot
+        run: node scripts/prepare-caleprocure-snapshot.js
+      - name: Immediately synchronize verified snapshot into Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          PDAS_SOURCE_JOB_ID: CA-CALEPROCURE
+        run: node scripts/sync-supabase.js
       - run: npx playwright install --with-deps chromium
       - name: Acquire statewide Posted events and event packages
         run: node scripts/scrape-caleprocure.js --detail-limit=80 --package-limit=25 --refresh-hours=24
@@ -42,7 +51,7 @@ jobs:
           git add caleprocure.json
           git commit -m "data: refresh Cal eProcure acquisition snapshot" || echo "no changes to commit"
           git push
-      - name: Synchronize verified records into Supabase
+      - name: Synchronize refreshed verified records into Supabase
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
