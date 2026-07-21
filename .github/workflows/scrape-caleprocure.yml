@@ -1,6 +1,14 @@
 name: Acquire Cal eProcure
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/scrape-caleprocure.yml'
+      - 'scripts/scrape-caleprocure.js'
+      - 'scripts/sync-supabase.js'
+      - 'scripts/lib/caleprocure-normalize.js'
   schedule:
     - cron: '17 */4 * * *' # every four hours, offset from the top of the hour
   workflow_dispatch:
