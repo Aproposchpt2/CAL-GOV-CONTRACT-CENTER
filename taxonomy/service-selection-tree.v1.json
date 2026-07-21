@@ -1,0 +1,208 @@
+{
+  "version": "aoie-taxonomy-proposal-1.1.0",
+  "status": "PROPOSED_FOR_REVIEW",
+  "principles": {
+    "derived_from_procurement_demand": true,
+    "separates_products_and_services": true,
+    "preserves_buyer_terms": true,
+    "allows_unlisted_capability_submission": true
+  },
+  "domains": [
+    {
+      "label": "Information Technology",
+      "categories": [
+        {
+          "label": "IT Operations",
+          "groups": [
+            {
+              "label": "Managed Services",
+              "capabilities": [
+                "Managed IT Services"
+              ]
+            },
+            {
+              "label": "Platform Support",
+              "capabilities": [
+                "Microsoft Windows Platform Support"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Cybersecurity",
+          "groups": [
+            {
+              "label": "Security Services",
+              "capabilities": [
+                "Cybersecurity Services"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Software",
+          "groups": [
+            {
+              "label": "Software Products and Development",
+              "capabilities": [
+                "Software Products and Services"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Hardware",
+          "groups": [
+            {
+              "label": "Computing Equipment",
+              "capabilities": [
+                "Computer Hardware"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Facilities and Construction",
+      "categories": [
+        {
+          "label": "Building Envelope",
+          "groups": [
+            {
+              "label": "Windows and Glazing",
+              "capabilities": [
+                "Window Systems Repair and Replacement"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Mechanical Systems",
+          "groups": [
+            {
+              "label": "HVAC",
+              "capabilities": [
+                "HVAC Maintenance and Repair"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Electrical",
+          "groups": [
+            {
+              "label": "Electrical Contracting",
+              "capabilities": [
+                "Electrical Work"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Facility Services",
+          "groups": [
+            {
+              "label": "Cleaning",
+              "capabilities": [
+                "Janitorial and Custodial Services"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Construction",
+          "groups": [
+            {
+              "label": "General Construction",
+              "capabilities": [
+                "General Construction"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Professional Services",
+      "categories": [
+        {
+          "label": "Architecture and Engineering",
+          "groups": [
+            {
+              "label": "Engineering",
+              "capabilities": [
+                "Engineering Services"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Workforce Services",
+          "groups": [
+            {
+              "label": "Staffing",
+              "capabilities": [
+                "Staffing and Staff Augmentation"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Training and Education",
+          "groups": [
+            {
+              "label": "Training",
+              "capabilities": [
+                "Training Services"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Healthcare and Human Services",
+      "categories": [
+        {
+          "label": "Medical Products",
+          "groups": [
+            {
+              "label": "Medical Supplies",
+              "capabilities": [
+                "Medical Supplies and Equipment"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Human Services",
+          "groups": [
+            {
+              "label": "Case and Community Services",
+              "capabilities": [
+                "Human Services and Case Management"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Transportation and Logistics",
+      "categories": [
+        {
+          "label": "Transportation",
+          "groups": [
+            {
+              "label": "Transportation Services",
+              "capabilities": [
+                "Transportation and Logistics Services"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
