@@ -1,0 +1,225 @@
+{
+  "version": "full-corpus-validation-recommendations-1.0.0",
+  "source_extraction_version": "pkd-1.0.0",
+  "source_taxonomy_version": "aoie-taxonomy-proposal-1.1.0",
+  "status": "review_required",
+  "production_activation_authorized": false,
+  "corpus": {
+    "source_records": 346,
+    "canonical_records": 345,
+    "auto_extracted": 110,
+    "review_required": 235,
+    "records_failed": 0
+  },
+  "priority_0_rule_corrections": [
+    {
+      "id": "split-medical-equipment-products-and-services",
+      "recommendation_type": "split",
+      "existing_capability": "healthcare.medical_supplies",
+      "proposed_capabilities": [
+        "healthcare.medical_equipment_supply",
+        "healthcare.medical_equipment_maintenance"
+      ],
+      "required_controls": [
+        "Require purchase, supply, furnish, delivery, rental, or product-list evidence for goods classification.",
+        "Prefer maintenance or repair service classification when the title or substantive scope states maintenance or repair.",
+        "Preserve medical equipment as the serviced asset without converting the opportunity into a product procurement."
+      ],
+      "supporting_record_ids": [
+        "PDAS-0c5e8f4d778f431fa2f16a858181df2f"
+      ],
+      "confidence": 98
+    },
+    {
+      "id": "narrow-staffing-personnel-services-rule",
+      "recommendation_type": "modify",
+      "existing_capability": "professional.staffing_services",
+      "required_controls": [
+        "Do not assign staffing from the phrase personnel services alone.",
+        "Require temporary labor, staff augmentation, recruitment, placement, contingent labor, or workforce-supply context.",
+        "Exclude occupational medical care, clinical services, investigative services, and ordinary vendor personnel references."
+      ],
+      "supporting_record_ids": [
+        "PDAS-6f44f248efa440bca31d947d65cbe948"
+      ],
+      "confidence": 98
+    },
+    {
+      "id": "tighten-product-evidence-sources",
+      "recommendation_type": "evidence_policy",
+      "required_controls": [
+        "Use title and substantive description as primary product evidence.",
+        "Treat classification descriptions and generated keywords as corroborating evidence only.",
+        "Prevent generic references to computers, servers, vehicles, or equipment from creating product assignments without purchasing context."
+      ],
+      "confidence": 92
+    },
+    {
+      "id": "separate-license-and-certification-fields",
+      "recommendation_type": "normalization",
+      "required_controls": [
+        "Move California contractor-license codes from certification output to license output.",
+        "Preserve the original source field and record a source-field conflict flag.",
+        "Do not treat trade-license codes as supplier-diversity or quality certifications."
+      ],
+      "affected_opportunities": 45,
+      "confidence": 100
+    }
+  ],
+  "priority_1_taxonomy_candidates": [
+    {
+      "domain": "Professional Services",
+      "category": "Consulting and Advisory",
+      "group": "General Consulting",
+      "capability": "Business and Management Consulting Services",
+      "evidence": "Professional consulting keyword present in 9 unsupported records; representative consulting title safely routed to review."
+    },
+    {
+      "domain": "Facilities and Construction",
+      "category": "Facility Services",
+      "group": "Facility Operations",
+      "capability": "Facility Maintenance and Operations",
+      "evidence": "Facility maintenance keyword present in 58 unsupported records."
+    },
+    {
+      "domain": "Products and Distribution",
+      "category": "Supply and Distribution",
+      "group": "General Products",
+      "capability": "Product Supply, Rental, and Distribution",
+      "evidence": "Goods and rental opportunities are safely unresolved; product-distribution branch is absent."
+    },
+    {
+      "domain": "Products and Distribution",
+      "category": "Safety Products",
+      "group": "Protective Equipment and Apparel",
+      "capability": "Protective Clothing and Operational Supplies",
+      "evidence": "Validated unresolved CHP protective-clothing and supplies-rental opportunity."
+    },
+    {
+      "domain": "Facilities and Construction",
+      "category": "Grounds and Vegetation",
+      "group": "Landscape Services",
+      "capability": "Landscape Maintenance Services",
+      "evidence": "Landscaping keyword present in 6 unsupported records."
+    },
+    {
+      "domain": "Facilities and Construction",
+      "category": "Grounds and Vegetation",
+      "group": "Vegetation Management",
+      "capability": "Tree Trimming, Pruning, and Removal Services",
+      "evidence": "Representative statewide tree-service opportunity remains unsupported."
+    },
+    {
+      "domain": "Professional Services",
+      "category": "Legal",
+      "group": "Legal Services",
+      "capability": "Legal and Related Professional Services",
+      "evidence": "Legal keyword present in 32 unsupported records."
+    },
+    {
+      "domain": "Business and Administrative Services",
+      "category": "Printing and Publishing",
+      "group": "Document Production",
+      "capability": "Printing, Publishing, and Document Production",
+      "evidence": "Printing and publishing keyword present in 29 unsupported records."
+    },
+    {
+      "domain": "Environmental and Natural Resources",
+      "category": "Environmental Services",
+      "group": "Environmental Consulting and Operations",
+      "capability": "Environmental Services",
+      "evidence": "Environmental keyword present in 18 unsupported records."
+    },
+    {
+      "domain": "Business and Administrative Services",
+      "category": "Finance",
+      "group": "Accounting and Financial Services",
+      "capability": "Financial and Accounting Services",
+      "evidence": "Financial and accounting keyword present in 13 unsupported records."
+    },
+    {
+      "domain": "Business and Administrative Services",
+      "category": "Communications",
+      "group": "Marketing and Public Relations",
+      "capability": "Marketing, Communications, and Public Outreach",
+      "evidence": "Marketing and public-relations keyword present in 9 unsupported records."
+    },
+    {
+      "domain": "Technical Services",
+      "category": "Testing and Calibration",
+      "group": "Metrology",
+      "capability": "Calibration and Metrology Services",
+      "evidence": "High-quality calibration-services opportunity remains unsupported."
+    },
+    {
+      "domain": "Environmental and Natural Resources",
+      "category": "Waste Management",
+      "group": "Specialized Waste and Destruction",
+      "capability": "Waste Management and Confidential Destruction",
+      "evidence": "Confidential destruction and waste-treatment opportunities remain unsupported."
+    },
+    {
+      "domain": "Infrastructure",
+      "category": "Water and Wastewater",
+      "group": "Water Infrastructure",
+      "capability": "Water and Wastewater Infrastructure Construction",
+      "evidence": "Wastewater modernization and potable-water-well opportunities remain unsupported."
+    },
+    {
+      "domain": "Transportation and Infrastructure",
+      "category": "Roadways",
+      "group": "Pavement and Road Construction",
+      "capability": "Roadway Construction and Pavement Maintenance",
+      "evidence": "Paving and concrete keyword present in 41 unsupported records."
+    },
+    {
+      "domain": "Energy and Transportation Technology",
+      "category": "Electric Vehicle Infrastructure",
+      "group": "Charging Equipment",
+      "capability": "Electric Vehicle Charging Equipment and Installation",
+      "evidence": "Validated EV supply-equipment construction opportunity requires hybrid product-installation handling."
+    },
+    {
+      "domain": "Security and Safety",
+      "category": "Safety Services and Products",
+      "group": "General Safety",
+      "capability": "Security and Safety Services",
+      "evidence": "Security and safety keyword present in 55 unsupported records; activation requires narrower subcategories."
+    }
+  ],
+  "source_normalization_recommendations": [
+    {
+      "id": "normalize-procurement-type",
+      "finding": {
+        "null_records": 26,
+        "noncanonical_records": 16
+      },
+      "action": "Map source procurement types into a governed controlled vocabulary while preserving original values."
+    },
+    {
+      "id": "downgrade-generated-keywords",
+      "finding": {
+        "construction_records_with_it_keyword": 9,
+        "goods_records_with_facility_maintenance_keyword": 46
+      },
+      "action": "Treat generated keywords as corroborating evidence only and record keyword-source provenance."
+    },
+    {
+      "id": "classification-code-provenance",
+      "finding": {
+        "records_without_any_code": 39,
+        "unspsc_low_information_records": 24
+      },
+      "action": "Retain assignment status, source field, code description, and conflict indicators for every classification relationship."
+    }
+  ],
+  "next_validation_gates": [
+    "Correct the two material primary-capability collisions.",
+    "Expand controlled taxonomy coverage using evidence-backed rules.",
+    "Re-run all 345 canonical records.",
+    "Repeat the ten-domain manual review.",
+    "Demonstrate improved precision and reduced review volume.",
+    "Complete final migration review.",
+    "Obtain Project Orchestrator approval before merge or production activation."
+  ]
+}
