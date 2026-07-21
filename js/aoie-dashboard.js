@@ -41,6 +41,20 @@ function configureDashboardControls(){
     var row=link.closest('div');
     if(row&&/capability statement/i.test(row.textContent||''))row.remove();else link.remove();
   });
+  window.analyzeCaFit=function(){
+    var bid=window._caBid;
+    if(!bid)return;
+    var detail=window._caDetail||{};
+    var selected=Object.assign({},bid,{
+      description:detail.description||bid.description||null,
+      documents:detail.documents||bid.documents||bid.document_urls||[],
+      contact_name:detail.contactName||bid.contact_name||null,
+      contact_email:detail.contactEmail||bid.contact_email||null
+    });
+    localStorage.setItem('ca_analyze_payload',JSON.stringify({bid:selected,profile:window.PROFILE||{}}));
+    if(typeof window.closeCaDrawer==='function')window.closeCaDrawer();
+    window.open('/analyze-fit.html','_blank','noopener');
+  };
 }
 function refresh(){var all=window.ALL||[],count=all.filter(function(b){return window.hits(b)>=35}).length,mc=document.getElementById('mCount'),sm=document.getElementById('sMatched'),pill=document.querySelector('.pill'),eye=document.querySelector('.board-eye'),labels=document.querySelectorAll('.stat .l');if(mc)mc.textContent='('+count+')';if(sm)sm.textContent=count;if(labels[1])labels[1].textContent='AOIE matched opportunities';if(eye)eye.textContent='AOIE semantic matching · live state and local solicitations';if(pill)pill.textContent=error?'AOIE unavailable · all bids visible':loaded?'AOIE live test · '+count+' matches':'AOIE evaluating live bids';var note=document.getElementById('aoie-live-status');if(!note){note=document.createElement('div');note.id='aoie-live-status';note.style.cssText='font-size:.66rem;color:rgba(255,255,255,.52);margin:.2rem 0 1rem;letter-spacing:.04em';var h=document.querySelector('.board-head');if(h&&h.parentNode)h.parentNode.insertBefore(note,h.nextSibling)}if(note){note.textContent=error?'AOIE evaluation failed. My Matches is withheld rather than using the legacy matcher.':loaded?'Source: '+((meta&&meta.data_source&&meta.data_source.relation)||'public.state_contract_opportunities')+' · Free same-origin evaluation · Legacy substring matching disabled.':'AOIE is evaluating the current visit’s business capability selections.';note.style.color=error?'var(--amber)':'rgba(255,255,255,.52)'}if(typeof window.setStats==='function')window.setStats();if(typeof window.render==='function')window.render()}
 function run(){var p=profile();if(!evidence(p)){loaded=true;matches={};refresh();return}loaded=false;error=null;refresh();fetch('/api/aoie-state-shadow',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({profile:p,states:p.service_states,minimum_score:35,limit:200})}).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||'AOIE request failed');return d})}).then(function(d){matches={};(d.results||[]).forEach(put);meta=d;loaded=true}).catch(function(e){matches={};meta=null;loaded=true;error=e&&e.message?e.message:String(e);console.error('[AOIE dashboard]',e)}).finally(refresh)}
