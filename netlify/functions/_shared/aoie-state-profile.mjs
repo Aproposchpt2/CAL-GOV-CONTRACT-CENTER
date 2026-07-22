@@ -5,7 +5,7 @@ export function normalizeText(value){return String(value??'').toLowerCase().repl
 export function arrayify(value){if(Array.isArray(value))return value;if(value==null||value==='')return[];return String(value).split(/[,;\n]+/);}
 export function normalizeCode(value){const match=String(value??'').trim().match(/\d{2,8}/);return match?match[0]:'';}
 export const normalizedCodes=(value)=>unique(arrayify(value).map((item)=>normalizeCode(typeof item==='object'?(item.code||item.id||''):item)));
-export const normalizedStrings=(value)=>unique(arrayify(value).map((item)=>normalizeText(typeof item==='object'?(item.type||item.name||item.code||''):item));
+export const normalizedStrings=(value)=>unique(arrayify(value).map((item)=>normalizeText(typeof item==='object'?(item.type||item.name||item.code||''):item)));
 export const normalizedStates=(value)=>unique(arrayify(value).map((item)=>String(item??'').trim().toUpperCase()).filter((item)=>/^[A-Z]{2}$/.test(item)));
 export function meaningfulKeywords(value){return unique(arrayify(value).flatMap((item)=>String(item??'').split(/[|/]+/)).map(normalizeText).filter((item)=>item.length>=3&&!STOPWORDS.has(item)).slice(0,80));}
 export function parseMoney(value){if(value==null||value==='')return null;if(typeof value==='number'&&Number.isFinite(value))return value;const match=String(value).toLowerCase().replace(/[$,\s]/g,'').match(/(\d+(?:\.\d+)?)([kmb])?/);if(!match)return null;const n=Number(match[1]);if(!Number.isFinite(n))return null;return n*(match[2]==='k'?1e3:match[2]==='m'?1e6:match[2]==='b'?1e9:1);}
