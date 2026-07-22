@@ -4,15 +4,19 @@ export default async function(_request, context) {
   if (!type.includes('text/html')) return response;
 
   const html = await response.text();
-  const scripts = [
+  const assets = [
+    '<link rel="stylesheet" href="/css/aoie-experience.css">',
     '<script src="/js/natcorp-session.js"></script>',
     '<script src="/js/natcorp-brand.js" defer></script>',
+    '<script src="/js/aoie-capability-profile.js" defer></script>',
     '<script src="/js/aoie-dashboard.js" defer></script>'
-  ].filter(script => !html.includes(script.match(/src="([^"]+)/)?.[1] || ''));
+  ].filter(asset => {
+    const src = asset.match(/(?:src|href)="([^"]+)/)?.[1] || '';
+    return src && !html.includes(src);
+  });
 
-  if (!scripts.length) return new Response(html, response);
-
-  const injected = html.replace('</head>', scripts.join('') + '</head>');
+  if (!assets.length) return new Response(html, response);
+  const injected = html.replace('</head>', assets.join('') + '</head>');
   return new Response(injected, {
     status: response.status,
     statusText: response.statusText,

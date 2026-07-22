@@ -31,6 +31,11 @@
   status = 200
 
 [[redirects]]
+  from = "/capabilities"
+  to = "/capabilities.html"
+  status = 200
+
+[[redirects]]
   from = "/pdas-dashboard"
   to = "/pdas-dashboard.html"
   status = 200
@@ -49,6 +54,10 @@
 
 [[edge_functions]]
   path = "/services.html"
+  function = "natcorp-conversion"
+
+[[edge_functions]]
+  path = "/capabilities.html"
   function = "natcorp-conversion"
 
 [[edge_functions]]
