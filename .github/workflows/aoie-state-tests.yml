@@ -5,28 +5,35 @@ on:
     branches:
       - agent/aoie-state-local-shadow
       - fix/dashboard-controls-premium-analyze-fit
+      - feature/aoie-business-capability-profile-v1
     paths:
-      - 'netlify/functions/_shared/aoie-state-*.mjs'
-      - 'netlify/functions/aoie-state-shadow.mjs'
-      - 'netlify/functions/analyze-fit-state.mjs'
-      - 'tests/aoie-state-*.test.mjs'
+      - 'netlify/functions/_shared/aoie-*.mjs'
+      - 'netlify/functions/aoie-*.mjs'
+      - 'tests/aoie-*.test.mjs'
+      - 'tests/aoie-*.test.js'
       - 'tests/analyze-fit-premium.test.mjs'
-      - 'js/aoie-dashboard.js'
+      - 'js/aoie-*.js'
+      - 'capabilities.html'
       - 'analyze-fit.html'
       - 'intake.html'
       - 'netlify/edge-functions/natcorp-conversion.js'
+      - 'supabase/migrations/*aoie*.sql'
+      - 'supabase/seeds/*aoie*.sql'
       - '.github/workflows/aoie-state-tests.yml'
   pull_request:
     paths:
-      - 'netlify/functions/_shared/aoie-state-*.mjs'
-      - 'netlify/functions/aoie-state-shadow.mjs'
-      - 'netlify/functions/analyze-fit-state.mjs'
-      - 'tests/aoie-state-*.test.mjs'
+      - 'netlify/functions/_shared/aoie-*.mjs'
+      - 'netlify/functions/aoie-*.mjs'
+      - 'tests/aoie-*.test.mjs'
+      - 'tests/aoie-*.test.js'
       - 'tests/analyze-fit-premium.test.mjs'
-      - 'js/aoie-dashboard.js'
+      - 'js/aoie-*.js'
+      - 'capabilities.html'
       - 'analyze-fit.html'
       - 'intake.html'
       - 'netlify/edge-functions/natcorp-conversion.js'
+      - 'supabase/migrations/*aoie*.sql'
+      - 'supabase/seeds/*aoie*.sql'
       - '.github/workflows/aoie-state-tests.yml'
   workflow_dispatch:
 
@@ -36,7 +43,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -46,8 +53,22 @@ jobs:
         run: node tests/aoie-state-local.test.mjs
       - name: Run state/local AOIE source-contract fixtures
         run: node tests/aoie-state-source.test.mjs
+      - name: Run Business Capability Profile pilot fixtures
+        run: node tests/aoie-capability-profile-v1.test.js
       - name: Validate AOIE dashboard adapter syntax
         run: node --check js/aoie-dashboard.js
+      - name: Validate capability profile browser syntax
+        run: |
+          node --check js/aoie-capability-profile.js
+          node --check netlify/edge-functions/natcorp-conversion.js
+      - name: Validate capability profile function syntax
+        run: |
+          node --check netlify/functions/aoie-config.mjs
+          node --check netlify/functions/aoie-taxonomy.mjs
+          node --check netlify/functions/aoie-create-profile.mjs
+          node --check netlify/functions/aoie-resolve-capability.mjs
+          node --check netlify/functions/aoie-save-profile.mjs
+          node --check netlify/functions/aoie-profile-summary.mjs
       - name: Validate premium Analyze Fit function syntax
         run: node --check netlify/functions/analyze-fit-state.mjs
       - name: Run dashboard and premium report regressions
