@@ -46,11 +46,30 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Run state/local AOIE matcher fixtures
-        run: node tests/aoie-state-local.test.mjs
+      - name: Capture state/local AOIE matcher fixtures
+        id: matcher
+        shell: bash
+        run: |
+          set +e
+          node tests/aoie-state-local.test.mjs > aoie-matcher-output.txt 2>&1
+          code=$?
+          cat aoie-matcher-output.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Upload matcher diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aoie-matcher-diagnostic
+          path: aoie-matcher-output.txt
+      - name: Enforce matcher fixtures
+        if: steps.matcher.outputs.exit_code != '0'
+        run: exit 1
       - name: Run state/local AOIE source-contract fixtures
         run: node tests/aoie-state-source.test.mjs
       - name: Run Business Capability Profile pilot fixtures
