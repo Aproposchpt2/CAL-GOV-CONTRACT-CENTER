@@ -7,7 +7,8 @@ export default async function(_request, context) {
   const scripts = [
     '<script src="/js/natcorp-session.js"></script>',
     '<script src="/js/natcorp-brand.js" defer></script>',
-    '<script src="/js/aoie-dashboard.js" defer></script>'
+    '<script src="/js/aoie-dashboard.js" defer></script>',
+    '<script src="/js/aois-advisor.js" defer></script>'
   ].filter(script => !html.includes(script.match(/src="([^"]+)/)?.[1] || ''));
 
   if (!scripts.length) return new Response(html, response);
