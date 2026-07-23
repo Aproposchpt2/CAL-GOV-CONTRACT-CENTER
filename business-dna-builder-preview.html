@@ -1,6 +1,607 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Business Intake | National Corporate Contract Exchange</title><meta name="robots" content="noindex"><style>
-:root{--bg:#041024;--bg2:#0a2149;--panel:rgba(255,255,255,.06);--line:rgba(255,255,255,.13);--text:#f7f9ff;--muted:#9eacc5;--cyan:#68d8ff;--green:#75e1a9;--gold:#d8b45f}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 8% 0,rgba(56,122,220,.3),transparent 28%),linear-gradient(155deg,var(--bg2),var(--bg) 58%,#020711)}button,input,select,textarea{font:inherit}.shell{width:min(1320px,calc(100% - 28px));margin:auto;padding:14px 0 48px}.glass{background:var(--panel);border:1px solid var(--line);box-shadow:0 22px 65px rgba(0,0,0,.28)}.top{border-radius:18px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font:400 1.1rem Georgia,serif}.brand small{display:block;color:var(--muted);font:600 .6rem Arial;letter-spacing:.14em;text-transform:uppercase}.coverage{font-size:.68rem;border:1px solid var(--line);padding:.45rem .7rem;border-radius:999px;color:#cfdbed}.hero{margin-top:16px;border-radius:22px;padding:24px}.hero h1{font:400 clamp(2rem,4vw,3.2rem)/1.05 Georgia,serif;margin:8px 0}.hero p{color:#bec9dc;max-width:800px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.step{padding:11px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:.74rem}.step.done,.step.active{color:#fff;border-color:rgba(104,216,255,.5);background:rgba(104,216,255,.08)}.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,.7fr);gap:16px}.panel{border-radius:18px;padding:20px}.panel h2{font:400 1.45rem Georgia,serif;margin:0 0 6px}.sub{color:var(--muted);font-size:.82rem;line-height:1.55;margin-bottom:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:#8da0bf}.field input,.field select,.field textarea,.search{width:100%;border:1px solid var(--line);background:#081936;color:#fff;border-radius:9px;padding:.8rem;outline:none}.field textarea{min-height:110px;resize:vertical}.state-grid,.role-grid,.domain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.choice{display:block;border:1px solid var(--line);border-radius:11px;padding:11px;background:rgba(255,255,255,.035);cursor:pointer;color:#fff;text-align:left}.choice.on{border-color:rgba(117,225,169,.5);background:rgba(117,225,169,.08)}.choice small{display:block;color:var(--muted);margin:4px 0 0 20px}.toolbar{display:flex;gap:9px;margin:14px 0}.taxonomy{display:grid;gap:9px}.group{border:1px solid var(--line);border-radius:11px;overflow:hidden}.group-head{padding:12px;display:flex;justify-content:space-between;cursor:pointer}.caps{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:0 12px 12px}.cap{padding:9px;border:1px solid transparent;border-radius:8px;background:rgba(255,255,255,.025)}.cap.on{border-color:rgba(117,225,169,.3);background:rgba(117,225,169,.08)}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.btn{border:0;border-radius:8px;padding:.75rem 1rem;cursor:pointer;font-weight:700}.primary{background:linear-gradient(135deg,#87e8ff,#60cef9);color:#08213d}.ghost{background:rgba(255,255,255,.07);border:1px solid var(--line);color:#fff}.gold{background:linear-gradient(135deg,#f2db91,#d7ae50);color:#261b04}.hidden{display:none!important}.metric{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07);padding:10px 0;font-size:.76rem}.notice{margin-top:12px;padding:12px;border:1px solid rgba(104,216,255,.18);background:rgba(104,216,255,.055);border-radius:9px;color:#c8d4e7;font-size:.72rem}.review{display:grid;gap:10px}.review div{padding:12px;border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.03)}@media(max-width:960px){.layout{grid-template-columns:1fr}.state-grid,.role-grid,.domain-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.steps,.grid,.state-grid,.role-grid,.domain-grid,.caps{grid-template-columns:1fr}.actions{flex-direction:column-reverse}.btn{width:100%}.coverage{display:none}}
-</style></head><body><div class="shell"><header class="top glass"><div class="brand">National Corporate Contract Exchange<small>Business Intake</small></div><span class="coverage">Live coverage: Arizona · California · Nevada</span></header><section class="hero glass"><div>Business Intake</div><h1>Describe what your business can deliver.</h1><p>This visit is temporary. Your completed Business Intake is passed once to the live dashboard and is not saved as a browser account or returning-member session.</p></section><div class="steps"><div class="step done">1 · Start</div><div class="step done">2 · Intake</div><div class="step active">3 · Business Intake</div><div class="step">4 · Dashboard</div></div><div class="layout"><main class="panel glass"><section id="s1"><h2>Business Snapshot</h2><div class="sub">Confirm the licensed business name and describe the work you provide.</div><div class="grid"><div class="field full"><label for="businessName">Licensed business name</label><input id="businessName"></div><div class="field full"><label for="description">What does your business do?</label><textarea id="description"></textarea></div><div class="field"><label for="employees">Approximate employees</label><select id="employees"><option value="">Select range</option><option>Sole proprietor</option><option>2–5</option><option>6–10</option><option>11–25</option><option>26–50</option><option>51–100</option><option>More than 100</option></select></div><div class="field"><label for="capacity">Maximum practical contract value</label><select id="capacity"><option value="">Not specified</option><option value="100000">Up to $100,000</option><option value="500000">Up to $500,000</option><option value="1000000">Up to $1 million</option><option value="5000000">Up to $5 million</option><option value="10000000">Up to $10 million</option></select></div><div class="field full"><label>Where can you perform the work?</label><div class="state-grid" id="stateGrid"></div></div></div><div class="actions"><a class="btn ghost" href="/intake">Start over</a><button class="btn primary" onclick="go(2)">Continue →</button></div></section><section id="s2" class="hidden"><h2>Business Roles</h2><div class="sub">Select each delivery role that applies.</div><div class="role-grid" id="roles"></div><div class="actions"><button class="btn ghost" onclick="go(1)">← Back</button><button class="btn primary" onclick="go(3)">Continue →</button></div></section><section id="s3" class="hidden"><h2>Capabilities</h2><div class="sub">Choose only work you can substantiate.</div><input class="search" id="capSearch" placeholder="Search capabilities"><div class="domain-grid" id="domains"></div><div class="taxonomy" id="taxonomy"></div><div class="actions"><button class="btn ghost" onclick="go(2)">← Back</button><button class="btn primary" onclick="go(4)">Review →</button></div></section><section id="s4" class="hidden"><h2>Review Business Intake</h2><div class="review" id="review"></div><div class="actions"><button class="btn ghost" onclick="go(3)">← Refine</button><button class="btn gold" onclick="buildDashboard()">Open Live Dashboard →</button></div></section></main><aside class="panel glass"><h2>Visit Profile</h2><div class="metric"><span>Selected states</span><strong id="stateCount">0</strong></div><div class="metric"><span>Selected roles</span><strong id="roleCount">0</strong></div><div class="metric"><span>Selected capabilities</span><strong id="capCount">0</strong></div><div class="notice">No OTP, login, cookie, local storage, or session storage is used. Refreshing or reopening restarts the intake flow.</div></aside></div></div><script>
-'use strict';const roles=['Prime Contractor','Subcontractor','Professional Consultant','Service Provider','Product Supplier','Manufacturer','Distributor','Authorized Reseller','Construction Contractor','Specialty Trade Contractor','Maintenance Provider','Software Vendor','Systems Integrator','Staffing Provider','Training Provider'];const states=[['AZ','Arizona'],['CA','California'],['NV','Nevada']];const taxonomy=[{domain:'Construction',group:'Electrical and Infrastructure',caps:['Commercial Electrical Installation','EV Charging Station Installation','Generator Installation and Maintenance','Lighting Systems','Building Automation and Controls']},{domain:'Construction',group:'Building Trades',caps:['General Construction','HVAC Installation and Repair','Plumbing and Water Systems','Roofing','Concrete and Masonry']},{domain:'Services',group:'Facility Services',caps:['Janitorial and Custodial Services','Landscaping and Grounds Maintenance','Pest Control','Building Maintenance','Waste Removal']},{domain:'Professional Services',group:'Business and Administrative',caps:['Management Consulting','Project Management','Administrative Support','Temporary Staffing','Accounting and Audit','Training Services']},{domain:'Technology',group:'Technology Services',caps:['Software Development','SaaS and Cloud Services','Cybersecurity','Systems Integration','Data Analytics','Telecommunications','Managed IT Services','Help Desk Services']},{domain:'Products',group:'Products and Supplies',caps:['Computer Hardware','Electronic Components and Computer Chips','Office Supplies','Medical Supplies','Safety Equipment','Electrical Supplies']}];const model={states:[],roles:[],caps:[],domain:'All'},$=id=>document.getElementById(id),esc=v=>String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');function decode(value){try{let s=value.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const binary=atob(s),bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));return JSON.parse(new TextDecoder().decode(bytes))}catch{return null}}function encode(value){const bytes=new TextEncoder().encode(JSON.stringify(value));let binary='';bytes.forEach(byte=>binary+=String.fromCharCode(byte));return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}const params=new URLSearchParams(location.hash.slice(1)),intake=decode(params.get('profile')||'');history.replaceState(null,'','/business-intake');if(!intake?.business_name||!intake?.email)location.replace('/intake');$('businessName').value=intake.business_name||'';function toggle(list,value){const i=list.indexOf(value);i>=0?list.splice(i,1):list.push(value);render()}function render(){$('stateGrid').innerHTML=states.map(([c,n])=>`<label class="choice ${model.states.includes(c)?'on':''}"><input type="checkbox" ${model.states.includes(c)?'checked':''} onchange="toggle(model.states,'${c}')"> ${n}</label>`).join('');$('roles').innerHTML=roles.map(r=>`<label class="choice ${model.roles.includes(r)?'on':''}"><input type="checkbox" ${model.roles.includes(r)?'checked':''} onchange="toggle(model.roles,'${r.replace(/'/g,"\\'")}')"> ${esc(r)}</label>`).join('');const ds=['All',...new Set(taxonomy.map(x=>x.domain))];$('domains').innerHTML=ds.map(d=>`<button class="choice ${model.domain===d?'on':''}" onclick="model.domain='${d}';render()">${d}</button>`).join('');const q=$('capSearch').value.toLowerCase();$('taxonomy').innerHTML=taxonomy.filter(g=>(model.domain==='All'||g.domain===model.domain)&&(!q||g.group.toLowerCase().includes(q)||g.caps.some(c=>c.toLowerCase().includes(q)))).map(g=>`<div class="group"><div class="group-head"><b>${g.group}</b><span>${g.domain}</span></div><div class="caps">${g.caps.filter(c=>!q||c.toLowerCase().includes(q)).map(c=>`<label class="cap ${model.caps.includes(c)?'on':''}"><input type="checkbox" ${model.caps.includes(c)?'checked':''} onchange="toggle(model.caps,'${c.replace(/'/g,"\\'")}')"> ${c}</label>`).join('')}</div></div>`).join('');$('stateCount').textContent=model.states.length;$('roleCount').textContent=model.roles.length;$('capCount').textContent=model.caps.length}function go(step){if(step===2&&(!$('businessName').value.trim()||!$('description').value.trim()||!$('employees').value||!model.states.length))return alert('Complete the business snapshot and select at least one supported state.');if(step===3&&!model.roles.length)return alert('Select at least one business role.');if(step===4&&!model.caps.length)return alert('Select at least one capability.');['s1','s2','s3','s4'].forEach((id,i)=>$(id).classList.toggle('hidden',i!==step-1));document.querySelectorAll('.steps .step').forEach((node,i)=>node.classList.toggle('active',i===step));if(step===4)$('review').innerHTML=`<div><b>Business</b><p>${esc($('businessName').value)}</p></div><div><b>Description</b><p>${esc($('description').value)}</p></div><div><b>States</b><p>${model.states.join(', ')}</p></div><div><b>Roles</b><p>${esc(model.roles.join(', '))}</p></div><div><b>Capabilities</b><p>${esc(model.caps.join(', '))}</p></div>`;scrollTo({top:0,behavior:'smooth'})}function buildDashboard(){const profile={...intake,business_name:$('businessName').value.trim(),legal_name:$('businessName').value.trim(),business_description:$('description').value.trim(),description:$('description').value.trim(),employee_range:$('employees').value,business_roles:[...model.roles],capabilities:[...model.caps],services:[...model.caps],core_competencies:[...model.caps],keywords:[...new Set(model.caps.flatMap(c=>[c,c.toLowerCase()]))],service_states:[...model.states],states:[...model.states],max_contract_value:$('capacity').value?Number($('capacity').value):null,completed_at:new Date().toISOString()};location.assign('/dashboard#profile='+encode(profile))}$('capSearch').addEventListener('input',render);render();
-</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Business DNA Builder | National Corporate Contract Exchange</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#07142f">
+  <style>
+    :root{
+      --bg:#030916;--bg2:#0b214d;--ink:#f8f9fd;--muted:#9eacc4;--soft:#d9e2f1;
+      --platinum:#f2f4f7;--gold:#d8b66c;--cyan:#6edbff;--green:#7ce4b0;--amber:#ffd07d;--red:#ff8f9a;
+      --panel:rgba(255,255,255,.064);--line:rgba(255,255,255,.14);--line2:rgba(255,255,255,.09)
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font:400 16px/1.55 Arial,sans-serif;color:var(--ink);background:
+      radial-gradient(circle at 5% 0,rgba(74,132,225,.34),transparent 29%),
+      radial-gradient(circle at 90% 7%,rgba(216,182,108,.12),transparent 22%),
+      linear-gradient(155deg,var(--bg2),var(--bg) 61%,#01040a)}
+    button,input,select,textarea{font:inherit}button{color:inherit}a{color:inherit}.hidden{display:none!important}
+    .skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;z-index:100;background:#fff;color:#07142f;padding:12px}
+    .shell{width:min(1440px,calc(100% - 28px));margin:auto;padding:14px 0 54px}
+    .glass{background:var(--panel);border:1px solid var(--line);box-shadow:0 24px 72px rgba(0,0,0,.27);backdrop-filter:blur(16px)}
+    .top{border-radius:18px;padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font:400 1.08rem Georgia,serif}.brand small{display:block;color:var(--muted);font:700 .57rem Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+    .secure{font-size:.68rem;border:1px solid var(--line);border-radius:999px;padding:.45rem .7rem;color:#d8e4f5}
+    .hero{padding:34px 2px 20px;display:flex;justify-content:space-between;align-items:end;gap:28px}
+    .eyebrow{font-size:.65rem;font-weight:800;letter-spacing:.19em;text-transform:uppercase;color:var(--gold)}
+    h1,h2,h3{font-family:Georgia,serif;font-weight:400;color:#fff}h1{font-size:clamp(2.25rem,4.7vw,4.35rem);line-height:1.03;margin:10px 0;max-width:920px}.hero p{color:#c0cce0;max-width:780px;margin:0}
+    .advisor-chip{min-width:260px;border-left:2px solid var(--cyan);padding:12px 14px;background:rgba(110,219,255,.055);color:#d7ecf7}.advisor-chip b{display:block}.advisor-chip span{font-size:.75rem;color:var(--muted)}
+    .journey{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:8px 0 18px}
+    .step{border:1px solid var(--line);border-radius:10px;padding:10px;min-height:52px;color:var(--muted);font-size:.66rem;background:rgba(255,255,255,.024)}
+    .step.done{border-color:rgba(124,228,176,.34);color:#dff8eb;background:rgba(124,228,176,.055)}.step.active{border-color:rgba(216,182,108,.58);color:#fff;background:rgba(216,182,108,.085)}
+    .layout{display:grid;grid-template-columns:minmax(0,1.58fr) minmax(315px,.58fr);gap:17px;align-items:start}
+    .panel{border-radius:22px;padding:25px}.workspace{min-height:720px}.section-head{display:flex;justify-content:space-between;gap:18px;align-items:start;margin-bottom:18px}.section-head h2{font-size:clamp(1.72rem,3vw,2.55rem);margin:4px 0}.section-head p{color:var(--muted);max-width:720px;margin:0}.kicker{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);font-weight:800}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}
+    label,.label{font-size:.61rem;letter-spacing:.12em;text-transform:uppercase;color:#a8b7cf;font-weight:800}
+    input,select,textarea,.search{width:100%;border:1px solid var(--line);background:#081935;color:#fff;border-radius:10px;padding:.84rem .92rem;outline:none}textarea{min-height:118px;resize:vertical}input:focus,select:focus,textarea:focus,.search:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,182,108,.11)}
+    .choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.choice{display:block;border:1px solid var(--line);border-radius:13px;padding:14px;background:rgba(255,255,255,.032);cursor:pointer;min-height:108px}.choice.on{border-color:rgba(124,228,176,.55);background:linear-gradient(145deg,rgba(124,228,176,.11),rgba(255,255,255,.025))}.choice input{width:auto;margin:0 8px 0 0}.choice strong{color:#fff}.choice p{font-size:.74rem;color:var(--muted);margin:7px 0 0}
+    .upload{border:1px dashed rgba(110,219,255,.45);border-radius:16px;padding:22px;background:rgba(110,219,255,.045);text-align:center}.upload.drag{border-color:var(--gold);background:rgba(216,182,108,.07)}.upload input{display:none}.upload label{display:block;cursor:pointer}.upload-title{font:400 1.35rem Georgia,serif;color:#fff}.upload p{color:var(--muted);font-size:.8rem}.file-list{display:grid;gap:8px;margin-top:14px;text-align:left}.file{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line2);border-radius:10px;background:rgba(255,255,255,.035);font-size:.76rem}.file button{border:0;background:none;color:var(--red);cursor:pointer}
+    .agent-result{margin-top:14px;border:1px solid rgba(124,228,176,.25);border-radius:14px;padding:15px;background:rgba(124,228,176,.055)}.agent-result h3{margin:0 0 7px}.agent-result p{color:var(--muted);font-size:.78rem}.suggestion-tags,.selected-tags{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tag{border:1px solid var(--line);border-radius:999px;padding:.35rem .6rem;font-size:.64rem;background:rgba(255,255,255,.04)}.tag.agent{color:#d9f8e9;border-color:rgba(124,228,176,.28)}.tag.manual{color:#ddecff;border-color:rgba(110,219,255,.26)}.tag button{border:0;background:none;color:inherit;cursor:pointer;padding:0 0 0 5px}
+    .toolbar{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(180px,.4fr);gap:10px;margin-bottom:12px}.domain-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}.tab{border:1px solid var(--line);border-radius:999px;padding:.5rem .75rem;background:rgba(255,255,255,.035);cursor:pointer;font-size:.7rem}.tab.on{border-color:var(--gold);background:rgba(216,182,108,.09)}
+    .taxonomy{display:grid;gap:10px}.domain-card{border:1px solid var(--line);border-radius:14px;overflow:hidden}.domain-head{padding:13px 15px;background:rgba(255,255,255,.04);display:flex;justify-content:space-between;gap:12px}.domain-head span{font-size:.72rem;color:var(--muted)}.category{padding:12px 14px;border-top:1px solid var(--line2)}.category h3{margin:0 0 9px;font-size:1rem}.group{margin-top:9px}.group-title{font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;color:#93a7c6;margin-bottom:6px}.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.cap{display:flex;gap:8px;align-items:start;padding:9px;border:1px solid transparent;border-radius:9px;background:rgba(255,255,255,.024);cursor:pointer;font-size:.76rem}.cap.on{border-color:rgba(124,228,176,.34);background:rgba(124,228,176,.07)}.cap.recommended:not(.on){border-color:rgba(216,182,108,.22)}.cap input{width:auto;margin-top:2px}.rec{display:inline-block;margin-left:5px;color:var(--gold);font-size:.55rem;text-transform:uppercase;letter-spacing:.08em}
+    .evidence-note{margin:12px 0;padding:12px;border-left:2px solid var(--cyan);background:rgba(110,219,255,.045);color:#c8d6e9;font-size:.76rem}
+    .inline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.toggle{display:flex;gap:8px;align-items:center;padding:11px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03);font-size:.77rem}.toggle input{width:auto}
+    .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.review-card{border:1px solid var(--line);border-radius:13px;padding:15px;background:rgba(255,255,255,.035)}.review-card.full{grid-column:1/-1}.review-card h3{margin:0 0 8px;font-size:1.12rem}.review-card p,.review-card li{font-size:.78rem;color:#c2cee0}.review-card ul{margin:0;padding-left:18px}.state{display:inline-flex;border-radius:999px;padding:.28rem .55rem;font-size:.61rem;margin-right:6px}.known{background:rgba(124,228,176,.1);color:#cdf5e1}.unknown{background:rgba(255,208,125,.1);color:#ffe0a9}.needs{background:rgba(110,219,255,.1);color:#d7f4ff}
+    .actions{display:flex;justify-content:space-between;gap:11px;margin-top:22px;align-items:center}.btn{border:0;border-radius:10px;padding:.82rem 1rem;cursor:pointer;text-decoration:none;font-weight:800;letter-spacing:.07em;text-transform:uppercase;font-size:.69rem;display:inline-flex;justify-content:center;align-items:center;gap:7px}.primary{background:linear-gradient(135deg,#8ce9ff,#5dcaf5);color:#07213c}.gold{background:linear-gradient(135deg,#f4e3aa,#d4ad54);color:#2a1d05}.ghost{border:1px solid var(--line);background:rgba(255,255,255,.055);color:#fff}.btn:disabled{opacity:.45;cursor:not-allowed}
+    .message{min-height:24px;color:var(--red);font-size:.78rem;margin-top:10px}.side{position:sticky;top:14px}.side h2{font-size:1.55rem;margin:0}.snapshot{margin-top:14px;display:grid;gap:10px}.metric{padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.032)}.metric-head{display:flex;justify-content:space-between;gap:10px;font-size:.73rem}.metric-head span{color:var(--muted)}.metric strong{font:400 1.18rem Georgia,serif}.bar{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));transition:.25s}.advisor{margin-top:12px;border:1px solid rgba(216,182,108,.22);border-radius:13px;padding:13px;background:rgba(216,182,108,.05)}.advisor b{display:block;color:#fff}.advisor p{font-size:.75rem;color:var(--muted);margin:5px 0 0}.profile-list{margin-top:12px;display:grid;gap:7px}.profile-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line2);padding:7px 0;font-size:.72rem}.profile-item span{color:var(--muted)}
+    .privacy{margin-top:14px;padding:12px;border:1px solid rgba(124,228,176,.22);border-radius:11px;background:rgba(124,228,176,.05);font-size:.7rem;color:#d8f4e6}
+    @media(max-width:1050px){.layout{grid-template-columns:1fr}.side{position:static}.journey{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:720px){.hero{display:block}.advisor-chip{margin-top:16px}.grid,.choice-grid,.cap-grid,.inline-grid,.review-grid,.toolbar{grid-template-columns:1fr}.review-card.full,.field.full{grid-column:auto}.journey{grid-template-columns:1fr 1fr}.actions{flex-direction:column-reverse;align-items:stretch}.btn{width:100%}.panel{padding:19px}.secure{display:none}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to Business DNA Builder</a>
+<div class="shell">
+  <header class="top glass">
+    <div class="brand">National Corporate Contract Exchange<small>AOIS Business DNA Builder</small></div>
+    <span class="secure">Private current-visit workspace</span>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Business Development Advisor Session</div>
+      <h1 id="heroTitle">Building an intelligent understanding of your business.</h1>
+      <p>AOIS will combine your answers, selected capabilities, and available business documents into a reviewable Business DNA profile. Nothing inferred is treated as verified until you approve it.</p>
+    </div>
+    <div class="advisor-chip"><b>Advisor objective</b><span>Reduce form fatigue, preserve evidence, and prepare an explainable opportunity profile.</span></div>
+  </section>
+
+  <div class="journey" id="journey" aria-label="Business DNA progress"></div>
+
+  <main class="layout">
+    <section class="panel glass workspace" id="workspace" tabindex="-1">
+      <section data-stage="1">
+        <div class="section-head"><div><div class="kicker">Business Snapshot</div><h2>Tell AOIS what the company delivers.</h2><p>Use everyday business language. The advisor will translate it into structured procurement capabilities without replacing your words.</p></div></div>
+        <div class="grid">
+          <div class="field full"><label for="businessName">Legal business name</label><input id="businessName" readonly></div>
+          <div class="field full"><label for="description">In one clear paragraph, what does your business do?</label><textarea id="description" placeholder="We provide commercial electrical installation, preventive maintenance, emergency response, and building-control integration for public and private facilities."></textarea></div>
+          <div class="field"><label for="years">Years in business</label><select id="years"><option value="">Select</option><option value="0-1">Less than 1 year</option><option value="1-3">1–3 years</option><option value="4-7">4–7 years</option><option value="8-15">8–15 years</option><option value="16+">16+ years</option></select></div>
+          <div class="field"><label for="employees">Current workforce</label><select id="employees"><option value="">Select</option><option>Sole proprietor</option><option>2–5</option><option>6–10</option><option>11–25</option><option>26–50</option><option>51–100</option><option>More than 100</option></select></div>
+          <div class="field"><label for="capacity">Maximum practical contract value</label><select id="capacity"><option value="">Not yet established</option><option value="100000">Up to $100,000</option><option value="500000">Up to $500,000</option><option value="1000000">Up to $1 million</option><option value="5000000">Up to $5 million</option><option value="10000000">Up to $10 million</option><option value="25000000">More than $10 million</option></select></div>
+          <div class="field"><label for="primePreference">Preferred contract role</label><select id="primePreference"><option value="">No preference yet</option><option>Prime Contractor</option><option>Subcontractor</option><option>Either Prime or Subcontractor</option><option>Supplier / Distributor</option><option>Professional Consultant</option></select></div>
+        </div>
+        <div class="evidence-note"><strong>Geographic selection is intentionally deferred.</strong> Your dashboard will support All, single-state, and multi-state market views. AOIS will ask a location question only when a specific solicitation creates a genuine geographic or licensing constraint.</div>
+        <div class="message" id="message1" aria-live="polite"></div>
+        <div class="actions"><a class="btn ghost" href="/intake">Start over</a><button class="btn primary" type="button" data-next="2">Continue to Evidence →</button></div>
+      </section>
+
+      <section data-stage="2" class="hidden">
+        <div class="section-head"><div><div class="kicker">Document Intelligence</div><h2>Use material you already have.</h2><p>Upload public-facing business documents or continue without them. AOIS extracts recommendations, not final facts; you approve what enters the profile.</p></div></div>
+        <div class="upload" id="dropZone">
+          <label for="documents"><span class="upload-title">Add capability evidence</span><p>PDF, TXT, Markdown, CSV, or JSON · up to 5 files · 15 MB total</p><span class="btn ghost">Choose documents</span></label>
+          <input id="documents" type="file" multiple accept=".pdf,.txt,.md,.csv,.json,application/pdf,text/plain,text/markdown,text/csv,application/json">
+          <div class="file-list" id="fileList"></div>
+        </div>
+        <div class="field full" style="margin-top:14px"><label for="evidenceNotes">Optional evidence notes</label><textarea id="evidenceNotes" placeholder="Paste a short capability summary, license list, certification list, or past-performance description."></textarea></div>
+        <div class="agent-result hidden" id="agentResult" aria-live="polite"></div>
+        <div class="message" id="message2" aria-live="polite"></div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="1">← Business Snapshot</button><div><button class="btn ghost" type="button" id="analyzeDocuments">Analyze Evidence</button> <button class="btn primary" type="button" data-next="3">Continue to Roles →</button></div></div>
+      </section>
+
+      <section data-stage="3" class="hidden">
+        <div class="section-head"><div><div class="kicker">Business Role Classification</div><h2>How does the company participate?</h2><p>Select every role the business can substantiate. AOIS uses roles to distinguish performed work from supplied products and teaming posture.</p></div></div>
+        <div class="choice-grid" id="roleGrid"></div>
+        <div class="message" id="message3" aria-live="polite"></div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="2">← Evidence</button><button class="btn primary" type="button" data-next="4">Continue to Capabilities →</button></div>
+      </section>
+
+      <section data-stage="4" class="hidden">
+        <div class="section-head"><div><div class="kicker">Four-Level Capability Taxonomy</div><h2>Confirm the work and products AOIS should match.</h2><p>Browse Domain → Category → Group → Capability. Recommended items are based on your description, roles, and document evidence.</p></div></div>
+        <div class="toolbar"><input class="search" id="capSearch" placeholder="Search capabilities, products, or disciplines"><select id="evidenceFilter"><option value="all">All capability evidence</option><option value="recommended">Recommended</option><option value="selected">Selected</option></select></div>
+        <div class="domain-tabs" id="domainTabs"></div>
+        <div class="selected-tags" id="selectedCapabilities"></div>
+        <div class="taxonomy" id="taxonomy"></div>
+        <div class="message" id="message4" aria-live="polite"></div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="3">← Business Roles</button><button class="btn primary" type="button" data-next="5">Continue to Qualifications →</button></div>
+      </section>
+
+      <section data-stage="5" class="hidden">
+        <div class="section-head"><div><div class="kicker">Qualifications & Delivery Evidence</div><h2>Describe how the company can perform.</h2><p>Unknown information is allowed. It lowers evidence confidence rather than automatically lowering business fit.</p></div></div>
+        <div class="grid">
+          <div class="field full"><label for="products">Products or materials supplied</label><textarea id="products" placeholder="Security cameras, electrical components, commercial lighting, safety equipment..."></textarea></div>
+          <div class="field"><label for="licenses">Licenses</label><textarea id="licenses" placeholder="One per line, including class and jurisdiction when known"></textarea></div>
+          <div class="field"><label for="certifications">Certifications and set-asides</label><textarea id="certifications" placeholder="One per line: ISO 9001, DBE, WBE, OSHA 30..."></textarea></div>
+          <div class="field"><label for="insurance">Insurance readiness</label><select id="insurance"><option value="unknown">Not sure / needs review</option><option value="confirmed">Coverage confirmed</option><option value="available">Can obtain required coverage</option><option value="not_applicable">Not applicable to current work</option></select></div>
+          <div class="field"><label for="bonding">Bonding capacity</label><select id="bonding"><option value="unknown">Not sure / needs review</option><option value="confirmed">Bonding available</option><option value="available">Can obtain bonding</option><option value="not_applicable">Not applicable</option></select></div>
+          <div class="field full"><label>Delivery methods</label><div class="inline-grid" id="deliveryGrid"></div></div>
+          <div class="field full"><label for="pastPerformance">Past performance and comparable experience</label><textarea id="pastPerformance" placeholder="Describe representative projects, customers, outcomes, scale, and public-sector experience."></textarea></div>
+          <div class="field full"><label for="qualitySystems">Quality, safety, compliance, or security systems</label><textarea id="qualitySystems" placeholder="Quality-control plan, safety program, cybersecurity practices, background screening, regulatory compliance..."></textarea></div>
+        </div>
+        <div class="message" id="message5" aria-live="polite"></div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="4">← Capabilities</button><button class="btn primary" type="button" data-next="6">Review Business DNA →</button></div>
+      </section>
+
+      <section data-stage="6" class="hidden">
+        <div class="section-head"><div><div class="kicker">Capability Review</div><h2>Confirm the authoritative profile for this visit.</h2><p>This review separates confirmed answers, document-supported recommendations, and information that still needs verification.</p></div></div>
+        <div class="review-grid" id="reviewGrid"></div>
+        <div class="message" id="message6" aria-live="polite"></div>
+        <div class="actions"><button class="btn ghost" type="button" data-back="5">← Refine Profile</button><button class="btn gold" type="button" id="buildDashboard">Build My Dashboard →</button></div>
+      </section>
+    </section>
+
+    <aside class="panel glass side" aria-label="Live Business Snapshot">
+      <div class="eyebrow">Live Business Snapshot</div>
+      <h2 id="snapshotName">Business profile</h2>
+      <div class="snapshot">
+        <div class="metric"><div class="metric-head"><span>Profile completion</span><strong id="completionText">0%</strong></div><div class="bar"><span id="completionBar"></span></div></div>
+        <div class="metric"><div class="metric-head"><span>Evidence confidence</span><strong id="confidenceText">Developing</strong></div><div class="bar"><span id="confidenceBar"></span></div></div>
+        <div class="metric"><div class="metric-head"><span>Opportunity breadth</span><strong id="breadthText">Focused</strong></div><div class="bar"><span id="breadthBar"></span></div></div>
+      </div>
+      <div class="advisor"><b id="advisorTitle">Start with a clear business description.</b><p id="advisorCopy">AOIS will recommend roles and capabilities as evidence develops.</p></div>
+      <div class="profile-list">
+        <div class="profile-item"><span>Roles</span><strong id="roleCount">0</strong></div>
+        <div class="profile-item"><span>Capabilities</span><strong id="capCount">0</strong></div>
+        <div class="profile-item"><span>Documents analyzed</span><strong id="documentCount">0</strong></div>
+        <div class="profile-item"><span>Supported dashboard markets</span><strong>AZ · CA · NV</strong></div>
+      </div>
+      <div class="privacy"><strong>No persistent browser profile.</strong> This Business DNA exists only in the current page memory and one-time dashboard handoff.</div>
+    </aside>
+  </main>
+</div>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const esc = (value) => String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const unique = (items) => [...new Set(items.filter(Boolean).map((item) => String(item).trim()).filter(Boolean))];
+  const splitLines = (value) => unique(String(value || '').split(/[\n;,]+/));
+
+  function decode(value) {
+    try {
+      let source = value.replace(/-/g,'+').replace(/_/g,'/');
+      while (source.length % 4) source += '=';
+      const binary = atob(source);
+      const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch { return null; }
+  }
+
+  function encode(value) {
+    const bytes = new TextEncoder().encode(JSON.stringify(value));
+    let binary = '';
+    bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+    return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/g,'');
+  }
+
+  const intake = decode(new URLSearchParams(location.hash.slice(1)).get('profile') || '');
+  history.replaceState(null, '', '/business-intake');
+  if (!intake?.business_name || !intake?.email || !intake?.phone) {
+    location.replace('/intake');
+    return;
+  }
+
+  const stages = ['Business Snapshot','Document Intelligence','Business Roles','Business DNA','Qualifications','Capability Review'];
+  const roles = [
+    ['Prime Contractor','Lead delivery, manage subcontractors, and accept prime responsibility.'],
+    ['Subcontractor','Perform a defined portion of work under another prime.'],
+    ['Professional Consultant','Deliver advisory, design, engineering, analytical, or specialist expertise.'],
+    ['Service Provider','Perform recurring, project-based, operational, or field services.'],
+    ['Product Supplier','Sell or furnish products, materials, equipment, or commodities.'],
+    ['Manufacturer','Produce goods or equipment directly.'],
+    ['Distributor','Source, warehouse, and deliver products from multiple manufacturers.'],
+    ['Authorized Reseller','Resell named technology, equipment, or manufacturer products.'],
+    ['Construction Contractor','Manage or perform general construction and public works.'],
+    ['Specialty Trade Contractor','Perform licensed or specialized construction trades.'],
+    ['Maintenance Provider','Provide preventive, corrective, inspection, repair, or on-call maintenance.'],
+    ['Software Vendor','Provide licensed software, SaaS, platforms, or applications.'],
+    ['Systems Integrator','Combine hardware, software, networks, controls, or operational systems.'],
+    ['Staffing Provider','Provide temporary, contract, professional, or workforce personnel.'],
+    ['Training Provider','Deliver instructional, workforce-development, or certification programs.']
+  ];
+
+  const deliveryMethods = ['On-site service','Remote service','Field crews','Emergency response','On-call support','Recurring maintenance','Warehousing and fulfillment','Installation and commissioning','Professional deliverables'];
+
+  const taxonomy = [
+    {domain:'Construction & Infrastructure',category:'Building and Public Works',group:'General Construction',capabilities:['General Construction','Design-Build Construction','Construction Management','Site Preparation and Civil Work']},
+    {domain:'Construction & Infrastructure',category:'Specialty Trades',group:'Electrical and Controls',capabilities:['Commercial Electrical Installation','Lighting Systems','Generator Installation and Maintenance','Building Automation and Controls','EV Charging Station Installation']},
+    {domain:'Construction & Infrastructure',category:'Specialty Trades',group:'Mechanical and Building Systems',capabilities:['HVAC Installation and Repair','Plumbing and Water Systems','Fire Alarm and Life Safety Systems','Roofing and Building Envelope']},
+    {domain:'Facilities & Operations',category:'Facility Services',group:'Maintenance and Grounds',capabilities:['Preventive and Corrective Maintenance','Building Maintenance','Janitorial and Custodial Services','Landscaping and Grounds Maintenance','Pest Control','Waste Removal']},
+    {domain:'Facilities & Operations',category:'Operational Services',group:'Inspection and Response',capabilities:['Inspection and Testing Services','Emergency and On-Call Services','Environmental Services','Security and Monitoring Services']},
+    {domain:'Professional Services',category:'Business and Program Services',group:'Advisory and Administration',capabilities:['Management Consulting','Project Management','Program Management','Administrative Support','Accounting and Audit','Grant and Compliance Support']},
+    {domain:'Professional Services',category:'Workforce and Human Services',group:'People and Development',capabilities:['Temporary Staffing','Professional Staffing','Training Services','Workforce Development','Translation and Interpretation Services']},
+    {domain:'Technology & Digital',category:'Software and Data',group:'Applications and Intelligence',capabilities:['Software Development','SaaS and Cloud Services','Data Analytics','Artificial Intelligence Services','GIS and Mapping Services']},
+    {domain:'Technology & Digital',category:'Infrastructure and Security',group:'Enterprise Technology',capabilities:['Cybersecurity','Managed IT Services','Help Desk Services','Systems Integration','Telecommunications','Network Infrastructure']},
+    {domain:'Products & Supply',category:'Technology and Equipment',group:'Hardware and Systems',capabilities:['Computer Hardware','Electronic Components and Computer Chips','Security Cameras and Surveillance Equipment','Telecommunications Equipment','Industrial Equipment']},
+    {domain:'Products & Supply',category:'Materials and Commodities',group:'General Supply',capabilities:['Office Supplies','Medical Supplies','Safety Equipment','Electrical Supplies','Industrial Pipe and Fittings','Construction Materials']},
+    {domain:'Transportation & Logistics',category:'Movement and Fleet',group:'Logistics Operations',capabilities:['Transportation Services','Fleet Maintenance','Courier and Delivery Services','Warehousing and Distribution','Supply Chain Management']}
+  ];
+
+  const roleRecommendations = {
+    'Construction Contractor':['General Construction','Design-Build Construction','Construction Management','Site Preparation and Civil Work'],
+    'Specialty Trade Contractor':['Commercial Electrical Installation','HVAC Installation and Repair','Plumbing and Water Systems','Fire Alarm and Life Safety Systems'],
+    'Maintenance Provider':['Preventive and Corrective Maintenance','Building Maintenance','Inspection and Testing Services','Emergency and On-Call Services'],
+    'Professional Consultant':['Management Consulting','Project Management','Program Management','Accounting and Audit','Grant and Compliance Support'],
+    'Software Vendor':['Software Development','SaaS and Cloud Services','Data Analytics','Artificial Intelligence Services'],
+    'Systems Integrator':['Systems Integration','Network Infrastructure','Building Automation and Controls','Telecommunications'],
+    'Product Supplier':['Office Supplies','Medical Supplies','Safety Equipment','Electrical Supplies','Industrial Equipment'],
+    'Distributor':['Warehousing and Distribution','Supply Chain Management','Industrial Equipment','Construction Materials'],
+    'Authorized Reseller':['Computer Hardware','Security Cameras and Surveillance Equipment','Telecommunications Equipment'],
+    'Staffing Provider':['Temporary Staffing','Professional Staffing','Workforce Development'],
+    'Training Provider':['Training Services','Workforce Development']
+  };
+
+  const model = {
+    stage:1,
+    roles:[],
+    capabilities:[],
+    capabilityEvidence:{},
+    deliveryMethods:[],
+    files:[],
+    documentEvidence:[],
+    agentSuggestions:null,
+    domain:'All'
+  };
+
+  $('businessName').value = intake.business_name;
+  $('snapshotName').textContent = intake.business_name;
+  $('heroTitle').textContent = `Building an intelligent understanding of ${intake.business_name}.`;
+
+  function setMessage(stage, text='') { const node = $('message' + stage); if (node) node.textContent = text; }
+
+  function evidenceFor(capability) {
+    return model.capabilityEvidence[capability] || 'manual';
+  }
+
+  function recommendedCapabilities() {
+    const fromRoles = model.roles.flatMap((role) => roleRecommendations[role] || []);
+    const fromAgent = model.agentSuggestions?.capabilities || [];
+    return new Set(unique([...fromRoles, ...fromAgent]));
+  }
+
+  function completionScore() {
+    const checks = [
+      $('description').value.trim().length >= 30,
+      Boolean($('years').value),
+      Boolean($('employees').value),
+      model.roles.length > 0,
+      model.capabilities.length >= 2,
+      model.deliveryMethods.length > 0,
+      Boolean($('pastPerformance').value.trim()),
+      splitLines($('licenses').value).length > 0 || splitLines($('certifications').value).length > 0 || $('insurance').value !== 'unknown'
+    ];
+    return Math.round(checks.filter(Boolean).length / checks.length * 100);
+  }
+
+  function confidenceScore() {
+    let score = 22;
+    if ($('description').value.trim().length >= 80) score += 14;
+    if (model.files.length || $('evidenceNotes').value.trim().length >= 40) score += 18;
+    if (model.agentSuggestions) score += 8;
+    if (model.capabilities.length >= 3) score += 12;
+    if ($('pastPerformance').value.trim().length >= 60) score += 12;
+    if (splitLines($('licenses').value).length || splitLines($('certifications').value).length) score += 8;
+    if ($('qualitySystems').value.trim().length >= 30) score += 6;
+    return Math.min(100, score);
+  }
+
+  function breadthScore() {
+    return Math.min(100, 18 + model.capabilities.length * 6 + model.roles.length * 3 + model.deliveryMethods.length * 2);
+  }
+
+  function updateSnapshot() {
+    const completion = completionScore();
+    const confidence = confidenceScore();
+    const breadth = breadthScore();
+    $('completionText').textContent = completion + '%';
+    $('completionBar').style.width = completion + '%';
+    $('confidenceText').textContent = confidence >= 80 ? 'Strong' : confidence >= 58 ? 'Developing' : 'Early';
+    $('confidenceBar').style.width = confidence + '%';
+    $('breadthText').textContent = breadth >= 75 ? 'Broad' : breadth >= 48 ? 'Balanced' : 'Focused';
+    $('breadthBar').style.width = breadth + '%';
+    $('roleCount').textContent = model.roles.length;
+    $('capCount').textContent = model.capabilities.length;
+    $('documentCount').textContent = model.documentEvidence.length;
+
+    const recommended = [...recommendedCapabilities()].filter((capability) => !model.capabilities.includes(capability));
+    if (!$('description').value.trim()) {
+      $('advisorTitle').textContent = 'Start with a clear business description.';
+      $('advisorCopy').textContent = 'AOIS will recommend roles and capabilities as evidence develops.';
+    } else if (!model.roles.length) {
+      $('advisorTitle').textContent = 'Classify how the business participates.';
+      $('advisorCopy').textContent = 'Roles help AOIS separate performed work, supplied products, and teaming posture.';
+    } else if (recommended.length) {
+      $('advisorTitle').textContent = `${recommended.length} capability recommendations are available.`;
+      $('advisorCopy').textContent = 'Review recommendations rather than accepting broad labels automatically.';
+    } else if (!$('pastPerformance').value.trim()) {
+      $('advisorTitle').textContent = 'Add one representative performance example.';
+      $('advisorCopy').textContent = 'Comparable work materially improves evidence confidence and Analyze Fit explanations.';
+    } else {
+      $('advisorTitle').textContent = 'Business DNA is ready for confirmation.';
+      $('advisorCopy').textContent = 'Review known, inferred, and unresolved evidence before building the dashboard.';
+    }
+  }
+
+  function renderJourney() {
+    $('journey').innerHTML = stages.map((name, index) => {
+      const number = index + 1;
+      const stateClass = number < model.stage ? 'done' : number === model.stage ? 'active' : '';
+      return `<div class="step ${stateClass}">${number} · ${esc(name)}</div>`;
+    }).join('');
+  }
+
+  function renderRoles() {
+    $('roleGrid').innerHTML = roles.map(([role, description]) => `
+      <label class="choice ${model.roles.includes(role) ? 'on' : ''}">
+        <input type="checkbox" value="${esc(role)}" ${model.roles.includes(role) ? 'checked' : ''}>
+        <strong>${esc(role)}</strong><p>${esc(description)}</p>
+      </label>`).join('');
+  }
+
+  function renderDelivery() {
+    $('deliveryGrid').innerHTML = deliveryMethods.map((method) => `
+      <label class="toggle"><input type="checkbox" value="${esc(method)}" ${model.deliveryMethods.includes(method) ? 'checked' : ''}> ${esc(method)}</label>`).join('');
+  }
+
+  function renderCapabilityTags() {
+    $('selectedCapabilities').innerHTML = model.capabilities.length
+      ? model.capabilities.map((capability) => `<span class="tag ${evidenceFor(capability) === 'agent' ? 'agent' : 'manual'}">${esc(capability)}<button type="button" data-remove-cap="${esc(capability)}" aria-label="Remove ${esc(capability)}">×</button></span>`).join('')
+      : '<span class="tag">No capabilities selected yet</span>';
+  }
+
+  function renderTaxonomy() {
+    const query = $('capSearch').value.trim().toLowerCase();
+    const filter = $('evidenceFilter').value;
+    const recommended = recommendedCapabilities();
+    const domains = ['All', ...new Set(taxonomy.map((item) => item.domain))];
+    $('domainTabs').innerHTML = domains.map((domain) => `<button class="tab ${model.domain === domain ? 'on' : ''}" type="button" data-domain="${esc(domain)}">${esc(domain)}</button>`).join('');
+
+    const grouped = new Map();
+    for (const item of taxonomy) {
+      if (model.domain !== 'All' && item.domain !== model.domain) continue;
+      const capabilities = item.capabilities.filter((capability) => {
+        const searchable = `${item.domain} ${item.category} ${item.group} ${capability}`.toLowerCase();
+        if (query && !searchable.includes(query)) return false;
+        if (filter === 'recommended' && !recommended.has(capability)) return false;
+        if (filter === 'selected' && !model.capabilities.includes(capability)) return false;
+        return true;
+      });
+      if (!capabilities.length) continue;
+      if (!grouped.has(item.domain)) grouped.set(item.domain, []);
+      grouped.get(item.domain).push({...item, capabilities});
+    }
+
+    $('taxonomy').innerHTML = grouped.size ? [...grouped.entries()].map(([domain, items]) => `
+      <section class="domain-card"><div class="domain-head"><strong>${esc(domain)}</strong><span>Domain</span></div>
+        ${items.map((item) => `<div class="category"><h3>${esc(item.category)}</h3><div class="group"><div class="group-title">${esc(item.group)}</div><div class="cap-grid">
+          ${item.capabilities.map((capability) => `<label class="cap ${model.capabilities.includes(capability) ? 'on' : ''} ${recommended.has(capability) ? 'recommended' : ''}"><input type="checkbox" value="${esc(capability)}" ${model.capabilities.includes(capability) ? 'checked' : ''}><span>${esc(capability)}${recommended.has(capability) ? '<span class="rec">Recommended</span>' : ''}</span></label>`).join('')}
+        </div></div></div>`).join('')}
+      </section>`).join('') : '<div class="evidence-note">No capabilities match the current search and filter.</div>';
+    renderCapabilityTags();
+  }
+
+  function renderFiles() {
+    $('fileList').innerHTML = model.files.map((file, index) => `<div class="file"><span>${esc(file.name)} · ${Math.max(1, Math.round(file.size / 1024))} KB</span><button type="button" data-remove-file="${index}">Remove</button></div>`).join('');
+  }
+
+  function addFiles(fileList) {
+    const allowed = new Set(['application/pdf','text/plain','text/markdown','text/csv','application/json']);
+    const incoming = [...fileList];
+    const next = [...model.files];
+    for (const file of incoming) {
+      const extensionAllowed = /\.(pdf|txt|md|csv|json)$/i.test(file.name);
+      if (!allowed.has(file.type) && !extensionAllowed) { setMessage(2, `${file.name} is not a supported document type.`); continue; }
+      if (file.size > 7 * 1024 * 1024) { setMessage(2, `${file.name} exceeds the 7 MB per-file limit.`); continue; }
+      if (!next.some((existing) => existing.name === file.name && existing.size === file.size)) next.push(file);
+    }
+    if (next.length > 5) { setMessage(2, 'A maximum of five documents can be analyzed in one visit.'); next.length = 5; }
+    const total = next.reduce((sum, file) => sum + file.size, 0);
+    if (total > 15 * 1024 * 1024) { setMessage(2, 'The combined document limit is 15 MB.'); return; }
+    model.files = next;
+    renderFiles();
+    updateSnapshot();
+  }
+
+  function applyAgentSuggestions() {
+    const suggestions = model.agentSuggestions;
+    if (!suggestions) return;
+    for (const role of suggestions.roles || []) if (roles.some(([known]) => known === role) && !model.roles.includes(role)) model.roles.push(role);
+    for (const capability of suggestions.capabilities || []) {
+      if (taxonomy.some((item) => item.capabilities.includes(capability)) && !model.capabilities.includes(capability)) {
+        model.capabilities.push(capability);
+        model.capabilityEvidence[capability] = 'agent';
+      }
+    }
+    if (!$('licenses').value.trim() && suggestions.licenses?.length) $('licenses').value = suggestions.licenses.join('\n');
+    if (!$('certifications').value.trim() && suggestions.certifications?.length) $('certifications').value = suggestions.certifications.join('\n');
+    if (!$('products').value.trim() && suggestions.products?.length) $('products').value = suggestions.products.join('\n');
+    renderRoles(); renderTaxonomy(); updateSnapshot();
+    $('agentResult').insertAdjacentHTML('beforeend','<p><strong>Recommendations applied.</strong> Review and remove anything the business cannot substantiate.</p>');
+  }
+
+  async function analyzeDocuments() {
+    setMessage(2, '');
+    if (!model.files.length && $('evidenceNotes').value.trim().length < 20 && $('description').value.trim().length < 30) {
+      setMessage(2, 'Add a document, evidence note, or a more complete business description before analysis.');
+      return;
+    }
+    const button = $('analyzeDocuments');
+    button.disabled = true;
+    button.textContent = 'Analyzing…';
+    const form = new FormData();
+    form.append('business_description', $('description').value.trim());
+    form.append('evidence_notes', $('evidenceNotes').value.trim());
+    model.files.forEach((file) => form.append('documents', file, file.name));
+    try {
+      const response = await fetch('/api/business-profile-agent', {method:'POST', body:form, headers:{'X-AOIS-Visit':'business-dna-v2'}});
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.error || 'Document analysis could not be completed.');
+      model.agentSuggestions = payload.profile_suggestions || null;
+      model.documentEvidence = payload.documents || [];
+      const suggestions = model.agentSuggestions || {};
+      const tags = unique([...(suggestions.roles || []), ...(suggestions.capabilities || []), ...(suggestions.certifications || [])]);
+      $('agentResult').classList.remove('hidden');
+      $('agentResult').innerHTML = `<h3>Business Profile Agent findings</h3><p>${esc(payload.summary || 'Evidence analysis completed.')}</p><div class="suggestion-tags">${tags.slice(0,16).map((tag) => `<span class="tag agent">${esc(tag)}</span>`).join('') || '<span class="tag">No strong structured recommendations yet</span>'}</div><button class="btn primary" type="button" id="applySuggestions">Apply recommendations</button><p>Evidence state: <strong>${esc(payload.evidence_state || 'needs_confirmation')}</strong>. Every applied item still requires contractor confirmation.</p>`;
+      $('applySuggestions')?.addEventListener('click', applyAgentSuggestions);
+      updateSnapshot();
+    } catch (error) {
+      setMessage(2, error.message || 'Evidence analysis failed. You may continue with guided intake.');
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Analyze Evidence';
+    }
+  }
+
+  function validateStage(stage) {
+    setMessage(stage, '');
+    if (stage === 1) {
+      if ($('description').value.trim().length < 30) { setMessage(1, 'Provide at least one clear sentence describing the business.'); $('description').focus(); return false; }
+      if (!$('years').value || !$('employees').value) { setMessage(1, 'Select years in business and current workforce.'); return false; }
+    }
+    if (stage === 3 && !model.roles.length) { setMessage(3, 'Select at least one business role.'); return false; }
+    if (stage === 4 && model.capabilities.length < 2) { setMessage(4, 'Select at least two capabilities the business can substantiate.'); return false; }
+    if (stage === 5 && !model.deliveryMethods.length) { setMessage(5, 'Select at least one delivery method.'); return false; }
+    return true;
+  }
+
+  function buildReview() {
+    const licenses = splitLines($('licenses').value);
+    const certifications = splitLines($('certifications').value);
+    const products = splitLines($('products').value);
+    const inferred = model.capabilities.filter((capability) => evidenceFor(capability) === 'agent');
+    const confirmed = model.capabilities.filter((capability) => evidenceFor(capability) !== 'agent');
+    $('reviewGrid').innerHTML = `
+      <article class="review-card full"><h3>Executive Business Snapshot</h3><p>${esc($('description').value.trim())}</p><span class="state known">Contractor supplied</span><span class="state needs">Profile v2</span></article>
+      <article class="review-card"><h3>Business Roles</h3><ul>${model.roles.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></article>
+      <article class="review-card"><h3>Confirmed Capabilities</h3>${confirmed.length ? `<ul>${confirmed.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : '<p>No manually confirmed capabilities.</p>'}</article>
+      <article class="review-card"><h3>Document-Supported Recommendations</h3>${inferred.length ? `<ul>${inferred.map((item) => `<li>${esc(item)} — confirmation required</li>`).join('')}</ul>` : '<p>No document-supported capability recommendations were applied.</p>'}</article>
+      <article class="review-card"><h3>Products & Supply</h3>${products.length ? `<ul>${products.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>` : '<p><span class="state unknown">Unknown / not supplied</span></p>'}</article>
+      <article class="review-card"><h3>Eligibility Evidence</h3><p><strong>Licenses:</strong> ${licenses.length ? esc(licenses.join(', ')) : 'Needs review'}</p><p><strong>Certifications:</strong> ${certifications.length ? esc(certifications.join(', ')) : 'Needs review'}</p><p><strong>Insurance:</strong> ${esc($('insurance').value)}</p><p><strong>Bonding:</strong> ${esc($('bonding').value)}</p></article>
+      <article class="review-card"><h3>Delivery & Capacity</h3><p><strong>Methods:</strong> ${esc(model.deliveryMethods.join(', '))}</p><p><strong>Workforce:</strong> ${esc($('employees').value)}</p><p><strong>Practical contract value:</strong> ${$('capacity').value ? '$' + Number($('capacity').value).toLocaleString() : 'Needs review'}</p></article>
+      <article class="review-card full"><h3>Evidence Governance</h3><p><span class="state known">Confirmed</span> Contractor-entered information and selected capabilities.</p><p><span class="state needs">Needs confirmation</span> Items recommended from uploaded documents or text analysis.</p><p><span class="state unknown">Unknown</span> Information not supplied remains unresolved and will lower evidence confidence—not automatically business fit.</p></article>`;
+  }
+
+  function go(stage) {
+    if (stage > model.stage && !validateStage(model.stage)) return;
+    model.stage = stage;
+    document.querySelectorAll('[data-stage]').forEach((section) => section.classList.toggle('hidden', Number(section.dataset.stage) !== stage));
+    renderJourney();
+    if (stage === 3) renderRoles();
+    if (stage === 4) renderTaxonomy();
+    if (stage === 5) renderDelivery();
+    if (stage === 6) buildReview();
+    updateSnapshot();
+    $('workspace').focus({preventScroll:true});
+    scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function buildProfile() {
+    if (!validateStage(5)) { go(5); return; }
+    const licenses = splitLines($('licenses').value);
+    const certifications = splitLines($('certifications').value);
+    const products = splitLines($('products').value);
+    const description = $('description').value.trim();
+    const keywords = unique([
+      ...model.capabilities,
+      ...model.roles,
+      ...products,
+      ...model.deliveryMethods,
+      ...model.capabilities.flatMap((capability) => capability.toLowerCase().split(/\s+/).filter((word) => word.length > 4))
+    ]);
+    const profile = {
+      ...intake,
+      business_name:intake.business_name,
+      legal_name:intake.legal_name || intake.business_name,
+      business_description:description,
+      description,
+      years_in_business:$('years').value,
+      employee_range:$('employees').value,
+      max_contract_value:$('capacity').value ? Number($('capacity').value) : null,
+      preferred_contract_role:$('primePreference').value || null,
+      business_roles:[...model.roles],
+      capabilities:[...model.capabilities],
+      services:[...model.capabilities],
+      core_competencies:[...model.capabilities],
+      products,
+      delivery_methods:[...model.deliveryMethods],
+      licenses,
+      certifications,
+      set_asides:certifications.filter((item) => /\b(?:DBE|SBE|MBE|WBE|DVBE|HUBZone|8\(a\))\b/i.test(item)),
+      insurance_status:$('insurance').value,
+      bonding_status:$('bonding').value,
+      past_performance:$('pastPerformance').value.trim() || null,
+      quality_safety_compliance:$('qualitySystems').value.trim() || null,
+      emergency_response:model.deliveryMethods.includes('Emergency response'),
+      service_states:['AZ','CA','NV'],
+      states:['AZ','CA','NV'],
+      keywords,
+      profile_completion:completionScore(),
+      evidence_confidence:confidenceScore(),
+      business_dna:{
+        version:'business-dna-v2',
+        services:[...model.capabilities],
+        products,
+        roles:[...model.roles],
+        delivery_methods:[...model.deliveryMethods],
+        qualifications:{licenses,certifications,insurance:$('insurance').value,bonding:$('bonding').value},
+        evidence_provenance:{
+          contractor_confirmed:model.capabilities.filter((capability) => evidenceFor(capability) !== 'agent'),
+          document_supported:model.capabilities.filter((capability) => evidenceFor(capability) === 'agent'),
+          documents:model.documentEvidence.map((document) => ({name:document.name,type:document.type,status:document.status}))
+        }
+      },
+      completed_at:new Date().toISOString()
+    };
+    location.assign('/dashboard#profile=' + encode(profile));
+  }
+
+  $('roleGrid').addEventListener('change', (event) => {
+    const input = event.target.closest('input[type="checkbox"]'); if (!input) return;
+    model.roles = input.checked ? unique([...model.roles,input.value]) : model.roles.filter((role) => role !== input.value);
+    renderRoles(); updateSnapshot();
+  });
+  $('deliveryGrid').addEventListener('change', (event) => {
+    const input = event.target.closest('input[type="checkbox"]'); if (!input) return;
+    model.deliveryMethods = input.checked ? unique([...model.deliveryMethods,input.value]) : model.deliveryMethods.filter((method) => method !== input.value);
+    renderDelivery(); updateSnapshot();
+  });
+  $('taxonomy').addEventListener('change', (event) => {
+    const input = event.target.closest('input[type="checkbox"]'); if (!input) return;
+    model.capabilities = input.checked ? unique([...model.capabilities,input.value]) : model.capabilities.filter((capability) => capability !== input.value);
+    if (input.checked && !model.capabilityEvidence[input.value]) model.capabilityEvidence[input.value] = recommendedCapabilities().has(input.value) ? 'agent' : 'manual';
+    if (!input.checked) delete model.capabilityEvidence[input.value];
+    renderTaxonomy(); updateSnapshot();
+  });
+  $('domainTabs').addEventListener('click', (event) => { const button = event.target.closest('[data-domain]'); if (!button) return; model.domain = button.dataset.domain; renderTaxonomy(); });
+  $('selectedCapabilities').addEventListener('click', (event) => { const button = event.target.closest('[data-remove-cap]'); if (!button) return; model.capabilities = model.capabilities.filter((capability) => capability !== button.dataset.removeCap); delete model.capabilityEvidence[button.dataset.removeCap]; renderTaxonomy(); updateSnapshot(); });
+  $('capSearch').addEventListener('input', renderTaxonomy);
+  $('evidenceFilter').addEventListener('change', renderTaxonomy);
+  $('documents').addEventListener('change', (event) => addFiles(event.target.files));
+  $('fileList').addEventListener('click', (event) => { const button = event.target.closest('[data-remove-file]'); if (!button) return; model.files.splice(Number(button.dataset.removeFile),1); renderFiles(); updateSnapshot(); });
+  $('analyzeDocuments').addEventListener('click', analyzeDocuments);
+  $('buildDashboard').addEventListener('click', buildProfile);
+  document.querySelectorAll('[data-next]').forEach((button) => button.addEventListener('click', () => go(Number(button.dataset.next))));
+  document.querySelectorAll('[data-back]').forEach((button) => button.addEventListener('click', () => go(Number(button.dataset.back))));
+  ['description','years','employees','capacity','primePreference','evidenceNotes','products','licenses','certifications','insurance','bonding','pastPerformance','qualitySystems'].forEach((id) => $(id).addEventListener('input', updateSnapshot));
+
+  const dropZone = $('dropZone');
+  ['dragenter','dragover'].forEach((name) => dropZone.addEventListener(name, (event) => { event.preventDefault(); dropZone.classList.add('drag'); }));
+  ['dragleave','drop'].forEach((name) => dropZone.addEventListener(name, (event) => { event.preventDefault(); dropZone.classList.remove('drag'); }));
+  dropZone.addEventListener('drop', (event) => addFiles(event.dataTransfer.files));
+
+  renderJourney(); renderRoles(); renderDelivery(); renderTaxonomy(); updateSnapshot();
+  if (intake.intake_mode === 'documents') go(2);
+})();
+</script>
+</body>
+</html>
