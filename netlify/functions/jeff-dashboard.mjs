@@ -20,7 +20,7 @@ function meaningfulDescription(r){const d=text(r.description);return d.length>40
 function hasDocuments(r){return arr(r.document_urls).length>0||arr(obj(r.raw_source_payload).documents).length>0;}
 function hasContact(r){return Boolean(text(r.contact_name)&&(text(r.contact_email)||text(r.contact_phone)));}
 function eligible(r,now){
-  const status=text(r.status||r.normalized_status).toLowerCase();
+  const status=text(r.status).toLowerCase();
   const deadline=r.response_deadline?Date.parse(r.response_deadline):NaN;
   return CURRENT.has(status)&&(!Number.isFinite(deadline)||deadline>=now)&&Boolean(text(r.official_source_url||r.source_url))&&Boolean(text(r.issuing_organization))&&(meaningfulDescription(r)||hasDocuments(r))&&meaningfulRequirements(r.requirements)&&hasContact(r)&&!['enrichment_required','rejected','failed'].includes(text(r.qa_status).toLowerCase());
 }
@@ -28,12 +28,12 @@ async function rows(table,select='*',pageSize=1000){let out=[];for(let from=0;;f
 const group=(items,key)=>Object.entries(items.reduce((m,x)=>{const k=text(x[key])||'Unknown';m[k]=(m[k]||0)+1;return m},{})).map(([name,count])=>({name,count})).sort((a,b)=>b.count-a.count);
 export const handler=async()=>{try{
   if(!BASE||!KEY)throw new Error('Supabase environment is not configured');
-  const opportunities=await rows('state_contract_opportunities','pdas_record_id,state_code,status,normalized_status,title,description,response_deadline,official_source_url,source_url,issuing_organization,issuing_department,source_platform,contact_name,contact_email,contact_phone,document_urls,requirements,raw_source_payload,qa_status,created_at,updated_at');
+  const opportunities=await rows('state_contract_opportunities','pdas_record_id,state_code,status,title,description,response_deadline,official_source_url,source_url,issuing_organization,issuing_department,source_platform,contact_name,contact_email,contact_phone,document_urls,requirements,raw_source_payload,qa_status,created_at,updated_at');
   let jobs=[],runs=[];try{jobs=await rows('pdas_acquisition_jobs','job_id,job_name,source_platform,job_status,last_success_at,last_records_inserted,consecutive_failures,next_scheduled_at,created_at')}catch{}
   try{runs=(await rows('pdas_acquisition_runs','run_id,ingestion_run_id,job_id,run_status,started_at,records_discovered,records_inserted,records_updated,records_failed,created_at')).sort((a,b)=>Date.parse(b.started_at||0)-Date.parse(a.started_at||0)).slice(0,25)}catch{}
   const now=Date.now(),eligibleRows=opportunities.filter(r=>eligible(r,now));
-  const currentRows=opportunities.filter(r=>CURRENT.has(text(r.status||r.normalized_status).toLowerCase()));
-  const historicalRows=opportunities.filter(r=>HISTORICAL.has(text(r.status||r.normalized_status).toLowerCase()));
+  const currentRows=opportunities.filter(r=>CURRENT.has(text(r.status).toLowerCase()));
+  const historicalRows=opportunities.filter(r=>HISTORICAL.has(text(r.status).toLowerCase()));
   const requirementRows=opportunities.filter(r=>meaningfulRequirements(r.requirements));
   const contactRows=opportunities.filter(hasContact);
   const documentRows=opportunities.filter(hasDocuments);
