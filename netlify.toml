@@ -17,8 +17,7 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
     Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; upgrade-insecure-requests"
 
-# Friendly production URLs are internal rewrites. The visible URL remains stable,
-# which preserves page identity, browser history, and runtime path detection.
+# Friendly production URLs are internal rewrites. The visible URL remains stable.
 [[redirects]]
   from = "/services.html"
   to = "/business-dna-builder-preview.html"
@@ -76,6 +75,14 @@
 [[edge_functions]]
   path = "/index.html"
   function = "calstategen-nav-login-cta"
+
+[[edge_functions]]
+  path = "/dashboard"
+  function = "natcorp-conversion"
+
+[[edge_functions]]
+  path = "/dashboard.html"
+  function = "natcorp-conversion"
 
 [[edge_functions]]
   path = "/business-dna-builder-preview.html"
