@@ -57,6 +57,11 @@
   [headers.values]
     Cache-Control = "no-store"
 
+[[headers]]
+  for = "/jeff-dashboard"
+  [headers.values]
+    Cache-Control = "no-store"
+
 # Required journey: Start -> Intake -> Business Intake -> Dashboard.
 [[redirects]]
   from = "/start"
@@ -76,7 +81,6 @@
   status = 200
   force = true
 
-# The legacy intake file skipped the visitor intake step.
 [[redirects]]
   from = "/intake.html"
   to = "/intake"
@@ -95,7 +99,6 @@
   status = 302
   force = true
 
-# Legacy public routes restart at Intake and cannot bypass the journey.
 [[redirects]]
   from = "/services"
   to = "/intake"
@@ -170,14 +173,8 @@
 
 [[redirects]]
   from = "/jeff-dashboard"
-  to = "/intake"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/jeff-dashboard.html"
-  to = "/intake"
-  status = 302
+  to = "/jeff-dashboard.html"
+  status = 200
   force = true
 
 [[redirects]]
@@ -206,13 +203,13 @@
 
 [[redirects]]
   from = "/pdas-dashboard"
-  to = "/intake"
+  to = "/jeff-dashboard"
   status = 302
   force = true
 
 [[redirects]]
   from = "/pdas-dashboard.html"
-  to = "/intake"
+  to = "/jeff-dashboard"
   status = 302
   force = true
 
@@ -222,7 +219,6 @@
   status = 302
   force = true
 
-# The clean dashboard route preserves the one-time URL fragment. Direct .html access restarts Intake.
 [[redirects]]
   from = "/dashboard"
   to = "/aois-dashboard-preview.html"
@@ -235,7 +231,6 @@
   status = 302
   force = true
 
-# Analyze Fit is only entered from a live dashboard handoff.
 [[redirects]]
   from = "/analyze-fit"
   to = "/analyze-fit-v2.html"
@@ -248,7 +243,6 @@
   status = 302
   force = true
 
-# Member login and OTP access are retired. Every visitor starts fresh.
 [[redirects]]
   from = "/login"
   to = "/intake"
