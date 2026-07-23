@@ -143,10 +143,15 @@ function positiveExtractionConfidence(value) {
   return Number.isFinite(confidence) && confidence > 0;
 }
 
+function extractionConfidenceEvidence(row) {
+  return row?.extraction_confidence ?? row?.data_quality_score;
+}
+
 export function evaluateOpportunityRelease(row, now = Date.now()) {
   const nowMs = now instanceof Date ? now.valueOf() : Number(now);
   const reasons = [];
   const qaStatus = String(row?.qa_status || '').trim().toLowerCase();
+  const confidenceEvidence = extractionConfidenceEvidence(row);
 
   if (!String(row?.title || '').trim()) reasons.push('missing_title');
   if (!usableUrl(row?.official_source_url)) reasons.push('missing_or_invalid_official_source_url');
@@ -154,7 +159,7 @@ export function evaluateOpportunityRelease(row, now = Date.now()) {
   if (!hasIdentifiableIssuingEntity(row)) reasons.push('missing_issuing_entity');
   if (!hasMeaningfulOpportunityEvidence(row)) reasons.push('missing_meaningful_description_scope_or_document');
   if (!hasSubstantiveRequirements(row)) reasons.push('missing_substantive_requirements');
-  if (!positiveExtractionConfidence(row?.extraction_confidence)) reasons.push('missing_or_invalid_extraction_confidence');
+  if (!positiveExtractionConfidence(confidenceEvidence)) reasons.push('missing_or_invalid_extraction_confidence');
   if (!RELEASE_QA_STATUSES.has(qaStatus)) reasons.push('qa_not_release_ready');
 
   return {
@@ -165,7 +170,7 @@ export function evaluateOpportunityRelease(row, now = Date.now()) {
       issuing_entity: hasIdentifiableIssuingEntity(row),
       meaningful_opportunity_evidence: hasMeaningfulOpportunityEvidence(row),
       substantive_requirements: hasSubstantiveRequirements(row),
-      extraction_confidence: positiveExtractionConfidence(row?.extraction_confidence),
+      extraction_confidence: positiveExtractionConfidence(confidenceEvidence),
     },
   };
 }
