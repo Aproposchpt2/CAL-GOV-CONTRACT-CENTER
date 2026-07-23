@@ -1,5 +1,5 @@
 import { buildExecutiveBrief } from './natcorp-core.mjs';
-import { asArray, db, env, nowIso, rpc, sha256 } from './natcorp-db.mjs';
+import { asArray, db, dbCount, env, nowIso, rpc, sha256 } from './natcorp-db.mjs';
 
 async function retrievePendingDocuments(maxDocs = 100) {
   let processed = 0, retrieved = 0, failed = 0;
@@ -55,22 +55,24 @@ export async function matchingAgent({ run, input }) {
   };
 }
 
-export async function deliveryAgent({ input }) {
-  const counts = await db('state_contract_opportunities', 'GET', '?select=natcorp_release_status&natcorp_release_evaluated_at=not.is.null&limit=10000');
-  const summary = (counts || []).reduce((m,r)=>(m[r.natcorp_release_status]=(m[r.natcorp_release_status]||0)+1,m),{});
-  return { released: summary.eligible || 0, removed_or_held: (summary.rejected || 0) + (summary.enrichment_required || 0), failures: 0, feed_mode: 'Existing NAT-CORP dashboard reads canonical opportunities and applies the preserved AOIE release gates; release metadata was refreshed in place.' };
+export async function deliveryAgent() {
+  const [released, rejected, enrichmentRequired] = await Promise.all([
+    dbCount('state_contract_opportunities', '?select=id&natcorp_release_evaluated_at=not.is.null&natcorp_release_status=eq.eligible'),
+    dbCount('state_contract_opportunities', '?select=id&natcorp_release_evaluated_at=not.is.null&natcorp_release_status=eq.rejected'),
+    dbCount('state_contract_opportunities', '?select=id&natcorp_release_evaluated_at=not.is.null&natcorp_release_status=eq.enrichment_required'),
+  ]);
+  return { released, removed_or_held: rejected + enrichmentRequired, rejected, enrichment_required: enrichmentRequired, failures: 0, feed_mode: 'Existing NAT-CORP dashboard reads canonical opportunities and applies the preserved AOIE release gates; release metadata was refreshed in place.' };
 }
 
 export async function reportingAgent({ runId, run }) {
-  const [jobs, feedback, inventory, sessions, acquisitionRuns] = await Promise.all([
+  const [jobs, feedback, evaluated, eligible, sessions] = await Promise.all([
     db('natcorp_agent_jobs','GET',`?run_id=eq.${runId}&select=*&order=created_at.asc`),
     db('natcorp_customer_feedback','GET',`?submitted_at=gte.${encodeURIComponent(run.started_at || run.created_at)}&select=*&limit=10000`),
-    db('state_contract_opportunities','GET','?select=natcorp_release_status&limit=10000'),
-    db('aoie_business_profiles','GET',`?created_at=gte.${encodeURIComponent(run.started_at || run.created_at)}&visit_scoped=eq.true&select=id&limit=10000`),
-    Promise.resolve([]),
+    dbCount('state_contract_opportunities','?select=id&natcorp_release_evaluated_at=not.is.null'),
+    dbCount('state_contract_opportunities','?select=id&natcorp_release_evaluated_at=not.is.null&natcorp_release_status=eq.eligible'),
+    dbCount('aoie_business_profiles',`?select=id&created_at=gte.${encodeURIComponent(run.started_at || run.created_at)}&visit_scoped=eq.true`),
   ]);
-  const inv = (inventory || []).reduce((m,r)=>(m.evaluated++,m[r.natcorp_release_status]=(m[r.natcorp_release_status]||0)+1,m),{evaluated:0});
-  const brief = buildExecutiveBrief({ run, jobs, feedback, inventory: { evaluated: inv.evaluated, eligible: inv.eligible || 0, current_actionable: inv.eligible || 0, sessions: sessions?.length || 0 }, acquisitionRuns });
+  const brief = buildExecutiveBrief({ run, jobs, feedback, inventory: { evaluated, eligible, current_actionable: eligible, sessions } });
   const rows = await db('natcorp_daily_briefs','POST','?on_conflict=run_id',[{ run_id: runId, report_date: new Date().toISOString().slice(0,10), ...brief, generated_at: nowIso() }],'resolution=merge-duplicates,return=representation');
   return { brief_id: rows?.[0]?.brief_id, ...brief };
 }
