@@ -40,7 +40,7 @@ const reportSections=[
 ];
 for(const title of reportSections)assert.ok(files.analyzeFit.includes(title),`Missing Analyze Fit section: ${title}`);
 
-assert.ok(files.intake.includes('/business-intake#intake='),'Intake must hand off to Business Intake.');
+assert.ok(files.intake.includes('/business-intake#profile='),'Intake must hand off to Business Intake.');
 assert.ok(files.businessIntake.includes('/dashboard#profile='),'Business Intake must hand off to Dashboard.');
 assert.ok(files.dashboard.includes('/api/aoie-state-shadow'),'Dashboard must use the live AOIE endpoint.');
 assert.ok(files.dashboard.includes('/analyze-fit#assessment='),'Dashboard must hand the selected opportunity to Analyze Fit.');
