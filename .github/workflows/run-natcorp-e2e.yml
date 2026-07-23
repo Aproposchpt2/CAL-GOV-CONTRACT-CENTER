@@ -1,0 +1,25 @@
+name: Run NAT-CORP end-to-end test
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/run-natcorp-e2e.yml'
+permissions:
+  contents: read
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger daily operations through Command Center API
+        run: |
+          curl --fail --show-error --silent \
+            --retry 18 --retry-delay 10 --retry-all-errors \
+            'https://deploy-preview-22--cal-gov-contract-center.netlify.app/api/natcorp-e2e-trigger?nonce=RfR_qsj8nflX85dmgxbWPJRHPgz8mWCW' \
+            | tee e2e-response.json
+          grep -q '"ok":true' e2e-response.json
+          grep -q '"run_id"' e2e-response.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: natcorp-e2e-response
+          path: e2e-response.json
+          retention-days: 1
