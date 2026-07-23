@@ -45,6 +45,27 @@ export async function db(table, method = 'GET', query = '', body, prefer = '') {
   try { return JSON.parse(raw); } catch { return raw; }
 }
 
+export async function dbCount(table, query = '') {
+  const { base, key } = dbConfig();
+  const response = await fetch(`${base}/rest/v1/${table}${query}`, {
+    method: 'GET',
+    headers: {
+      apikey: key,
+      authorization: `Bearer ${key}`,
+      accept: 'application/json',
+      Prefer: 'count=exact',
+      Range: '0-0',
+    },
+    signal: AbortSignal.timeout(55000),
+  });
+  const raw = await response.text().catch(() => '');
+  if (!response.ok) throw new Error(`${table} count failed (${response.status}): ${raw.slice(0, 700)}`);
+  const contentRange = response.headers.get('content-range') || '';
+  const total = Number(contentRange.split('/').pop());
+  if (!Number.isFinite(total)) throw new Error(`${table} count response was missing an exact total.`);
+  return total;
+}
+
 export const rpc = (name, payload) => db(`rpc/${name}`, 'POST', '', payload, 'return=representation');
 
 export async function emit(runId, eventType, sourceAgent, payload = {}, entityType = 'daily_run', entityId = runId) {
