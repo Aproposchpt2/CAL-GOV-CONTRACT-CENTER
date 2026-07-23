@@ -1,0 +1,19 @@
+name: NAT-CORP feedback window tests
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'netlify/functions/_shared/natcorp-agents.mjs'
+      - '.github/workflows/natcorp-feedback-window-tests.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node --check netlify/functions/_shared/natcorp-agents.mjs
+      - run: npm test
