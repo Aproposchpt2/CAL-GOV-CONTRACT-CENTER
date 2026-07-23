@@ -33,17 +33,20 @@ test('feedback validation preserves clean-session metrics only', async()=>{
   assert.throws(()=>normalizeFeedback({session_id:'x',relevance_rating:'bad',experience_rating:'good'}));
 });
 
-test('executive brief includes failures, customer metrics, and CIO rates', async()=>{
+test('executive brief includes exact five-job, customer, and CIO metrics', async()=>{
   const {buildExecutiveBrief}=await core();
   const jobs=[
     {agent_type:'acquisition',status:'completed',attempts:2,started_at:'2026-07-23T10:00:00Z',completed_at:'2026-07-23T10:00:01Z',output_payload:{connectors_executed:2,inserted:4,updated:6,connectors:[{job_id:'A',status:'succeeded'},{job_id:'B',status:'failed',error:'blocked'}]}},
     {agent_type:'intelligence_processing',status:'completed',attempts:1,started_at:'2026-07-23T10:00:01Z',completed_at:'2026-07-23T10:00:02Z',output_payload:{opportunities_processed:10,contract_dna_completed:8,enrichment_required:2}},
     {agent_type:'release_eligibility_aoie',status:'completed',attempts:1,output_payload:{opportunities_evaluated:10,eligible:5,rejected:3,enrichment_required:2}},
-    {agent_type:'dashboard_delivery',status:'completed',attempts:1,output_payload:{released:5}},
+    {agent_type:'dashboard_delivery',status:'completed',attempts:1,output_payload:{released:5,rejected:3,enrichment_required:2}},
+    {agent_type:'executive_reporting',status:'running',attempts:1,started_at:'2026-07-23T10:00:03Z',output_payload:{}},
   ];
   const brief=buildExecutiveBrief({run:{},jobs,feedback:[{relevance_rating:'very_relevant',experience_rating:'excellent',opportunities_viewed:3,analyze_fit_count:1,improvement_comment:'More filters'}],inventory:{evaluated:10,eligible:5,current_actionable:5,sessions:1}});
   assert.equal(brief.enterprise_status,'OPERATING WITH WARNINGS');
   assert.equal(brief.metrics.customer_intelligence.relevance_score,100);
   assert.equal(brief.metrics.cio_decision_metrics.dashboard_eligibility_rate,50);
+  assert.equal(brief.metrics.cio_decision_metrics.aoie_release_rate,50);
+  assert.equal(brief.metrics.system_health.successful_agent_jobs,5);
   assert.equal(brief.metrics.system_health.retry_count,1);
 });
