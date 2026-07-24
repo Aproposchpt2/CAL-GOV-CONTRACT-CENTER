@@ -1,0 +1,108 @@
+{
+  "version": "1.0.0",
+  "status": "PROPOSED_FOR_REVIEW",
+  "taxonomy_version": "aoie-taxonomy-proposal-1.1.0",
+  "terms": [
+    {
+      "canonical": "Window Systems Repair and Replacement",
+      "term_type": "capability",
+      "exact_synonyms": [
+        "window repair",
+        "window replacement"
+      ],
+      "related_terms": [
+        "glazing services",
+        "fenestration work",
+        "building envelope repair"
+      ],
+      "exclusions": [
+        "Microsoft Windows support",
+        "Windows Server administration"
+      ]
+    },
+    {
+      "canonical": "Managed IT Services",
+      "term_type": "capability",
+      "exact_synonyms": [
+        "managed information technology services",
+        "IT support services"
+      ],
+      "related_terms": [
+        "help desk",
+        "network administration",
+        "IT infrastructure support"
+      ],
+      "exclusions": [
+        "physical building systems",
+        "window systems",
+        "mechanical systems"
+      ]
+    },
+    {
+      "canonical": "Cybersecurity Services",
+      "term_type": "capability",
+      "exact_synonyms": [
+        "information security services",
+        "IT security services"
+      ],
+      "related_terms": [
+        "information assurance",
+        "penetration testing",
+        "vulnerability assessment",
+        "SIEM"
+      ],
+      "exclusions": [
+        "physical security services",
+        "guard services"
+      ]
+    },
+    {
+      "canonical": "Janitorial and Custodial Services",
+      "term_type": "capability",
+      "exact_synonyms": [
+        "janitorial services",
+        "custodial services"
+      ],
+      "related_terms": [
+        "facility cleaning",
+        "floor care",
+        "sanitation services"
+      ],
+      "exclusions": [
+        "data cleaning"
+      ]
+    },
+    {
+      "canonical": "HVAC Maintenance and Repair",
+      "term_type": "capability",
+      "exact_synonyms": [
+        "air conditioning maintenance",
+        "heating and cooling maintenance"
+      ],
+      "related_terms": [
+        "boiler maintenance",
+        "chiller maintenance",
+        "air handler service"
+      ],
+      "exclusions": [
+        "HVAC equipment supply only"
+      ]
+    },
+    {
+      "canonical": "Staffing and Staff Augmentation",
+      "term_type": "capability",
+      "exact_synonyms": [
+        "temporary staffing",
+        "staff augmentation"
+      ],
+      "related_terms": [
+        "personnel services",
+        "contingent labor",
+        "recruitment services"
+      ],
+      "exclusions": [
+        "permanent employee payroll administration"
+      ]
+    }
+  ]
+}

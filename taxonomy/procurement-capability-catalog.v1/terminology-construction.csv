@@ -1,0 +1,19 @@
+capability_id,canonical_capability,government_terminology,business_terminology,abbreviations,industry_terminology
+construction.general_building,General Building Construction and Renovation,building renovation | facility replacement | site improvements,general contracting | building renovation | facility construction,,general contracting | building renovation | facility construction
+construction.job_order,Job Order Contracting,Job Order Contract | JOC General Contractors,JOC | task-order construction,,JOC | task-order construction
+construction.roadway,Roadway Construction and Rehabilitation,road paving | roadway excavation | HMA | RHMA | JPCP,highway construction | pavement rehabilitation | road works,,highway construction | pavement rehabilitation | road works
+construction.bridge_structures,Bridge and Structural Transportation Construction,bridge replacement | bridge fender system | structural modifications,bridge construction | structural transportation work,,bridge construction | structural transportation work
+construction.traffic_safety,"Traffic Signals, Lighting, Barriers, and Roadside Safety",traffic signal | street light | guardrail | crosswalk markings | inductive loop detector,traffic control systems | roadside safety improvements,,traffic control systems | roadside safety improvements
+construction.utility_locating,Utility Locating and Potholing,positive location of underground utilities | potholing,utility potholing | subsurface utility locating,,utility potholing | subsurface utility locating
+construction.water_wastewater,Water and Wastewater Infrastructure Construction,potable water wells | waste water treatment plant modernization | revise water system,water infrastructure construction | wastewater construction,,water infrastructure construction | wastewater construction
+construction.demolition,Demolition and Site Clearance,demolition and clearance | underground storage tank removal,site clearance | structure removal,,site clearance | structure removal
+construction.roofing,Roof Replacement and Structural Roof Work,roof replacement | roof and structural wood replacement,re-roofing | roof reconstruction,,re-roofing | roof reconstruction
+construction.windows_doors,"Windows, Doors, and Accessibility Improvements",window systems repair | roll-up door replacement | ADA door openers,glazing services | window replacement | door installation,,glazing services | window replacement | door installation
+construction.flooring,Flooring Installation and Replacement,floor repair | epoxy flooring | concrete walkway replacement,floor replacement | epoxy flooring,,floor replacement | epoxy flooring
+construction.hvac_install,HVAC Installation and Replacement,HVAC replacement | makeup air unit replacement | chiller and cooling tower replacement,mechanical system replacement | HVAC construction,,mechanical system replacement | HVAC construction
+construction.electrical,Electrical Upgrades and Installation,electrical upgrade | LED retrofit | solar and battery,electrical contracting | power-system upgrades,,electrical contracting | power-system upgrades
+construction.ev_charging,EV Charging Infrastructure Installation,electric vehicle supply equipment | EVSE | charging stations,EVSE installation | charging-station construction,,EVSE installation | charging-station construction
+construction.fire_life_safety,Fire Alarm and Suppression System Installation,fire alarm upgrades | fire extinguishing system replacement,fire protection system construction,,fire protection system construction
+construction.elevator_modernization,Elevator Modernization,elevator modernization,elevator upgrade,,elevator upgrade
+construction.medical_equipment_install,Medication Dispensing Equipment Installation,med dispensing unit installation,medication dispensing unit installation,,medication dispensing unit installation
+construction.fence,Fence Repair and Installation,emergency fence repair,fencing services,,fencing services

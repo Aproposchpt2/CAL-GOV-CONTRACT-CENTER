@@ -1,0 +1,16 @@
+capability_id,canonical_capability,government_terminology,business_terminology,abbreviations,industry_terminology
+health.medical_exams,Medical Examinations and Physicals,pre-enrollment physicals,physical examinations | medical screening,,physical examinations | medical screening
+health.medical_staff,"Medical Director, Physician, and Speech Pathology Services",temporary relief medical director | temporary relief speech pathology,clinical staffing | locum medical services,,clinical staffing | locum medical services
+health.occupational,Occupational Health and Biomedical Monitoring,biomedical monitoring,occupational medicine | employee health monitoring,,occupational medicine | employee health monitoring
+health.provider_network,Provider Network and Prior Authorization Services,health care provider network and prior authorization,managed-care administration,,managed-care administration
+health.dosimetry,Radiation Dosimetry Services,radiation dosimetry services,radiation monitoring,,radiation monitoring
+health.medical_equipment_maintenance,Medical Equipment Maintenance and Repair,medical equipment maintenance and repair,biomedical equipment service,,biomedical equipment service
+health.healthcare_outreach,Healthcare Options and Enrollment Support,health care options,health-plan choice counseling,,health-plan choice counseling
+health.supervision_monitoring,Enhanced Supervision and Monitoring Services,SVP enhanced supervision monitoring,community monitoring | enhanced supervision,,community monitoring | enhanced supervision
+security.guard_services,Security Guard and Event Security Services,unarmed security guard services | parks events security,protective security services,,protective security services
+security.firing_range,Weapons Firing Range Services,weapons firing range services,firearms training range,,firearms training range
+security.ammunition,Ammunition Supply,"ammunition, factory loaded",factory ammunition supply,,factory ammunition supply
+workforce.staffing,Temporary Staffing and Staff Augmentation,temporary employment services | engineering staffing,temporary employment services | contract staffing,,temporary employment services | contract staffing
+training.fire_safety,Firefighter and Public Safety Training,firefighter certified training courses,fire-service training,,fire-service training
+training.health_safety,"Health, Safety, and Process Training",statewide health and safety training | process safety management API training,EHS training | process safety training,EHS | PSM | API,EHS training | process safety training
+training.education,Education and Instructional Services,performance art educator services,instructional services,,instructional services

@@ -1,0 +1,26 @@
+capability_id,canonical_capability,government_terminology,business_terminology,abbreviations,industry_terminology
+goods.protective_clothing,Protective Clothing and Operational Supplies Rental,protective clothing and operational supplies rental | shop clothing linen services,uniform rental | shop clothing service | linen service,,uniform rental | shop clothing service | linen service
+goods.uniforms,Uniform Supply,physical training uniforms,apparel supply,,apparel supply
+goods.printing_envelopes,"Envelope Supply, Printing, and Mass Mailing",envelopes | mass printing and mass mailing | print and deliver custom envelopes,commercial printing | envelope manufacturing,,commercial printing | envelope manufacturing
+goods.lab_supplies,Laboratory Supplies,laboratory supplies,lab consumables,,lab consumables
+goods.agricultural_pest,Agricultural Pest Monitoring Supplies,yellow panel traps | peelable superchargers | Torula yeast,insect monitoring supplies | pest lures,,insect monitoring supplies | pest lures
+goods.fuel,Fuel Supply,P26-0088,Fuel Supply,,
+goods.snow_equipment,Snowblowers and Accessories,snowblowers and accessories,snow-removal equipment,,snow-removal equipment
+goods.live_fish,Live Fish Supply,live catfish | catfish,fish stocking supply,,fish stocking supply
+goods.pumps_motors,Pumps and Motors Supply,pumps and motors,pump equipment supply,,pump equipment supply
+goods.road_parts,Guardrail and Roadway Safety Parts,guardrail and end treatment parts,roadside safety parts,,roadside safety parts
+goods.heavy_vehicle,Heavy Vehicle Bodies and Equipment,"15-ft roll-off 53,000 GVW",truck body equipment,,truck body equipment
+goods.gaming_equipment,Modified Gaming Consoles,modified gaming consoles,accessible gaming equipment,,accessible gaming equipment
+goods.vending_machines,Vending Machine Supply,frozen food vending machine | combo snack/drink vending machines,vending equipment,,vending equipment
+food.catering,Meals and Catering Services,athletic meals and catering services,food catering,,food catering
+food.concession,Food Service Concession Operations,cafe food service space,cafe concession,,cafe concession
+food.fair_services,Fair-Time Services,fair-time services,fair operations services,,fair operations services
+hospitality.lodging,Lodging and Event-Space Services,staff lodging services | event space and lodging,accommodation services,,accommodation services
+real_estate.leasing,Government Office and Facility Leasing,wanted to lease by the State of California,space leasing | government tenancy,,space leasing | government tenancy
+real_estate.concession,Public Facility Concession Opportunities,Folsom Lake SRA Beals Point,concession agreement,,concession agreement
+funding.clean_hydrogen,Clean Hydrogen Project Funding,clean hydrogen program | H2ONSITE | hydrogen infrastructure project opportunity,hydrogen grant funding,,hydrogen grant funding
+funding.ev_charging,Electric Vehicle Charging Project Funding,community charging | RECESS | EV HOME,EV infrastructure grants,,EV infrastructure grants
+funding.carbon_removal,Carbon Removal Demonstration Funding,direct air capture pre-commercial demonstration,DAC demonstration funding,DAC,DAC demonstration funding
+funding.geothermal,Geothermal Project Funding,federal geothermal energy funding opportunities,geothermal grants,,geothermal grants
+funding.energy_efficiency,Energy Efficiency and Renewable Energy Financing,K-12 Energy Efficiency Program | financing for energy efficiency,energy-efficiency financing | clean-energy loans,,energy-efficiency financing | clean-energy loans
+funding.broadband,Broadband Infrastructure Funding,California Broadband Funding,broadband grants,,broadband grants

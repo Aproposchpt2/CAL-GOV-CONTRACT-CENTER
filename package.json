@@ -7,7 +7,9 @@
     "scrape": "node scripts/scrape.js",
     "ingest-obas": "node scripts/ingest-obas.js",
     "scrape-caleprocure": "node scripts/scrape-caleprocure.js",
-    "sync-supabase": "node scripts/sync-supabase.js"
+    "sync-supabase": "node scripts/sync-supabase.js",
+    "knowledge:test": "node --test tests/procurement-knowledge-discovery.test.js",
+    "knowledge:pilot": "node scripts/procurement-knowledge-pilot.js"
   },
   "dependencies": {
     "pdf-parse": "^2.4.5",

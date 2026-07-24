@@ -1,0 +1,23 @@
+capability_id,canonical_capability,government_terminology,business_terminology,abbreviations,industry_terminology
+it.enterprise_software,Enterprise Software Implementation and Integration,enterprise solution | portal solution | integration system,application implementation | systems integration,,application implementation | systems integration
+it.application_operations,Application Maintenance and Operations,M&O IT services | maintenance and operations,application M&O | managed application services,M&O,application M&O | managed application services
+it.cloud_productivity,Cloud and Microsoft 365 Services,Microsoft 365 and related cloud services,M365 services | cloud productivity administration,M365,M365 services | cloud productivity administration
+it.software_licensing,Software Licensing and Subscription Renewal,software renewal | software subscriptions,software subscriptions | license renewal,,software subscriptions | license renewal
+it.cybersecurity,Managed Cybersecurity Services,managed cybersecurity services,information security services | managed security,,information security services | managed security
+it.hardware_support,Hardware Maintenance and Support,hardware maintenance and support renewal,IT hardware maintenance,,IT hardware maintenance
+it.records_digitization,Records Digitization,digitization of marriage records,document imaging | records scanning,,document imaging | records scanning
+it.scada,SCADA and Industrial Control Services,SCADA services,industrial control systems | operational technology services,SCADA | OT,industrial control systems | operational technology services
+it.emergency_communications,9-1-1 and Call Processing Systems,9-1-1 call processing equipment,public-safety answering point technology | 911 call processing,PSAP,public-safety answering point technology | 911 call processing
+it.environmental_monitoring_equipment,Data Logging and Environmental Monitoring Equipment,data logger equipment | environmental monitoring equipment,monitoring instrumentation | data-acquisition equipment,,monitoring instrumentation | data-acquisition equipment
+it.communications_equipment_operations,Communications Equipment Processing,CAC Equipment Processing Center,equipment processing center services,,equipment processing center services
+transport.towing_storage,Evidence Impound Towing and Storage,evidence impound tow and storage,impound towing | vehicle storage,,impound towing | vehicle storage
+transport.bus_charter,Bus Charter and Rental Services,charter bus service | bus rental services,motorcoach service | bus rental,,motorcoach service | bus rental
+transport.freight_delivery,Freight Shipping and Delivery,freight shipping and delivery services,freight logistics | cargo delivery,,freight logistics | cargo delivery
+transport.courier,Courier Services,daily courier services,messenger service,,messenger service
+transport.warehousing_fulfillment,"Warehousing, Preparation, and Mailing","warehousing, transporting, preparing, and mailing",fulfillment services | distribution operations,,fulfillment services | distribution operations
+transport.aircraft_maintenance,Aircraft Maintenance and Repair,aircraft maintenance and repair,aviation maintenance,,aviation maintenance
+transport.vehicle_decommissioning,Vehicle Decommissioning,vehicle decommissioning services,fleet decommissioning,,fleet decommissioning
+transport.snow_hauling,Snow Hauling,snow hauling services,snow removal hauling,,snow removal hauling
+transport.planning,Transportation Planning and Parking Studies,regional truck parking study,mobility planning | parking study,,mobility planning | parking study
+transport.its,Roadway Weather and Message Sign Systems,roadway weather information system | portable changeable message signs,intelligent transportation systems | RWIS,ITS | RWIS,intelligent transportation systems | RWIS
+transport.asset_data,Transportation Asset and Retroreflectivity Data Collection,asset data collection | retroreflectivity data collection,roadway asset inventory,,roadway asset inventory
